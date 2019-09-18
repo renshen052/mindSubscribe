@@ -24,4 +24,15 @@ public class AdminService {
 	public int updateAdminPwd(Integer adminId,String newPwd) {
 		return adminDao.updateAdminPwd(adminId,newPwd);
 	}
+
+
+	/**
+	 * 修改管理员信息，根据管理员id
+	 * @param admin
+	 * @param adminId
+	 * @return
+	 */
+	public int updateAdminBase(Admin admin, Integer adminId) {
+		return adminDao.updateAdminBase( admin, adminId);
+	}
 }

@@ -25,6 +25,8 @@ public class CharacterEncodingFilter implements Filter{
 		
 		response.setCharacterEncoding("UTF-8");
 		
+		response.setContentType("application/json; charset=utf-8");
+		
 		//过滤器链
 		chain.doFilter(request, response);
 		

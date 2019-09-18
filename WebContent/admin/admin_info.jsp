@@ -32,16 +32,16 @@
      <div class="type_title">管理员信息 </div>
       <div class="xinxi">
         <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名： </label>
-          <div class="col-sm-9"><input type="text" name="用户名" id="website-title" value="${LOGIN_ADMIN.name }" class="col-xs-7 text_info" disabled="disabled">
+          <div class="col-sm-9"><input type="text" name="name" id="website-title" value="${LOGIN_ADMIN.name }" class="col-xs-7 text_info" disabled="disabled">
           &nbsp;&nbsp;&nbsp;<a href="javascript:ovid()" onclick="change_Password()" class="btn btn-warning btn-xs">修改密码</a></div>
           
           </div>
           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">性别： </label>
           <div class="col-sm-9">
-          <span class="sex">男</span>
+          <span class="sex">${LOGIN_ADMIN.sex eq 1 ? "男":"女"}</span>
             <div class="add_sex">
-            <label><input name="sex" type="radio" class="ace" ${LOGIN_ADMIN.sex eq 1 ? 'checked="checked"':'' }><span class="lbl">男</span></label>&nbsp;&nbsp;
-            <label><input name="sex" type="radio" class="ace" ${LOGIN_ADMIN.sex eq 0 ? 'checked="checked"':'' }><span class="lbl">女</span></label>
+            <label><input name="sex" type="radio" class="ace" value="1" ${LOGIN_ADMIN.sex eq 1 ? 'checked="checked"':'' }><span class="lbl">男</span></label>&nbsp;&nbsp;
+            <label><input name="sex" type="radio" class="ace" value="0" ${LOGIN_ADMIN.sex eq 0 ? 'checked="checked"':'' }><span class="lbl">女</span></label>
             </div>
            </div>
           </div>
@@ -54,9 +54,7 @@
           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">电子邮箱： </label>
           <div class="col-sm-9"><input type="text" name="email" id="website-title" value="${LOGIN_ADMIN.email }" class="col-xs-7 text_info" disabled="disabled"></div>
           </div>
-          <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">QQ： </label>
-          <div class="col-sm-9"><input type="text" name="QQ" id="website-title" value="456789787" class="col-xs-7 text_info" disabled="disabled"> </div>
-          </div>
+          
           
            <div class="Button_operation clearfix"> 
 				<button onclick="modify();" class="btn btn-danger radius" type="submit">修改信息</button>				
@@ -106,10 +104,34 @@ function save_info(){
 		  if(num>0){  return false;}	 	
           else{
 			  
-			   layer.alert('修改成功！',{
-               title: '提示框',				
-			   icon:1,			   		
-			  });
+        	//ajax请求
+				$.ajax({
+					type : "POST",
+					url : "${pageContext.request.contextPath}/admin/base?m=updateBase",
+					data : {
+						"name" : $("input[name='name']").val(),
+						"sex" : $("input[name='sex']").val(),
+						"age" : $("input[name='age']").val(),
+						"phone" : $("input[name='phone']").val(),
+						"email" : $("input[name='email']").val(),
+					},
+					dataType : "json",
+					success : function(data) {
+						var i = 0;
+						if (data['result'] == true) {
+							i = 1;
+						}
+
+						layer.alert(data['msg'], {
+							title : '提示框',
+							icon : i,
+
+						});
+
+					}
+				});
+        	  
+        	  
 			  $('#Personal').find('.xinxi').removeClass("hover");
 			  $('#Personal').find('.text_info').removeClass("add").attr("disabled", true);
 			  $('#Personal').find('.btn-success').css({'display':'none'});
@@ -125,108 +147,85 @@ function save_info(){
 	$(".admin_modify_style").height($(window).height()); 
 	$(".recording_style").width($(window).width()-400); 
   });
-  //修改密码
-  function change_Password(){
-	   layer.open({
-    type: 1,
-	title:'修改密码',
-	area: ['300px','300px'],
-	shadeClose: true,
-	content: $('#change_Pass'),
-	btn:['确认修改'],
-	yes:function(index, layero){		
-		   if ($("#password").val()==""){
-			  layer.alert('原密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          } 
-		  if ($("#Nes_pas").val()==""){
-			  layer.alert('新密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          } 
-		   
-		  if ($("#c_mew_pas").val()==""){
-			  layer.alert('确认新密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          }
-		  if(!$("#c_mew_pas").val || $("#c_mew_pas").val() != $("#Nes_pas").val() ){
-			  
-            layer.alert('密码不一致!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			 return false;
-        }   
-		 else{			  
-			 
-			 
-			 
-			 //修改密码
-			 
-			 //ajax请求
-			 $.ajax({
-   				type: "POST",
-  				url: "${pageContext.request.contextPath}/admin/base?m=updatePwd",
-  				data: { "newPwd": $("#Nes_pas").val() ,"password":$("#password").val()},
-  				dataType:"json",
-  				success: function(data){
-  					var i = 0;
-  					if(data['result'] == true){
-  						i = 1;
-  					}
-  					
-  					layer.alert(data['msg'],{
-			              title: '提示框',				
-							icon:i,
-						    
-						 });
-  					
-  					layer.close(index);
-   				}
-			 });
-			 
-			 
-			 
-			/*  var result = "";
-			 
-			 $.post("${pageContext.request.contextPath}/admin/base?m=updatePwd",
-			 { "newPwd": $("#Nes_pas").val() ,"password":$("#password").val()},
-   				function(data){
-				 
-				 console.log("sldkfj");
-				 
-				 $.layer.alert(data['result'],{
-				              title: '提示框',				
-								icon:1,
-							    
-							 });
-						 
-   				}, "json"); */
-				    
-			 
-			
-			 
-			/*  layer.alert(result,{
-	               title: '提示框',				
-				icon:1,		
-				  }); 
-			layer.close(index); */
-			 
-		  }	 
+ 
+    //修改密码
+	function change_Password() {
+		layer
+				.open({
+					type : 1,
+					title : '修改密码',
+					area : [ '300px', '300px' ],
+					shadeClose : true,
+					content : $('#change_Pass'),
+					btn : [ '确认修改' ],
+					yes : function(index, layero) {
+						if ($("#password").val() == "") {
+							layer.alert('原密码不能为空!', {
+								title : '提示框',
+								icon : 0,
+
+							});
+							return false;
+						}
+						if ($("#Nes_pas").val() == "") {
+							layer.alert('新密码不能为空!', {
+								title : '提示框',
+								icon : 0,
+
+							});
+							return false;
+						}
+
+						if ($("#c_mew_pas").val() == "") {
+							layer.alert('确认新密码不能为空!', {
+								title : '提示框',
+								icon : 0,
+
+							});
+							return false;
+						}
+						if (!$("#c_mew_pas").val
+								|| $("#c_mew_pas").val() != $("#Nes_pas").val()) {
+
+							layer.alert('密码不一致!', {
+								title : '提示框',
+								icon : 0,
+
+							});
+							return false;
+						} else {
+
+							//修改密码
+
+							//ajax请求
+							$.ajax({
+								type : "POST",
+								url : "${pageContext.request.contextPath}/admin/base?m=updatePwd",
+								data : {
+									"newPwd" : $("#Nes_pas").val(),
+									"password" : $("#password").val()
+								},
+								dataType : "json",
+								success : function(data) {
+									var i = 0;
+									if (data['result'] == true) {
+										i = 1;
+									}
+
+									layer.alert(data['msg'], {
+										title : '提示框',
+										icon : i,
+
+									});
+
+									layer.close(index);
+								}
+							});
+									
+
+						}
+					}
+				});
 	}
-    });
-	  }
 </script>
 

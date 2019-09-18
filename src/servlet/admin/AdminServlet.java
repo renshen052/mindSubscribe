@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts2.json.JSONUtil;
+
 import baen.Admin;
 import model.service.AdminService;
 
@@ -96,6 +98,44 @@ public class AdminServlet extends HttpServlet {
 			
 			writer.close();
 			
+			
+		}else if("updateBase".equals(m)){
+			
+			//修改基本信息
+			
+			Admin admin = new Admin();
+			admin.setName(request.getParameter("name"));
+			admin.setSex( Integer.parseInt( request.getParameter("sex")));
+			admin.setAge(Integer.parseInt(request.getParameter("age")));
+			admin.setPhone(request.getParameter("phone"));
+			admin.setEmail(request.getParameter("email"));
+			
+			//当前登录用户
+			Admin adminNow = (Admin)request.getSession().getAttribute(LOGIN_ADMIN);
+			
+			
+			//更新
+			int i = adminService.updateAdminBase(admin,adminNow.getAdminId());
+			
+			Writer writer = response.getWriter();
+			
+			String msg = "";
+			if(i > 0) {
+				//成功
+				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请刷新！\"}";
+				
+				//重新在查询一遍管理员信息
+				Admin adminNew = adminService.getAdmin(adminNow.getAdminName());
+				
+				request.getSession().setAttribute(LOGIN_ADMIN,adminNew);
+				
+			}else {
+				//失败
+				msg = "{\"result\":\"false\",\"msg\":\"修改失败，请刷新页面后重试\"}";
+			}
+			writer.write(msg);
+			writer.close();
+		
 			
 			
 			

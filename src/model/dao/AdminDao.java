@@ -69,6 +69,21 @@ public class AdminDao {
 		return jdbcUtil.executeUpdate(sql, newPwd,adminId);
 		
 	}
+
+
+	/**
+	 * 修改管理员信息，根据管理员id
+	 * @param admin
+	 * @param adminId
+	 * @return
+	 */
+	public int updateAdminBase(Admin admin, Integer adminId) {
+		
+		String sql = "UPDATE admin SET NAME=?,sex=?,age=?,phone=?,email=? WHERE admin_id=?";
+		
+		return jdbcUtil.executeUpdate(sql, admin.getName(),admin.getSex(),admin.getAge(),admin.getPhone(),admin.getEmail(),adminId);
+		
+	}
 	
 	
 }
