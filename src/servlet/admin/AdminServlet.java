@@ -20,7 +20,7 @@ import model.service.AdminService;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public final String LOGIN_ADMIN = "LOGIN_ADMIN";
+	public static final String LOGIN_ADMIN = "LOGIN_ADMIN";
 
 	AdminService adminService = new AdminService();
 	
