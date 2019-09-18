@@ -374,13 +374,8 @@ $('.change_Password').on('click', function(){
 							
 							</ul>
 						</li>
-                        <li><a href="#" class="dropdown-toggle"><i class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu">
+                        <li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/admin_info.jsp" class="iframeurl"><i class="icon-group"></i><span class="menu-text"> 个人信息 </span></a>
 							
-								<li class="home"><a href="javascript:void(0)" name="admin_Competence.html" title="权限管理"  class="iframeurl"><i class="icon-double-angle-right"></i>权限管理</a></li>
-                                <li class="home"><a href="javascript:void(0)" name="administrator.html" title="管理员列表" class="iframeurl"><i class="icon-double-angle-right"></i>管理员列表</a></li>
-								  <li class="home"><a href="javascript:void(0)" name="admin_info.jsp" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
-							</ul>
 						</li>
 					</ul>
 					<div class="sidebar-collapse" id="sidebar-collapse">

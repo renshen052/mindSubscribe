@@ -541,7 +541,7 @@ body
 .admin_info_style .text_info.add {
     border: 1px solid #ddd;
 }
-.admin_info_style .admin_modify_style{ width:400px; border-right:1px solid #dddddd; float:left }
+.admin_info_style .admin_modify_style{ width:100%; border-right:1px solid #dddddd; float:left }
 .admin_info_style  .xinxi,
 .admin_info_style .recording_list{ padding:10px;}
 .admin_info_style  .xinxi .add_sex ,

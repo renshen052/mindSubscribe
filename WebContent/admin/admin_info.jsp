@@ -160,8 +160,8 @@ function save_info(){
 			 });
 			return false;
           }
-		    if(!$("#c_mew_pas").val || $("#c_mew_pas").val() != $("#Nes_pas").val() )
-        {
+		  if(!$("#c_mew_pas").val || $("#c_mew_pas").val() != $("#Nes_pas").val() ){
+			  
             layer.alert('密码不一致!',{
               title: '提示框',				
 				icon:0,
@@ -171,27 +171,59 @@ function save_info(){
         }   
 		 else{			  
 			 
-			 layer.alert("---",{
-	               title: '提示框',				
-				icon:1,		
-				  }); 
-				  layer.close(index);
 			 
 			 
 			 //修改密码
-			 var newPwd = $("#Nes_pas").val();
 			 
 			 //ajax请求
+			 $.ajax({
+   				type: "POST",
+  				url: "${pageContext.request.contextPath}/admin/base?m=updatePwd",
+  				data: { "newPwd": $("#Nes_pas").val() ,"password":$("#password").val()},
+  				dataType:"json",
+  				success: function(data){
+  					var i = 0;
+  					if(data['result'] == true){
+  						i = 1;
+  					}
+  					
+  					layer.alert(data['msg'],{
+			              title: '提示框',				
+							icon:i,
+						    
+						 });
+  					
+  					layer.close(index);
+   				}
+			 });
+			 
+			 
+			 
+			/*  var result = "";
+			 
 			 $.post("${pageContext.request.contextPath}/admin/base?m=updatePwd",
-					 { "newPwd": newPwd ,"password":$("#password").val()},
+			 { "newPwd": $("#Nes_pas").val() ,"password":$("#password").val()},
    				function(data){
-					layer.alert(data['result'],{
-				               title: '提示框',				
-							icon:1,		
-							  }); 
-							  layer.close(index);
+				 
+				 console.log("sldkfj");
+				 
+				 $.layer.alert(data['result'],{
+				              title: '提示框',				
+								icon:1,
+							    
+							 });
 						 
-   				}, "json");    
+   				}, "json"); */
+				    
+			 
+			
+			 
+			/*  layer.alert(result,{
+	               title: '提示框',				
+				icon:1,		
+				  }); 
+			layer.close(index); */
+			 
 		  }	 
 	}
     });

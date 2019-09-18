@@ -76,16 +76,19 @@ public class AdminServlet extends HttpServlet {
 				//成功
 				adminService.updateAdminPwd(admin.getAdminId(),newPwd);
 				
-				msg = "{'result':'修改成功！'}";
+				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请重新登录！\"}";
+				
+				request.getSession().removeAttribute(LOGIN_ADMIN);
+				
 				
 			}else if(!admin.getAdminPwd().equals(password)){
-				msg = "{'result':'修改失败，原始密码错误！'}";
+				msg = "{\"result\":\"false\",\"msg\":\"修改失败，原始密码错误！\"}";
 			}else {
-				msg = "{'result':'修改失败，请重试！'}";
+				msg = "{\"result\":\"false\",\"msg\":\"修改失败，请重试！\"}";
 			}
 			
 			
-			
+			response.setContentType("application/json; charset=utf-8");
 			
 			Writer writer = response.getWriter();
 			
