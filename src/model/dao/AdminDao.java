@@ -18,7 +18,7 @@ public class AdminDao {
 		
 		Admin admin = null;
 		
-		String sql = "select * from admin where admin_name=?";
+		String sql = "SELECT * FROM admin WHERE admin_name=?";
 		
 		ResultSet rs = jdbcUtil.executeQuery(sql, adminName);
 		
@@ -54,6 +54,20 @@ public class AdminDao {
 		}
 		
 		return admin;
+	}
+
+
+	/**
+	 * 修改密码
+	 * @param adminId
+	 * @return
+	 */
+	public int updateAdminPwd(Integer adminId,String newPwd) {
+
+		String sql = "UPDATE admin SET admin_pwd=? WHERE admin_id=?";
+		
+		return jdbcUtil.executeUpdate(sql, newPwd,adminId);
+		
 	}
 	
 	

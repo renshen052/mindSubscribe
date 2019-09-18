@@ -1,6 +1,8 @@
 package servlet.admin;
 
 import java.io.IOException;
+import java.io.Writer;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -57,6 +59,47 @@ public class AdminServlet extends HttpServlet {
 			}
 			
 			
+		}else if("updatePwd".equals(m)){
+			
+			//修改密码
+			
+			String newPwd = request.getParameter("newPwd");
+			
+			String password = request.getParameter("password");
+			
+			Admin admin = (Admin)request.getSession().getAttribute(LOGIN_ADMIN);
+			
+			
+			String msg = "";
+			if( admin.getAdminPwd().equals(password) ) {
+				
+				//成功
+				adminService.updateAdminPwd(admin.getAdminId(),newPwd);
+				
+				msg = "{'result':'修改成功！'}";
+				
+			}else if(!admin.getAdminPwd().equals(password)){
+				msg = "{'result':'修改失败，原始密码错误！'}";
+			}else {
+				msg = "{'result':'修改失败，请重试！'}";
+			}
+			
+			
+			
+			
+			Writer writer = response.getWriter();
+			
+			writer.write(msg);
+			
+			writer.close();
+			
+			
+			
+			
+			
+		}else {
+			
+			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
 		}
 		
 	

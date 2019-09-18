@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -42,6 +43,13 @@
 		<script src="assets/laydate/laydate.js" type="text/javascript"></script>
         
         
+<script type="text/javascript">
+
+
+
+
+
+</script>
 <script type="text/javascript">	
  $(function(){ 
  var cid = $('#nav_list> li>.submenu');
@@ -173,12 +181,10 @@ $('.change_Password').on('click', function(){
 			 });
 			 return false;
         }   
-		 else{			  
-			  layer.alert('修改成功！',{
-               title: '提示框',				
-			icon:1,		
-			  }); 
-			  layer.close(index);      
+		 else{		
+			 
+			/////////
+			 
 		  }	 
 	}
     });
@@ -189,7 +195,7 @@ $('.change_Password').on('click', function(){
 	 icon:2,
     }, 
 	function(){
-	  location.href="login.html";
+	  location.href="${pageContext.request.contextPath}/admin/base";
         
     });
 });
@@ -213,7 +219,7 @@ $('.change_Password').on('click', function(){
                <ul class="nav ace-nav">	
                 <li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>ADMIN	</span>
+								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_ADMIN.name }	</span>
 								<i class="icon-caret-down"></i>
 							</a>
 							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
@@ -289,7 +295,7 @@ $('.change_Password').on('click', function(){
                         <li><a href="javascript:ovid(0)" id="Exit_system">退出系统</a></li>
                        
 					</ul>
-				</div>-->
+				</div> -->
                 </div>
 			</div>
 		</div>
@@ -373,7 +379,7 @@ $('.change_Password').on('click', function(){
 							
 								<li class="home"><a href="javascript:void(0)" name="admin_Competence.html" title="权限管理"  class="iframeurl"><i class="icon-double-angle-right"></i>权限管理</a></li>
                                 <li class="home"><a href="javascript:void(0)" name="administrator.html" title="管理员列表" class="iframeurl"><i class="icon-double-angle-right"></i>管理员列表</a></li>
-								  <li class="home"><a href="javascript:void(0)" name="admin_info.html" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
+								  <li class="home"><a href="javascript:void(0)" name="admin_info.jsp" title="个人信息" class="iframeurl"><i class="icon-double-angle-right"></i>个人信息</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -449,19 +455,18 @@ $('.change_Password').on('click', function(){
          <!--底部样式-->
        
          <div class="footer_style" id="footerstyle">  
-          <p class="l_f">版权所有：南京四美软件  苏ICP备11011739号</p>
-          <p class="r_f">地址：南京市鼓楼区阅江楼街道公共路64号  邮编：210011 技术支持：XXXX</p>
+          <p class="l_f">版权所有：XXXX</p>
          </div>
          <!--修改密码样式-->
-         <div class="change_Pass_style" id="change_Pass">
+        <!-- <div class="change_Pass_style" id="change_Pass">
             <ul class="xg_style">
              <li><label class="label_name">原&nbsp;&nbsp;密&nbsp;码</label><input name="原密码" type="password" class="" id="password"></li>
              <li><label class="label_name">新&nbsp;&nbsp;密&nbsp;码</label><input name="新密码" type="password" class="" id="Nes_pas"></li>
              <li><label class="label_name">确认密码</label><input name="再次确认密码" type="password" class="" id="c_mew_pas"></li>
               
             </ul>
-     <!--       <div class="center"> <button class="btn btn-primary" type="button" id="submit">确认修改</button></div>-->
-         </div>
+            <div class="center"> <button class="btn btn-primary" type="button" id="submit">确认修改</button></div>
+         </div>-->
         <!-- /.main-container -->
 		<!-- basic scripts -->
 		

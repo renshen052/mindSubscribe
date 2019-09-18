@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -31,7 +32,7 @@
      <div class="type_title">管理员信息 </div>
       <div class="xinxi">
         <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">用户名： </label>
-          <div class="col-sm-9"><input type="text" name="用户名" id="website-title" value="张小泉" class="col-xs-7 text_info" disabled="disabled">
+          <div class="col-sm-9"><input type="text" name="用户名" id="website-title" value="${LOGIN_ADMIN.name }" class="col-xs-7 text_info" disabled="disabled">
           &nbsp;&nbsp;&nbsp;<a href="javascript:ovid()" onclick="change_Password()" class="btn btn-warning btn-xs">修改密码</a></div>
           
           </div>
@@ -39,87 +40,31 @@
           <div class="col-sm-9">
           <span class="sex">男</span>
             <div class="add_sex">
-            <label><input name="form-field-radio" type="radio" class="ace" checked="checked"><span class="lbl">保密</span></label>&nbsp;&nbsp;
-            <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;
-            <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">女</span></label>
+            <label><input name="sex" type="radio" class="ace" ${LOGIN_ADMIN.sex eq 1 ? 'checked="checked"':'' }><span class="lbl">男</span></label>&nbsp;&nbsp;
+            <label><input name="sex" type="radio" class="ace" ${LOGIN_ADMIN.sex eq 0 ? 'checked="checked"':'' }><span class="lbl">女</span></label>
             </div>
            </div>
           </div>
           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">年龄： </label>
-          <div class="col-sm-9"><input type="text" name="年龄" id="website-title" value="24" class="col-xs-7 text_info" disabled="disabled"></div>
+          <div class="col-sm-9"><input type="text" name="age" id="website-title" value="${LOGIN_ADMIN.age }" class="col-xs-7 text_info" disabled="disabled"></div>
           </div>
-          <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">移动电话： </label>
-          <div class="col-sm-9"><input type="text" name="移动电话" id="website-title" value="13567878908" class="col-xs-7 text_info" disabled="disabled"></div>
+          <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">电话： </label>
+          <div class="col-sm-9"><input type="text" name="phone" id="website-title" value="${LOGIN_ADMIN.phone }" class="col-xs-7 text_info" disabled="disabled"></div>
           </div>
           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">电子邮箱： </label>
-          <div class="col-sm-9"><input type="text" name="电子邮箱" id="website-title" value="567890@qq.com" class="col-xs-7 text_info" disabled="disabled"></div>
+          <div class="col-sm-9"><input type="text" name="email" id="website-title" value="${LOGIN_ADMIN.email }" class="col-xs-7 text_info" disabled="disabled"></div>
           </div>
           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">QQ： </label>
           <div class="col-sm-9"><input type="text" name="QQ" id="website-title" value="456789787" class="col-xs-7 text_info" disabled="disabled"> </div>
           </div>
-           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">权限： </label>
-          <div class="col-sm-9" > <span>普通管理员</span></div>
-          </div>
-           <div class="form-group"><label class="col-sm-3 control-label no-padding-right" for="form-field-1">注册时间： </label>
-          <div class="col-sm-9" > <span>2016-7-5</span></div>
-          </div>
+          
            <div class="Button_operation clearfix"> 
 				<button onclick="modify();" class="btn btn-danger radius" type="submit">修改信息</button>				
 				<button onclick="save_info();" class="btn btn-success radius" type="button">保存修改</button>              
 			</div>
             </div>
     </div>
-    <div class="recording_style">
-    <div class="type_title">管理员登陆记录 </div>
-    <div class="recording_list">
-     <table class="table table-border table-bordered table-bg table-hover table-sort" id="sample-table">
-    <thead>
-      <tr class="text-c">
-        <th width="25"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-        <th width="80">ID</th>
-        <th width="100">类型</th>
-        <th>内容</th>
-        <th width="17%">登陆地点</th>
-        <th width="10%">用户名</th>
-        <th width="120">客户端IP</th>
-        <th width="150">时间</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-        <td>15686</td>
-        <td>1</td>
-        <td>登录成功!</td>
-        <td>江苏南京</td>
-        <td>admin</td>
-        <td>61.233.7.80</td>
-        <td>2014-6-11 11:11:42</td>      
-      </tr>
-         <tr>
-        <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-        <td>15686</td>
-        <td>1</td>
-        <td>登录成功!</td>
-        <td>江苏南京</td>
-        <td>admin</td>
-        <td>61.233.7.80</td>
-        <td>2014-6-11 11:11:42</td>      
-      </tr>
-         <tr>
-        <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-        <td>15686</td>
-        <td>1</td>
-        <td>登录成功!</td>
-        <td>江苏南京</td>
-        <td>admin</td>
-        <td>61.233.7.80</td>
-        <td>2014-6-11 11:11:42</td>      
-      </tr>
-    </tbody>
-  </table>
-    </div>
-    </div>
+    
  </div>
 </div>
  <!--修改密码样式-->
@@ -225,34 +170,31 @@ function save_info(){
 			 return false;
         }   
 		 else{			  
-			  layer.alert('修改成功！',{
-               title: '提示框',				
-			icon:1,		
-			  }); 
-			  layer.close(index);      
+			 
+			 layer.alert("---",{
+	               title: '提示框',				
+				icon:1,		
+				  }); 
+				  layer.close(index);
+			 
+			 
+			 //修改密码
+			 var newPwd = $("#Nes_pas").val();
+			 
+			 //ajax请求
+			 $.post("${pageContext.request.contextPath}/admin/base?m=updatePwd",
+					 { "newPwd": newPwd ,"password":$("#password").val()},
+   				function(data){
+					layer.alert(data['result'],{
+				               title: '提示框',				
+							icon:1,		
+							  }); 
+							  layer.close(index);
+						 
+   				}, "json");    
 		  }	 
 	}
     });
 	  }
 </script>
-<script>
-jQuery(function($) {
-		var oTable1 = $('#sample-table').dataTable( {
-		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,2,3,4,5,6]}// 制定列不参与排序
-		] } );
-				
-				
-				$('table th input:checkbox').on('click' , function(){
-					var that = this;
-					$(this).closest('table').find('tr > td:first-child input:checkbox')
-					.each(function(){
-						this.checked = that.checked;
-						$(this).closest('tr').toggleClass('selected');
-					});
-						
-				});
-});</script>
+

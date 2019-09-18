@@ -14,4 +14,14 @@ public class AdminService {
 	public Admin getAdmin(String adminName) {
 		return adminDao.getAdmin(adminName);
 	}
+
+	
+	/**
+	 * 修改密码
+	 * @param adminId
+	 * @return
+	 */
+	public int updateAdminPwd(Integer adminId,String newPwd) {
+		return adminDao.updateAdminPwd(adminId,newPwd);
+	}
 }
