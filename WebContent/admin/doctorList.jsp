@@ -4,18 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.css"/>       
-        <link href="assets/css/codemirror.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/ace.min.css" />
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+        <link href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/css/style.css"/>       
+        <link href="${pageContext.request.contextPath }/admin/assets/css/codemirror.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
         <!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
 		<![endif]-->
-			<script src="assets/js/jquery.min.js"></script>
+			<script src="${pageContext.request.contextPath }/admin/assets/js/jquery.min.js"></script>
 
 		<!-- <![endif]-->
 
@@ -26,29 +26,29 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/typeahead-bs2.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/typeahead-bs2.min.js"></script>
 		<!-- page specific plugin scripts -->
-		<script src="assets/js/jquery.dataTables.min.js"></script>
-		<script src="assets/js/jquery.dataTables.bootstrap.js"></script>
-        <script type="text/javascript" src="js/H-ui.js"></script> 
-        <script type="text/javascript" src="js/H-ui.admin.js"></script> 
-        <script src="assets/layer/layer.js" type="text/javascript" ></script>
-        <script src="assets/laydate/laydate.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/jquery.dataTables.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/H-ui.js"></script> 
+        <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/H-ui.admin.js"></script> 
+        <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript" ></script>
+        <script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
 <title>用户列表</title>
 </head>
 
@@ -78,108 +78,76 @@
 		<thead>
 		 <tr>
 				<th width="25"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-				<th width="80">ID</th>
-				<th width="100">用户名</th>
+				<th width="100">登录账号</th>
+				<th width="100">个人照片</th>
+				<th width="100">姓名</th>
 				<th width="80">性别</th>
+				<th width="80">年龄</th>
 				<th width="120">手机</th>
 				<th width="150">邮箱</th>
-				<th width="">地址</th>
-				<th width="180">加入时间</th>
+				<th width="">一般咨询地点</th>
                 <th width="100">等级</th>
 				<th width="70">状态</th>                
 				<th width="250">操作</th>
 			</tr>
 		</thead>
 	<tbody>
+	<c:forEach items="${doctorList }" var="doctor">
+	
 		<tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>1</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','500','400')">张三</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>普通用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('550')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
+          <td><label><input type="checkbox" class="ace" value="${doctor.doctorId }"><span class="lbl"></span></label></td>
+          
+          <td>${doctor.doctorName }</td>
+          
+          <td><span class="ad_img"><img src="${pageContext.request.contextPath }/upload/${doctor.img}"  width="100%" height="100%"/></span></td>
+          
+          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','500','400')">${doctor.name }</u></td>
+          
+          <td>${doctor.sex eq 1 ? "男":"女" }</td>
+          
+          <td>${doctor.age }</td>
+          
+          <td>${doctor.phone }</td>
+          
+          <td>${doctor.email }</td>
+          
+          <td class="text-l">${doctor.place }</td>
+          
+          
+          <td>${doctor.level }</td>
+          
+          <td class="td-status">
+          
+          <c:if test="${doctor.isActive eq 1}">
+          	<span class="label label-success radius">已启用</span>
+          	</td>
+          
+          	<td class="td-manage">
+          		<a onClick="member_stop(this,${doctor.doctorId })"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
+          		<a title="编辑" onclick="member_edit(${doctor.doctorId })" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+          		<a title="删除" href="javascript:;"  onclick="member_del(this,${doctor.doctorId })" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          	</td>
+          	
+          </c:if>
+          <c:if test="${doctor.isActive eq 0}">
+          
+          	<span class="label label-defaunt radius">已停用</span>
+         	 
+         	 <td class="td-manage">
+          		<a style="text-decoration:none" onClick="member_start(this,${doctor.doctorId })"  href="javascript:;" title="启用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
+          		<a title="编辑" onclick="member_edit(${doctor.doctorId })" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+          		<a title="删除" href="javascript:;"  onclick="member_del(this,${doctor.doctorId })" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          	</td>
+          </c:if>
+          
+          
 		</tr>
-        <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>2</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','1031','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>普通用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('310')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+	
+	
+	</c:forEach>
+	
         
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>3</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10301','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit(,'410')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
          
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>4</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10001','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('560')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-        
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
-         <tr>
-          <td><label><input type="checkbox" class="ace"><span class="lbl"></span></label></td>
-          <td>5</td>
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张小泉','member-show.html','10001','500','400')">张小泉</u></td>
-          <td>男</td>
-          <td>13000000000</td>
-          <td>admin@mail.com</td>
-          <td class="text-l">北京市 海淀区</td>
-          <td>2014-6-11 11:11:42</td>
-          <td>银牌用户</td>
-          <td class="td-status"><span class="label label-success radius">已启用</span></td>
-          <td class="td-manage">
-          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-          <a title="编辑" onclick="member_edit('510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-        
-          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-          </td>
-		</tr>
       </tbody>
 	</table>
    </div>
@@ -212,13 +180,6 @@
 </html>
 <script>
 jQuery(function($) {
-	
-	
-	 layer.alert("${doctorList}",{
-         title: '提示框',				
-			icon:0,								
-   }); 
-	
 	
 	
 				var oTable1 = $('#sample-table').dataTable( {
@@ -298,20 +259,55 @@ function member_show(title,url,id,w,h){
 /*用户-停用*/
 function member_stop(obj,id){
 	layer.confirm('确认要停用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
-		$(obj).remove();
-		layer.msg('已停用!',{icon: 5,time:1000});
+		
+		//ajax
+		$.ajax({
+		type : "GET",
+		url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=updateActive&action=0&id="+id,
+		dataType : "json",
+		success : function(data) {
+			
+			if (data['isSuccess'] == true) {
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,' + id +')" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
+				$(obj).remove();
+				layer.msg('已停用!',{icon: 5,time:1000});
+			}else{
+				layer.msg('停用失败! '+data['msg'],{icon: 0,time:1000});
+			}
+		}
+	});
+		
+		
+		
+		
+		
+		
 	});
 }
 
 /*用户-启用*/
 function member_start(obj,id){
 	layer.confirm('确认要启用吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
-		$(obj).remove();
-		layer.msg('已启用!',{icon: 6,time:1000});
+		
+		//ajax
+		$.ajax({
+		type : "GET",
+		url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=updateActive&action=1&id="+id,
+		dataType : "json",
+		success : function(data) {
+			
+			if (data['isSuccess'] == true) {
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,' + id +')" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
+				$(obj).remove();
+				layer.msg('已启用!',{icon: 6,time:1000});
+			}else{
+				layer.msg('启用失败! '+data['msg'],{icon: 0,time:1000});
+			}
+		}
+	});
+		
 	});
 }
 /*用户-编辑*/
@@ -361,5 +357,10 @@ laydate({
     elem: '#start',
     event: 'focus' 
 });
+
+
+
+
+
 
 </script>

@@ -6,41 +6,41 @@
 		<meta charset="utf-8" />
 		<title>后台管理系统  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-        <link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/css/style.css"/>
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
 		<![endif]-->
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-extra.min.js"></script>
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/html5shiv.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/respond.min.js"></script>
 		<![endif]-->
         <!--[if !IE]> -->
-		<script src="js/jquery-1.9.1.min.js"></script>        
+		<script src="${pageContext.request.contextPath }/admin/js/jquery-1.9.1.min.js"></script>        
 		<!-- <![endif]-->
 		<!--[if IE]>
          <script type="text/javascript">window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");</script>
         <![endif]-->
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/typeahead-bs2.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/typeahead-bs2.min.js"></script>
 		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
+		  <script src="${pageContext.request.contextPath }/admin/assets/js/excanvas.min.js"></script>
 		<![endif]-->
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
-        <script src="assets/layer/layer.js" type="text/javascript"></script>
-		<script src="assets/laydate/laydate.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-elements.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/ace.min.js"></script>
+        <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
         
         
 <script type="text/javascript">
@@ -143,7 +143,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
 						<small>					
-						<img src="images/logo.png">
+						<img src="${pageContext.request.contextPath }/admin/images/logo.png">
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
@@ -178,15 +178,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 
 					
 					</ul>
-                <!-- <div class="right_info">
-                 
-                   <div class="get_time" ><span id="time" class="time"></span>欢迎光临,管理员</span></div>
-					<ul class="nav ace-nav">	
-						<li><a href="javascript:ovid(0)" class="change_Password">修改密码</a></li>
-                        <li><a href="javascript:ovid(0)" id="Exit_system">退出系统</a></li>
-                       
-					</ul>
-				</div> -->
+
                 </div>
 			</div>
 		</div>
@@ -224,15 +216,15 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 咨询师管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="clientList.jsp"
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/clientList.jsp"
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 来访者管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="question.jsp"
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/question.jsp"
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 问卷管理 </span></a></li>
 
-					<li><a href="#" class="dropdown-toggle"><i
+					<li><a href="#" class="${pageContext.request.contextPath }/admin/dropdown-toggle"><i
 							class="icon-edit"></i><span class="menu-text"> 消息管理 </span><b
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
@@ -336,18 +328,6 @@ setInterval(function(){$('#time').html(currentTime)},1000);
          <div class="footer_style" id="footerstyle">  
           <p class="l_f">版权所有：XXXX</p>
          </div>
-         <!--修改密码样式-->
-        <!-- <div class="change_Pass_style" id="change_Pass">
-            <ul class="xg_style">
-             <li><label class="label_name">原&nbsp;&nbsp;密&nbsp;码</label><input name="原密码" type="password" class="" id="password"></li>
-             <li><label class="label_name">新&nbsp;&nbsp;密&nbsp;码</label><input name="新密码" type="password" class="" id="Nes_pas"></li>
-             <li><label class="label_name">确认密码</label><input name="再次确认密码" type="password" class="" id="c_mew_pas"></li>
-              
-            </ul>
-            <div class="center"> <button class="btn btn-primary" type="button" id="submit">确认修改</button></div>
-         </div>-->
-        <!-- /.main-container -->
-		<!-- basic scripts -->
 		
 </body>
 </html>

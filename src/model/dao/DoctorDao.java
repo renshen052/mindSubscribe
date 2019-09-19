@@ -36,7 +36,7 @@ public class DoctorDao {
 				doctor.setAge(rs.getInt("age"));
 				doctor.setPhone(rs.getString("phone"));
 				doctor.setEmail(rs.getString("email"));
-				doctor.setIs_active(rs.getInt("is_active"));
+				doctor.setIsActive(rs.getInt("is_active"));
 				doctor.setLevel(rs.getString("level"));
 				doctor.setSkill(rs.getString("skill"));
 				doctor.setImg(rs.getString("img"));
@@ -63,6 +63,20 @@ public class DoctorDao {
 		}
 		
 		return list;
+	}
+
+	/**
+	 * 修改doctor表中is_active的值，是否为激活状态
+	 * @param doctorId
+	 * @param action
+	 * @return
+	 */
+	public int toggleDoctorActive(String doctorId, String action) {
+
+		String sql = "UPDATE doctor SET is_active=?  WHERE doctor_id=?";
+		
+		return jdbcUtil.executeUpdate(sql, action,doctorId);
+	
 	}
 
 }

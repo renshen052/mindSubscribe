@@ -30,7 +30,7 @@ private Integer doctorId;
 	
 	private String email;
 	
-	private Integer is_active;
+	private Integer isActive;
 	
 	/**
 	 * 咨询师等级
@@ -136,13 +136,13 @@ private Integer doctorId;
 	}
 
 
-	public Integer getIs_active() {
-		return is_active;
+	public Integer getIsActive() {
+		return isActive;
 	}
 
 
-	public void setIs_active(Integer is_active) {
-		this.is_active = is_active;
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
 	}
 
 
@@ -189,8 +189,8 @@ private Integer doctorId;
 	@Override
 	public String toString() {
 		return "Doctor [doctorId=" + doctorId + ", doctorName=" + doctorName + ", doctorPwd=" + doctorPwd + ", name="
-				+ name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", email=" + email + ", is_active="
-				+ is_active + ", level=" + level + ", skill=" + skill + ", img=" + img + ", place=" + place + "]";
+				+ name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", email=" + email + ", isActive="
+				+ isActive + ", level=" + level + ", skill=" + skill + ", img=" + img + ", place=" + place + "]";
 	}
 	
 	
