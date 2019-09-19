@@ -135,7 +135,6 @@ function save_info(){
 			  $('#Personal').find('.xinxi').removeClass("hover");
 			  $('#Personal').find('.text_info').removeClass("add").attr("disabled", true);
 			  $('#Personal').find('.btn-success').css({'display':'none'});
-			   layer.close(index);
 			
 		  }		  		
 	};	

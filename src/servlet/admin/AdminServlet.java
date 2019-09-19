@@ -15,13 +15,11 @@ import model.service.AdminService;
 
 /**
  * Servlet implementation class AdminLoginServlet
- * 管理员登录，修改密码，修改个人信息
+ * 修改密码，修改个人信息
  */
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public static final String LOGIN_ADMIN = "LOGIN_ADMIN";
-
 	AdminService adminService = new AdminService();
 	
 	
@@ -32,36 +30,7 @@ public class AdminServlet extends HttpServlet {
 
 		String m = request.getParameter("m");
 		
-		if("saveLogin".equals(m)) {
-			
-			String adminName = request.getParameter("adminName");
-			
-			String adminPwd = request.getParameter("adminPwd");
-			
-			//向数据库查询管理员
-			Admin admin = adminService.getAdmin(adminName);
-			
-			if(admin == null || !(admin.getAdminPwd().equals(adminPwd))) {
-				
-				//登录失败
-				
-				request.setAttribute("msg", "用户名或密码错误!");
-				
-				request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
-				
-				
-			}else { 
-				
-				//登录成功
-				
-				request.getSession().setAttribute(LOGIN_ADMIN,admin);
-				
-				response.sendRedirect(request.getContextPath() + "/admin/index.jsp");
-				
-			}
-			
-			
-		}else if("updatePwd".equals(m)){
+		if("updatePwd".equals(m)){
 			
 			//修改密码
 			
@@ -69,7 +38,8 @@ public class AdminServlet extends HttpServlet {
 			
 			String password = request.getParameter("password");
 			
-			Admin admin = (Admin)request.getSession().getAttribute(LOGIN_ADMIN);
+			Admin admin = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
+			
 			
 			
 			String msg = "";
@@ -80,7 +50,7 @@ public class AdminServlet extends HttpServlet {
 				
 				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请重新登录！\"}";
 				
-				request.getSession().removeAttribute(LOGIN_ADMIN);
+				request.getSession().removeAttribute(AdminLoginServlet.LOGIN_ADMIN);
 				
 				
 			}else if(!admin.getAdminPwd().equals(password)){
@@ -111,7 +81,7 @@ public class AdminServlet extends HttpServlet {
 			admin.setEmail(request.getParameter("email"));
 			
 			//当前登录用户
-			Admin adminNow = (Admin)request.getSession().getAttribute(LOGIN_ADMIN);
+			Admin adminNow = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 			
 			
 			//更新
@@ -119,15 +89,19 @@ public class AdminServlet extends HttpServlet {
 			
 			Writer writer = response.getWriter();
 			
+			//设置响应类型
+			response.setContentType("application/json; charset=utf-8");
+			
 			String msg = "";
 			if(i > 0) {
 				//成功
 				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请刷新！\"}";
 				
+				
 				//重新在查询一遍管理员信息
 				Admin adminNew = adminService.getAdmin(adminNow.getAdminName());
 				
-				request.getSession().setAttribute(LOGIN_ADMIN,adminNew);
+				request.getSession().setAttribute(AdminLoginServlet.LOGIN_ADMIN,adminNew);
 				
 			}else {
 				//失败
@@ -136,13 +110,6 @@ public class AdminServlet extends HttpServlet {
 			writer.write(msg);
 			writer.close();
 		
-			
-			
-			
-			
-		}else {
-			
-			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
 		}
 		
 	

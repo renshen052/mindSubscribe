@@ -3,25 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-        <link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/css/style.css"/>
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
 		<![endif]-->
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-extra.min.js"></script>
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/html5shiv.js"></script>
+		<script src="${pageContext.request.contextPath }/admin/assets/js/respond.min.js"></script>
 		<![endif]-->
-		<script src="js/jquery-1.9.1.min.js"></script>        
-        <script src="assets/layer/layer.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/admin/js/jquery-1.9.1.min.js"></script>        
+        <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript"></script>
 <title>登陆</title>
 </head>
 
@@ -56,9 +56,9 @@
 												管理员登陆
 											</h4>
 
-											<div class="login_icon"><img src="images/login.png" /></div>
+											<div class="login_icon"><img src="${pageContext.request.contextPath }/admin/images/login.png" /></div>
 
-											<form action="${pageContext.request.contextPath }/admin/base?m=saveLogin" method="POST">
+											<form action="${pageContext.request.contextPath }/admin/login?m=saveLogin" method="post" >
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -149,41 +149,5 @@ $(document).ready(function(){
 	
 	
 });
-
-
-/*   $(document).ready(function(){
-	  
-	  $("#login_btn").on('click' function(){
-		  
-		  var adminName = $("input[name=adminName]");
-		  
-		  var adminPwd = $("adminPwd");
-		  
-		  if(adminName.val() == ""){
-			  layer.alert(str+=""+adme.val() == "" ){
-				  layer.alert(str+=""+adminName.attr("placeholder")+"不能为空！\r\n",{
-		                title: '提示框',				
-						icon:0,								
-		          }); 
-				  
-				  return false;
-		  }
-		  
-		  else if( adminPwd.val() == "" ){
-			  layer.alert(str+=""+adminPwd.attr("placeholder")+"不能为空！\r\n",{
-	                title: '提示框',				
-					icon:0,								
-	          }); 
-			  
-			  return false;
-		  }
-		  
-		  $(this).submit();
-		  
-	  });
-	  
-	  
-	  
-  }) */
 
 </script>

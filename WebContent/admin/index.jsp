@@ -99,24 +99,7 @@
 		
 });
  
-//jQuery( document).ready(function(){
-//	  $("#submit").click(function(){
-//	// var num=0;
-//     var str="";
-//     $("input[type$='password']").each(function(n){
-//          if($(this).val()=="")
-//          {
-//              // num++;
-//			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-//                title: '提示框',				
-//				icon:0,				
-//          }); 
-//             // layer.msg(str+=""+$(this).attr("name")+"不能为空！\r\n");
-//             layer.close(index);
-//          }		  
-//     });    
-//})		
-//	});
+
 /*********************点击事件*********************/
 $( document).ready(function(){
   $('#nav_list').find('li.home').click(function(){
@@ -137,65 +120,14 @@ $( document).ready(function(){
     return str; 
 } 
 setInterval(function(){$('#time').html(currentTime)},1000); 
-//修改密码
-$('.change_Password').on('click', function(){
-    layer.open({
-    type: 1,
-	title:'修改密码',
-	area: ['300px','300px'],
-	shadeClose: true,
-	content: $('#change_Pass'),
-	btn:['确认修改'],
-	yes:function(index, layero){		
-		   if ($("#password").val()==""){
-			  layer.alert('原密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          } 
-		  if ($("#Nes_pas").val()==""){
-			  layer.alert('新密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          } 
-		   
-		  if ($("#c_mew_pas").val()==""){
-			  layer.alert('确认新密码不能为空!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			return false;
-          }
-		    if(!$("#c_mew_pas").val || $("#c_mew_pas").val() != $("#Nes_pas").val() )
-        {
-            layer.alert('密码不一致!',{
-              title: '提示框',				
-				icon:0,
-			    
-			 });
-			 return false;
-        }   
-		 else{		
-			 
-			/////////
-			 
-		  }	 
-	}
-    });
-});
+
   $('#Exit_system').on('click', function(){
       layer.confirm('是否确定退出系统？', {
      btn: ['是','否'] ,//按钮
 	 icon:2,
     }, 
 	function(){
-	  location.href="${pageContext.request.contextPath}/admin/base";
+	  location.href="${pageContext.request.contextPath}/admin/login";
         
     });
 });
@@ -233,48 +165,7 @@ $('.change_Password').on('click', function(){
 						<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-bell-alt"></i><span class="badge badge-important">8</span></a>
 							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
                             <li class="dropdown-header"><i class="icon-warning-sign"></i>8条通知</li>
-                            <li>
-                              <a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-pink icon-comment"></i>
-												新闻评论
-											</span>
-											<span class="pull-right badge badge-info">+12</span>
-										</div>
-									</a>
-								</li>
 
-								<li>
-									<a href="#">
-										<i class="btn btn-xs btn-primary icon-user"></i>
-										切换为编辑登录..
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>
-												新订单
-											</span>
-											<span class="pull-right badge badge-success">+8</span>
-										</div>
-									</a>
-								</li>
-
-								<li>
-									<a href="#">
-										<div class="clearfix">
-											<span class="pull-left">
-												<i class="btn btn-xs no-hover btn-info icon-twitter"></i>
-												粉丝
-											</span>
-											<span class="pull-right badge badge-info">+11</span>
-										</div>
-									</a>
-								</li>
 
 								<li>
 									<a href="#">
@@ -321,64 +212,57 @@ $('.change_Password').on('click', function(){
 							<span class="btn btn-warning"></span>
 							<span class="btn btn-danger"></span>
 						</div>
-					</div><!-- #sidebar-shortcuts -->
-					<ul class="nav nav-list" id="nav_list">
-				     <li class="home"><a href="javascript:void(0)" name="home.html" class="iframeurl" title=""><i class="icon-dashboard"></i><span class="menu-text"> 系统首页 </span></a></li>
-                     <li><a href="#" class="dropdown-toggle"><i class="icon-desktop"></i><span class="menu-text"> 产品管理 </span><b class="arrow icon-angle-down"></b></a>
-					   <ul class="submenu">
-                         <li class="home"><a  href="javascript:void(0)" name="Products_List.html"  title="产品类表" class="iframeurl"><i class="icon-double-angle-right"></i>产品类表</a></li>
-						 <li class="home"><a  href="javascript:void(0)" name="Brand_Manage.html" title="品牌管理"  class="iframeurl"><i class="icon-double-angle-right"></i>品牌管理</a></li>
-						 <li class="home"><a href="javascript:void(0)" name="Category_Manage.html" title="分类管理"  class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li>
+					</div>
+					
+					<!-- #sidebar-shortcuts -->
+				<ul class="nav nav-list" id="nav_list">
+					<li class="home"><a href="javascript:void(0)" name="home.html"
+						class="iframeurl" title=""><i class="icon-dashboard"></i><span
+							class="menu-text"> 系统首页 </span></a></li>
+							
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/doctor/DoctorServlet?m=listDoctor"
+						class="iframeurl"><i class="icon-desktop"></i><span
+							class="menu-text"> 咨询师管理 </span></a></li>
+							
+					<li><a href="javascript:void(0)" name="clientList.jsp"
+						class="iframeurl"><i class="icon-desktop"></i><span
+							class="menu-text"> 来访者管理 </span></a></li>
+							
+					<li><a href="javascript:void(0)" name="question.jsp"
+						class="iframeurl"><i class="icon-desktop"></i><span
+							class="menu-text"> 问卷管理 </span></a></li>
 
-						</ul>
-					</li>
-					<li>
-					<a href="#" class="dropdown-toggle"><i class="icon-picture "></i><span class="menu-text"> 图片管理 </span><b class="arrow icon-angle-down"></b></a>
+					<li><a href="#" class="dropdown-toggle"><i
+							class="icon-edit"></i><span class="menu-text"> 消息管理 </span><b
+							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
-						<li class="home"><a href="javascript:void(0)" name="advertising.html" title="广告管理" class="iframeurl"><i class="icon-double-angle-right"></i>广告管理</a></li>
-						<li class="home"><a href="javascript:void(0)" name="Sort_ads.html" title="分类管理"  class="iframeurl"><i class="icon-double-angle-right"></i>分类管理</a></li>
-							</ul>
-						</li>
-					<li>
-					<a href="#" class="dropdown-toggle"><i class="icon-list"></i><span class="menu-text"> 交易管理 </span><b class="arrow icon-angle-down"></b></a>
-                    <ul class="submenu">
-                    <li class="home"><a href="javascript:void(0)" name="transaction.html" title="交易信息"  class="iframeurl"><i class="icon-double-angle-right"></i>交易信息</a></li>
-                    <li class="home"><a href="javascript:void(0)" name="Orderform.html" title="订单管理"  class="iframeurl"><i class="icon-double-angle-right"></i>订单管理</a></li>
-                 
-                   </ul>
-				  </li>
-                  <li>
-					<a href="#" class="dropdown-toggle"><i class="icon-user"></i><span class="menu-text"> 会员管理 </span><b class="arrow icon-angle-down"></b></a>
-                    <ul class="submenu">
-                    <li class="home"><a href="javascript:void(0)" name="user_list.html" title="会员列表"  class="iframeurl"><i class="icon-double-angle-right"></i>会员列表</a></li>
-                    <li class="home"><a href="javascript:void(0)" name="member-Grading.html" title="等级管理"  class="iframeurl"><i class="icon-double-angle-right"></i>等级管理</a></li>
-                    <li class="home"><a href="javascript:void(0)" name="integration.html" title="会员记录管理"  class="iframeurl"><i class="icon-double-angle-right"></i>会员记录管理</a></li>
+							<li class="home"><a href="javascript:void(0)"
+								name="Guestbook.html" title="留言列表" class="iframeurl"><i
+									class="icon-double-angle-right"></i>留言列表</a></li>
+							<li class="home"><a href="javascript:void(0)"
+								name="Feedback.html" title="意见反馈" class="iframeurl"><i
+									class="icon-double-angle-right"></i>意见反馈</a></li>
+						</ul></li>
+					<li><a href="#" class="dropdown-toggle"><i
+							class="icon-edit"></i><span class="menu-text"> 公告管理 </span><b
+							class="arrow icon-angle-down"></b></a>
+						<ul class="submenu">
+							<li class="home"><a href="javascript:void(0)"
+								name="Guestbook.html" title="文章列表" class="iframeurl"><i
+									class="icon-double-angle-right"></i>文章列表</a></li>
+							<li class="home"><a href="javascript:void(0)"
+								name="Feedback.html" title="分类分类" class="iframeurl"><i
+									class="icon-double-angle-right"></i>分类分类</a></li>
+						</ul></li>
 
-                   </ul>
-				  </li>
-						<li><a href="#" class="dropdown-toggle"><i class="icon-edit"></i><span class="menu-text"> 消息管理 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu">
-								<li class="home"><a href="javascript:void(0)" name="Guestbook.html" title="留言列表" class="iframeurl"><i class="icon-double-angle-right"></i>留言列表</a></li>
-                                <li class="home"><a href="javascript:void(0)" name="Feedback.html" title="意见反馈" class="iframeurl"><i class="icon-double-angle-right"></i>意见反馈</a></li>
-							</ul>
-						</li>
-						<li><a href="#" class="dropdown-toggle"><i class="icon-edit"></i><span class="menu-text"> 文章管理 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu">
-								<li class="home"><a href="javascript:void(0)" name="Guestbook.html" title="文章列表" class="iframeurl"><i class="icon-double-angle-right"></i>文章列表</a></li>
-                                <li class="home"><a href="javascript:void(0)" name="Feedback.html" title="分类分类" class="iframeurl"><i class="icon-double-angle-right"></i>分类分类</a></li>
-							</ul>
-						</li>
-                        	<li><a href="#" class="dropdown-toggle"><i class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b class="arrow icon-angle-down"></b></a>
-							<ul class="submenu">
-								<li class="home"><a href="javascript:void(0)" name="Systems.html" title="系统设置" class="iframeurl"><i class="icon-double-angle-right"></i>系统设置</a></li>
-							
-							</ul>
-						</li>
-                        <li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/admin_info.jsp" class="iframeurl"><i class="icon-group"></i><span class="menu-text"> 个人信息 </span></a>
-							
-						</li>
-					</ul>
-					<div class="sidebar-collapse" id="sidebar-collapse">
+					<li><a href="javascript:void(0)"
+						name="${pageContext.request.contextPath }/admin/admin_info.jsp"
+						class="iframeurl"><i class="icon-group"></i><span
+							class="menu-text"> 个人信息 </span></a></li>
+				</ul>
+				
+				
+				<div class="sidebar-collapse" id="sidebar-collapse">
 						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
 					</div>
                     <script type="text/javascript">

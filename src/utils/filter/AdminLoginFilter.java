@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import baen.Admin;
+import servlet.admin.AdminLoginServlet;
 import servlet.admin.AdminServlet;
 
 public class AdminLoginFilter implements Filter {
@@ -33,13 +33,22 @@ public class AdminLoginFilter implements Filter {
 
 		HttpSession session = request.getSession();
 
-		Admin admin = (Admin) session.getAttribute(AdminServlet.LOGIN_ADMIN);
+		String path = request.getRequestURI();
+
+		if (path.endsWith("/admin/login")) {
+			// 过滤器链
+			chain.doFilter(req, res);
+			return;
+		}
+		
+
+		Admin admin = (Admin) session.getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 
 		if (admin == null) {
 
 			// 未登录
 			// 重定向到登录页面
-			response.sendRedirect(request.getContextPath() + "/admin/base");
+			response.sendRedirect(request.getContextPath() + "/admin/login");
 			return;
 		}
 
