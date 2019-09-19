@@ -59,16 +59,31 @@
     <div class="search_style">
       <div class="title_names">搜索查询</div>
       <ul class="search_content clearfix">
-       <li><label class="l_f">会员名称</label><input name="" type="text"  class="text_add" placeholder="输入会员名称、电话、邮箱"  style=" width:400px"/></li>
-       <li><label class="l_f">添加时间</label><input class="inline laydate-icon" id="start" style=" margin-left:10px;"></li>
-       <li style="width:90px;"><button type="button" class="btn_search"><i class="icon-search"></i>查询</button></li>
+      <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=listDoctor" method="post">
+      
+            <li><label class="l_f">咨询师姓名</label><input name="name" type="text"  class="text_add" placeholder="输入咨询师姓名" value="${search.name }" /></li>
+            
+            <li><label class="l_f">性别</label>
+            <input name="sex" type="radio"  class="ace" value="1" ${search.sex eq 1 ? "checked='checked'":"" }/><span class="lbl">男</span>
+            <input name="sex" type="radio"  class="ace" value="0" ${search.sex eq 0 ? "checked='checked'":""}/><span class="lbl">女</span>
+            </li>
+            
+           
+            <li><label class="l_f">年龄：从</label><input style="width:90px;" name="startAge" type="text"  class="text_add" placeholder="最小年龄" value="${search.startAge }" /></li>
+            <li><label class="l_f">到</label><input style="width:90px;" name="endAge" type="text"  class="text_add" placeholder="最大年龄"  value="${search.endAge }"/>止</li>
+            <li><label class="l_f">电话</label><input name="phone" type="text"  class="text_add" placeholder="电话"  value="${search.phone }"/></li>
+            <li><label class="l_f">邮箱</label><input name="email" type="text"  class="text_add" placeholder="邮箱"  value="${search.email }"/></li>
+       		<li ><button type="submit" class="btn_search"><i class="icon-search"></i>查询</button></li>
+      
+      </form>
+
       </ul>
     </div>
      <!---->
      <div class="border clearfix">
        <span class="l_f">
-        <a href="javascript:ovid()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加用户</a>
-        <a href="javascript:ovid()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
+        <a href="javascript:void()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加咨询师</a>
+        <a href="javascript:void()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
        </span>
        <span class="r_f">共：<b>2345</b>条</span>
      </div>
@@ -280,9 +295,6 @@ function member_stop(obj,id){
 		
 		
 		
-		
-		
-		
 	});
 }
 
@@ -349,8 +361,26 @@ function member_edit(id){
 /*用户-删除*/
 function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
-		$(obj).parents("tr").remove();
-		layer.msg('已删除!',{icon:1,time:1000});
+		
+		//ajax
+		$.ajax({
+		type : "GET",
+		url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id,
+		dataType : "json",
+		success : function(data) {
+			
+			if (data['isSuccess'] == true) {
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!',{icon:1,time:1000});
+			}else{
+				layer.msg(data['msg'],{icon: 0,time:1000});
+			}
+		}
+	});
+		
+		
+		
+		
 	});
 }
 laydate({
