@@ -49,7 +49,7 @@
         <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/H-ui.admin.js"></script> 
         <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript" ></script>
         <script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
-<title>用户列表</title>
+
 </head>
 
 <body>
@@ -171,25 +171,32 @@
 </div>
 <!--添加用户图层-->
 <div class="add_menber" id="add_menber_style" style="display:none">
-  
+  <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor" method="post" enctype="multipart/form-data">
     <ul class=" page-content">
-     <li><label class="label_name">用&nbsp;&nbsp;户 &nbsp;名：</label><span class="add_name"><input value="" name="用户名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">真实姓名：</label><span class="add_name"><input name="真实姓名" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">登录账号</label><span class="add_name"><input value="${doctor.doctorName}" name="doctorName" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" value="${doctor.name}" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
-     <label><input name="form-field-radio" type="radio" checked="checked" class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio" type="radio" class="ace"><span class="lbl">保密</span></label>
+     <label><input name="sex" type="radio" value="1" ${doctor.sex eq 1 ? "checked='checked'":"" } class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="sex" type="radio" value="0" ${doctor.sex eq 0 ? "checked='checked'":"" } class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
      </span>
      <div class="prompt r_f"></div>
      </li>
-     <li><label class="label_name">固定电话：</label><span class="add_name"><input name="固定电话" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">移动电话：</label><span class="add_name"><input name="移动电话" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">电子邮箱：</label><span class="add_name"><input name="电子邮箱" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li class="adderss"><label class="label_name">家庭住址：</label><span class="add_name"><input name="家庭住址" type="text"  class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" type="text"  class="text_add" value="${doctor.email}"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" type="text"  class="text_add" value="${doctor.phone}"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">等级：</label><span class="add_name"><input name="level" type="text"  class="text_add" value="${doctor.level}"/></span><div class="prompt r_f"></div></li>
+     <li class="adderss"><label class="label_name">咨询地址：</label><span class="add_name"><input name="place" type="text" value="${doctor.level}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
+     
+     <li class="adderss"><label class="label_name">擅长方向</label><span class="add_name"><input name="skill" type="text" value="${doctor.skill}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
+     
+     <li class="adderss"><label class="label_name">个人图片</label><span class="add_name"><input name="img" type="file" value="${doctor.skill}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
+     
+     
      <li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
-     <label><input name="form-field-radio1" type="radio" checked="checked" class="ace"><span class="lbl">开启</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="form-field-radio1"type="radio" class="ace"><span class="lbl">关闭</span></label></span><div class="prompt r_f"></div></li>
+     <label><input name="isActive" type="radio"  ${doctor.isActive eq 1 ? 'checked="checked"':'' }   class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="isActive"type="radio" ${doctor.isActive eq 0 ? 'checked="checked"':'' } class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
     </ul>
+    
+   </form>
  </div>
 </body>
 </html>
@@ -242,28 +249,23 @@ jQuery(function($) {
         content:$('#add_menber_style'),
 		btn:['提交','取消'],
 		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-               
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
+			
+			var formDoctor = $(layero).find('form')[0];
+			
+			//设置为添加
+			formDoctor.attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor");
+			
+			//提交
+			formDoctor.submit();
+         
+        	  
+        	  
 			  layer.alert('添加成功！',{
                title: '提示框',				
 			icon:1,		
 			  });
-			   layer.close(index);	
-		  }		  		     				
+			  layer.close(index);	
+		 	  		     				
 		}
     });
 });
@@ -333,28 +335,16 @@ function member_edit(id){
         content:$('#add_menber_style'),
 		btn:['提交','取消'],
 		yes:function(index,layero){	
-		 var num=0;
-		 var str="";
-     $(".add_menber input[type$='text']").each(function(n){
-          if($(this).val()=="")
-          {
-               
-			   layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
-                title: '提示框',				
-				icon:0,								
-          }); 
-		    num++;
-            return false;            
-          } 
-		 });
-		  if(num>0){  return false;}	 	
-          else{
-			  layer.alert('添加成功！',{
-               title: '提示框',				
-			icon:1,		
-			  });
-			   layer.close(index);	
-		  }		  		     				
+		 
+			var formDoctor = $(layero).find('form')[0];
+			
+			//设置为修改
+			formDoctor.attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor&id="+id);
+			
+			//提交
+			formDoctor.submit();
+     
+		  	  		     				
 		}
     });
 }

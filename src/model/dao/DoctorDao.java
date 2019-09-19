@@ -191,4 +191,36 @@ public class DoctorDao {
 		return jdbcUtil.executeUpdate(sql, doctorId);
 	}
 
+	
+	/**
+	 * 通过doctor的doctorId 查询doctor
+	 * @param doctorId
+	 * @return
+	 */
+	public Doctor getDoctorByDoctorId(int doctorId) {
+
+		//....
+		
+		return null;
+	}
+
+	/**
+	 * 修改Doctor
+	 * @param doctor
+	 */
+	public int updateDoctor(Doctor doctor) {
+
+		//....
+		
+		
+		return 0;
+	}
+
+	public int addDoctor(Doctor doctor) {
+
+		
+		
+		return 0;
+	}
+
 }

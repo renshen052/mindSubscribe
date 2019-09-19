@@ -117,4 +117,37 @@ public class DoctorService {
 	
 	}
 
+
+	/**
+	 * 通过doctor的doctorId 查询doctor
+	 * @param parseInt
+	 * @return
+	 */
+	public Doctor getDoctorByDoctorId(int doctorId) {
+		// TODO Auto-generated method stub
+		return doctorDao.getDoctorByDoctorId(doctorId);
+	}
+
+
+	
+	/**
+	 * 修改Doctor
+	 * @param doctor
+	 */
+	public int updateDoctor(Doctor doctor) {
+
+		return doctorDao.updateDoctor(doctor);
+	}
+
+
+	/**
+	 * 增加一个Doctor
+	 * @param doctor
+	 * @return
+	 */
+	public int addDoctor(Doctor doctor) {
+		
+		return doctorDao.addDoctor(doctor);
+	}
+
 }
