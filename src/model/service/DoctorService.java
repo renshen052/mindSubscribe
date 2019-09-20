@@ -13,6 +13,7 @@ import org.apache.struts2.json.JSONUtil;
 import baen.Doctor;
 import model.dao.DoctorDao;
 import utils.ResultDate;
+import utils.Util;
 
 public class DoctorService {
 
@@ -119,13 +120,50 @@ public class DoctorService {
 
 
 	/**
-	 * 通过doctor的doctorId 查询doctor
+	 * 通过doctor的doctorId 查询doctor,并且做响应
+	 * @param response 
 	 * @param parseInt
 	 * @return
 	 */
-	public Doctor getDoctorByDoctorId(int doctorId) {
-		// TODO Auto-generated method stub
-		return doctorDao.getDoctorByDoctorId(doctorId);
+	public void getDoctorByDoctorIdToResponse(int doctorId, HttpServletResponse response) {
+		
+		
+		Doctor doctor = doctorDao.getDoctorByDoctorId(doctorId);
+		
+		
+		ResultDate rd = new ResultDate();
+		if(doctor != null) {
+			//成功
+			rd.setIsSuccess(true);
+			rd.setMsg("查询成功");
+			rd.getDataList().add(doctor);
+			
+		}else {
+			
+			//修改失败
+			rd.setIsSuccess(false);
+			rd.setMsg("失败，请刷新页面后重试");
+			
+		}
+		
+		
+		//设置响应格式
+		response.setContentType("application/jsonj; charset=utf-8");
+		
+		
+		try(
+				Writer witer = response.getWriter();
+				){
+			
+			
+			JSONUtil.serialize(witer, rd);
+			
+			
+		} catch (IOException | JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 
@@ -146,6 +184,14 @@ public class DoctorService {
 	 * @return
 	 */
 	public int addDoctor(Doctor doctor) {
+		
+		//增加的时候分配 账号和密码
+		
+		//随机账号
+		doctor.setDoctorName(Util.generateRandomNum(9));
+		
+		//默认密码123456
+		doctor.setDoctorPwd("123456");
 		
 		return doctorDao.addDoctor(doctor);
 	}

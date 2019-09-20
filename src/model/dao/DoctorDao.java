@@ -199,9 +199,50 @@ public class DoctorDao {
 	 */
 	public Doctor getDoctorByDoctorId(int doctorId) {
 
-		//....
+		String sql = "SELECT * FROM doctor WHERE doctor_id=?";
 		
-		return null;
+		ResultSet rs = jdbcUtil.executeQuery(sql, doctorId);
+		
+		Doctor doctor = null;
+		
+		try {
+			if(rs.next()) {
+				
+				doctor = new Doctor();
+				doctor.setDoctorId(rs.getInt("doctor_id"));
+				doctor.setDoctorName(rs.getString("doctor_name"));
+				doctor.setDoctorPwd(rs.getString("doctor_pwd"));
+				doctor.setName(rs.getString("name"));
+				doctor.setSex(rs.getInt("sex"));
+				doctor.setAge(rs.getInt("age"));
+				doctor.setPhone(rs.getString("phone"));
+				doctor.setEmail(rs.getString("email"));
+				doctor.setIsActive(rs.getInt("is_active"));
+				doctor.setLevel(rs.getString("level"));
+				doctor.setSkill(rs.getString("skill"));
+				doctor.setImg(rs.getString("img"));
+				doctor.setPlace(rs.getString("place"));
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			jdbcUtil.close();
+		}
+		
+		return doctor;
 	}
 
 	/**
@@ -210,17 +251,33 @@ public class DoctorDao {
 	 */
 	public int updateDoctor(Doctor doctor) {
 
-		//....
+		String sql = "UPDATE doctor SET ";
 		
+		sql += "name=?, sex=?, age=?, phone=?, email=?, is_active=?, level=?, skill=?, img=?, place=?";
 		
-		return 0;
+		sql += "WHERE doctor_id = ?";
+		
+		return jdbcUtil.executeUpdate(sql, doctor.getName(),doctor.getSex(),
+				doctor.getAge(),doctor.getPhone(),doctor.getEmail(),doctor.getIsActive(),doctor.getLevel(),
+				doctor.getSkill(),doctor.getImg(),doctor.getPlace(),doctor.getDoctorId());
 	}
 
+	/**
+	 * 增加一个Doctor
+	 * @param doctor
+	 * @return
+	 */
 	public int addDoctor(Doctor doctor) {
 
+		String sql = "INSERT INTO doctor ";
 		
+		sql += " (doctor_name, doctor_pwd, name, sex, age, phone, email, is_active, level, skill, img, place) ";
 		
-		return 0;
+		sql +="VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		return jdbcUtil.executeUpdate(sql, doctor.getDoctorName(),doctor.getDoctorPwd(),doctor.getName(),doctor.getSex(),
+				doctor.getAge(),doctor.getPhone(),doctor.getEmail(),doctor.getIsActive(),doctor.getLevel(),
+				doctor.getSkill(),doctor.getImg(),doctor.getPlace());
 	}
 
 }

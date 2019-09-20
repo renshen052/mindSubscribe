@@ -1,5 +1,7 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultDate {
 	
@@ -12,6 +14,22 @@ public class ResultDate {
 	 * 返回消息
 	 */
 	private String msg;
+	
+	/**
+	 * 响应数据
+	 * @return
+	 */
+	private List<Object> dataList = new ArrayList<>();
+	
+	
+
+	public List<Object> getDataList() {
+		return dataList;
+	}
+
+	public void setDataList(List<Object> dataList) {
+		this.dataList = dataList;
+	}
 
 	public boolean isSuccess() {
 		return isSuccess;

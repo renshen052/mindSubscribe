@@ -114,7 +114,9 @@
           
           <td>${doctor.doctorName }</td>
           
-          <td><span class="ad_img"><img src="${pageContext.request.contextPath }/upload/${doctor.img}"  width="100%" height="100%"/></span></td>
+          <td>
+          <img src="/upload/${doctor.img}"  width="77.7px" height="77.7px"/>
+          </td>
           
           <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','500','400')">${doctor.name }</u></td>
           
@@ -173,27 +175,54 @@
 <div class="add_menber" id="add_menber_style" style="display:none">
   <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor" method="post" enctype="multipart/form-data">
     <ul class=" page-content">
-     <li><label class="label_name">登录账号</label><span class="add_name"><input value="${doctor.doctorName}" name="doctorName" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" value="${doctor.name}" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     
      <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
-     <label><input name="sex" type="radio" value="1" ${doctor.sex eq 1 ? "checked='checked'":"" } class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="sex" type="radio" value="0" ${doctor.sex eq 0 ? "checked='checked'":"" } class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="sex" type="radio" value="1"  class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="sex" type="radio" value="0"  class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
      </span>
      <div class="prompt r_f"></div>
      </li>
-     <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" type="text"  class="text_add" value="${doctor.email}"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" type="text"  class="text_add" value="${doctor.phone}"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">等级：</label><span class="add_name"><input name="level" type="text"  class="text_add" value="${doctor.level}"/></span><div class="prompt r_f"></div></li>
-     <li class="adderss"><label class="label_name">咨询地址：</label><span class="add_name"><input name="place" type="text" value="${doctor.level}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
-     
-     <li class="adderss"><label class="label_name">擅长方向</label><span class="add_name"><input name="skill" type="text" value="${doctor.skill}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
-     
-     <li class="adderss"><label class="label_name">个人图片</label><span class="add_name"><input name="img" type="file" value="${doctor.skill}" class="text_add" style=" width:350px"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
      
      
-     <li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
-     <label><input name="isActive" type="radio"  ${doctor.isActive eq 1 ? 'checked="checked"':'' }   class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="isActive"type="radio" ${doctor.isActive eq 0 ? 'checked="checked"':'' } class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">等级：</label>
+     <span class="add_name">
+     <select name="level">
+     	<option value="未选择"  >未选择</option>
+     	<option value="一级咨询师"  >一级咨询师</option>
+     	<option value="二级级咨询师" >二级咨询师</option>
+     	<option value="三级咨询师" >三级咨询师</option>
+     </select>
+     </span>
+     <div class="prompt r_f"></div>
+     </li>
+     
+     
+     <li ><label class="label_name">咨询地址：</label><span class="add_name"><input name="place" type="text"  class="text_add"  /></span> <div class="prompt r_f"></div> </li>
+     
+     <li ><label class="label_name">擅长方向</label><span class="add_name"><input name="skill" type="text"  class="text_add" /></span> <div class="prompt r_f"></div> </li>
+     
+     <!-- 图片 -->
+     <li >
+     <label class="label_name">个人图片</label>
+     <span class="add_name" id="img">
+     <input name="imgPath" type="hidden"/>
+     <img src="${pageContext.request.contextPath }/admin/images/icon_error_s.png" width="77.7" height="77.7" />
+     </span>
+     </li>
+     <li>
+     <input name="img" type="file"  class="text_add" style=" width:350px"/>
+     </span>
+     </li>
+     
+     <li class="adderss"></li>
+     
+     <li class="adderss"><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
+     <label><input name="isActive" value="1" type="radio"  class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="isActive" value="0" type="radio"   class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
     </ul>
     
    </form>
@@ -250,17 +279,40 @@ jQuery(function($) {
 		btn:['提交','取消'],
 		yes:function(index,layero){	
 			
+			var msg = "";
+			
+			//ajax上传
+			var formData = new FormData($(layero).find('form')[0]);
+		     $.ajax({  
+		          url: '${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor2' ,  
+		          type: 'POST',  
+		          data: formData,  
+		          async: false,  
+		          cache: false,  
+		          contentType: false,  
+		          processData: false,  
+		          success: function (returndata) {  
+		              alert(returndata);  
+		          },  
+		          error: function (returndata) {  
+		              alert(returndata);  
+		          }  
+		     }); 
+			
+			
+			
+			
+			
 			var formDoctor = $(layero).find('form')[0];
 			
 			//设置为添加
-			formDoctor.attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor");
+			$(formDoctor).attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor");
 			
 			//提交
-			formDoctor.submit();
-         
+			$(formDoctor).submit();
         	  
         	  
-			  layer.alert('添加成功！',{
+			  layer.alert('添加成功，初始密码为123456！',{
                title: '提示框',				
 			icon:1,		
 			  });
@@ -326,6 +378,27 @@ function member_start(obj,id){
 }
 /*用户-编辑*/
 function member_edit(id){
+	
+	//ajax
+	$.ajax({
+	type : "GET",
+	url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=selecteDoctor&id="+id,
+	dataType : "json",
+	success : function(data) {
+		
+		//成功查到
+		if (data['isSuccess'] == true) {
+			
+			addDate(data.dataList[0]);
+		
+		
+		}else{
+			layer.msg(data['msg'],{icon: 0,time:1000});
+		}
+	}
+	});
+	
+	
 	  layer.open({
         type: 1,
         title: '修改用户信息',
@@ -339,10 +412,10 @@ function member_edit(id){
 			var formDoctor = $(layero).find('form')[0];
 			
 			//设置为修改
-			formDoctor.attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor&id="+id);
+			$(formDoctor).attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor&id="+id);
 			
 			//提交
-			formDoctor.submit();
+			$(formDoctor).submit();
      
 		  	  		     				
 		}
@@ -378,6 +451,31 @@ laydate({
     event: 'focus' 
 });
 
+function addDate(doctor){
+	
+	$("input[name='name']").val(doctor.name);
+	$("input[name='age']").val(doctor.age);
+	
+	$("input:radio[name='sex'][value='" + doctor.sex + "']").attr('checked','checked');
+	
+	$("input[name='email']").val(doctor.email);
+	$("input[name='phone']").val(doctor.phone);
+	
+	//$("").val(doctor.level);
+	 $("select[name='level']").find("option[value='" + doctor.level + "']").attr("selected",true);
+	
+	$("input[name='place']").val(doctor.place);
+	
+	$("input:radio[name='isActive'][value='" + doctor.isActive + "']").attr('checked','checked');
+	
+	var imgPath = $("input[name='imgPath']");
+	$(imgPath).val(doctor.img);
+	if(doctor.img){
+		$(imgPath).next().attr("src","/upload/"+doctor.img);
+	}else{
+		$(imgPath).next().attr("src","${pageContext.request.contextPath }/admin/images/icon_error_s.png");
+	}
+}
 
 
 

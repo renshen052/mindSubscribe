@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import utils.Util;
 /**
  * Servlet implementation class DoctorServlet
  */
+@MultipartConfig
 public class DoctorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -81,7 +83,7 @@ public class DoctorServlet extends HttpServlet {
 			
 		}else if("deletDoctor".equals(m)) {
 			
-			//删除用户
+			//删除
 			
 			//获取要删除的doctor
 			String doctorId = request.getParameter("id");
@@ -89,29 +91,29 @@ public class DoctorServlet extends HttpServlet {
 			//删除
 			doctorService.deleteDoctor(doctorId,response);
 			
-		}else if("updateDoctor".equals(m)) {
+		}else if("selecteDoctor".equals(m)) {//ajax
 			
-			//增加或者修改
+			//查看详情
+			
+			//要查看的人
 			String doctorId = request.getParameter("id");
 			
-			if(Util.isNotEmpty(doctorId)) {
-				//id不为空，是修改
-				
-				//要先查询
-				Doctor doctor = doctorService.getDoctorByDoctorId(Integer.parseInt(doctorId ));
-				
-				//....先空着，用ajax
-				
-			}
+			//查询，并且将数据返回（JSON格式）
+			 doctorService.getDoctorByDoctorIdToResponse(Integer.parseInt(doctorId ),response);
 			
 			
 			
+		} else if("updateDoctor".equals(m)) {
 			
+			//增加或者修改
+		
+			//id有值就是修改，没值就是添加
+			String doctorId = request.getParameter("id");
 			
 			
 			//取得表单里的值
-			String  doctorName = request.getParameter("doctorName");
 			String  name = request.getParameter("name");
+			String  age = request.getParameter("age");
 			String  sex = request.getParameter("sex");
 			String  email = request.getParameter("email");
 			String  phone = request.getParameter("phone");
@@ -122,7 +124,6 @@ public class DoctorServlet extends HttpServlet {
 			
 			
 			//传上来的个人照片
-			Part  imgPart = request.getPart("img");
 			
 			UploadResult uploadResult = Util.upload("img",request,Util.UPLOAD_TYPE_IMG);
 			
@@ -132,9 +133,9 @@ public class DoctorServlet extends HttpServlet {
 			
 			//将表单对象封装为Doctor对象
 			Doctor doctor = new Doctor();
-			doctor.setDoctorName(doctorName);
 			doctor.setName(name);
-			doctor.setSex(Integer.parseInt(sex ));
+			doctor.setAge(Integer.parseInt(age));
+			doctor.setSex(Integer.parseInt(sex));
 			doctor.setEmail(email);
 			doctor.setPhone(phone);
 			doctor.setLevel(level);
@@ -153,7 +154,7 @@ public class DoctorServlet extends HttpServlet {
 					
 					//图片还是原来的路径
 					
-					String  img = request.getParameter("img"); //取得隐藏域的图片路径
+					String  img = request.getParameter("imgPath"); //取得隐藏域的图片路径
 					
 					doctor.setImg(imgPath);
 					
@@ -167,6 +168,10 @@ public class DoctorServlet extends HttpServlet {
 				int i = doctorService.addDoctor(doctor);
 			}
 			
+			response.sendRedirect(request.getContextPath() + "/doctor/DoctorServlet?m=listDoctor");
+			
+			
+		}else if("updateDoctor2".equals(m)) {
 			
 			
 			

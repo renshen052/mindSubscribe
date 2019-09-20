@@ -55,6 +55,34 @@ public class Util {
 
 		return pwd;
 	}
+	
+	
+	/**
+	 * 生成随机账号
+	 */
+	public static String generateRandomNum(int length) {
+
+		String[] chars = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "B", "C", "D", "E", "F", "G",
+				"H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b",
+				"c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+				"x", "y", "z" };// [0,length - 1]
+
+		String pwd = "";
+
+		for (int i = 0; i < length; i++) {
+
+			int randNum = (int) (Math.random() * (chars.length));// [0.0,1.0) => [0,length)
+
+			pwd += chars[randNum];
+
+		}
+
+		return pwd;
+		
+	}
+	
+	
+	
 
 	/**
 	 * @description: 判断字符串是否不为空
@@ -152,7 +180,7 @@ public class Util {
 			e1.printStackTrace();
 		}
 
-		if (part.getSize() > 0) {// 判断用户是否有选择头像
+		if ( part!=null &&part.getSize() > 0) {// 判断用户是否有选择头像
 			
 			// 得到请求中的头
 			String contentDisposition = part.getHeader("content-disposition");
