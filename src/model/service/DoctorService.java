@@ -79,7 +79,7 @@ public class DoctorService {
 	 * @param doctorId
 	 * @param response
 	 */
-	public void deleteDoctor(String doctorId, HttpServletResponse response) {
+	public void deleteDoctor(Integer doctorId, HttpServletResponse response) {
 
 		
 		int i = doctorDao.deleteDoctor(doctorId);
@@ -194,6 +194,33 @@ public class DoctorService {
 		doctor.setDoctorPwd("123456");
 		
 		return doctorDao.addDoctor(doctor);
+	}
+
+
+	public void deleteDoctorCheckeds(String checkeds, HttpServletResponse response) {
+
+		String[] checkedStrs = checkeds.split(",");
+		
+		int i = 0;
+		
+		for(String checked : checkedStrs) {
+			
+			if(doctorDao.deleteDoctor(Integer.parseInt(checked)) == 1) {
+				i++;
+			}
+			
+		}
+		
+		ResultDate rd = new ResultDate();
+		if(i == checkedStrs.length) {
+			rd.setIsSuccess(false);
+			rd.setMsg("删除成功");
+		}else {
+			
+			//...
+		}
+		
+		
 	}
 
 }

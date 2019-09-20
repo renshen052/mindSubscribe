@@ -83,9 +83,9 @@
      <div class="border clearfix">
        <span class="l_f">
         <a href="javascript:void()" id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加咨询师</a>
-        <a href="javascript:void()" class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
+        <a href="javascript:void()" id="deleteList"class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
        </span>
-       <span class="r_f">共：<b>2345</b>条</span>
+       <span class="r_f">共：<b>${listSize }</b>条</span>
      </div>
      <!---->
      <div class="table_menu_list">
@@ -118,7 +118,7 @@
           <img src="/upload/${doctor.img}"  width="77.7px" height="77.7px"/>
           </td>
           
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','500','400')">${doctor.name }</u></td>
+          <td><u style="cursor:pointer" class="text-primary" onclick="member_show(${doctor.doctorId })">${doctor.name }</u></td>
           
           <td>${doctor.sex eq 1 ? "男":"女" }</td>
           
@@ -173,7 +173,7 @@
 </div>
 <!--添加用户图层-->
 <div class="add_menber" id="add_menber_style" style="display:none">
-  <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor" method="post" enctype="multipart/form-data">
+  <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor" method="post" enctype="multipart/form-data" id="doctorEdit">
     <ul class=" page-content">
      <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
@@ -191,7 +191,7 @@
      <li><label class="label_name">等级：</label>
      <span class="add_name">
      <select name="level">
-     	<option value="未选择"  >未选择</option>
+     	<option value="未选择" >未选择</option>
      	<option value="一级咨询师"  >一级咨询师</option>
      	<option value="二级级咨询师" >二级咨询师</option>
      	<option value="三级咨询师" >三级咨询师</option>
@@ -217,6 +217,7 @@
      <input name="img" type="file"  class="text_add" style=" width:350px"/>
      </span>
      </li>
+    
      
      <li class="adderss"></li>
      
@@ -267,13 +268,56 @@ jQuery(function($) {
 					return 'left';
 				}
 			})
+/*批量删除*/
+$("#deleteList").on('click',function(){
+	
+    <td><label><input type="checkbox" class="ace" value="${doctor.doctorId }"><span class="lbl"></span></label></td>
+
+    var checkeds = "";
+    
+    $("#sample-table").find("input[type='checked']:checkbox:checked").each(function(n){
+		
+    	checkeds += $(n).val() + ",";
+		
+	});
+    
+    checkeds = checkeds.slice(0, checkeds.length - 1);
+    
+    layer.confirm('已经选中的:' + checkeds + ',确认这些都要删除吗？',function(index){
+    	
+    	delNotYes(id,checkeds);
+    	
+    });
+    
+    
+	
+	
+	
+	
+	
+	
+	
+})
+			
 /*用户-添加*/
  $('#member_add').on('click', function(){
+	 
+	 
+	 //清空上次的
+	 addDate("");
+	 
+	 $("input:radio[name='sex']").removeAttr('checked');
+	 
+	 $("input:radio[name='isActive']").removeAttr('checked');
+	 
+	 $("select[name='level']").find("option").removeAttr("selected");
+	 $("select[name='level']").find("option[value='未选择']").attr("selected",true);
+	 
     layer.open({
         type: 1,
         title: '添加用户',
 		maxmin: true, 
-		shadeClose: true, //点击遮罩关闭层
+		shadeClose: false, //点击遮罩关闭层
         area : ['800px' , ''],
         content:$('#add_menber_style'),
 		btn:['提交','取消'],
@@ -284,46 +328,56 @@ jQuery(function($) {
 			//ajax上传
 			var formData = new FormData($(layero).find('form')[0]);
 		     $.ajax({  
-		          url: '${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor2' ,  
+		          url: '${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor' ,  
 		          type: 'POST',  
 		          data: formData,  
 		          async: false,  
 		          cache: false,  
 		          contentType: false,  
 		          processData: false,  
-		          success: function (returndata) {  
-		              alert(returndata);  
+		          success: function (data) { 
+		        	  
+		        	  if(data.isSuccess){
+		        		  msg = "添加成功，初始密码为123456！";
+		        	  }else{
+		        		  msg = data.msg;
+		        	  }
 		          },  
 		          error: function (returndata) {  
-		              alert(returndata);  
+		        	  msg = "失败请刷新后重试";  
 		          }  
 		     }); 
-			
-			
-			
-			
-			
-			var formDoctor = $(layero).find('form')[0];
-			
-			//设置为添加
-			$(formDoctor).attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor");
-			
-			//提交
-			$(formDoctor).submit();
-        	  
-        	  
-			  layer.alert('添加成功，初始密码为123456！',{
-               title: '提示框',				
-			icon:1,		
-			  });
-			  layer.close(index);	
-		 	  		     				
+		     
+		     layer.alert(msg,{
+ 	               title: '提示框',				
+ 				icon:1,		
+ 				  },function(){
+ 					 window.location.reload();
+ 				  });
+		     layer.close(index);
+		     
 		}
     });
 });
 /*用户-查看*/
-function member_show(title,url,id,w,h){
-	layer_show(title,url+'#?='+id,w,h);
+function member_show(id){
+	
+	//先查到用户数据
+	selectedDoctor(id);
+	
+	//显示查看界面
+	  layer.open({
+      type: 1,
+      title: '修改用户信息',
+		maxmin: true, 
+		shadeClose:false, //点击遮罩关闭层
+      area : ['800px' , ''],
+      content:$('#add_menber_style'),
+		btn:['查看完毕'],
+		yes:function(index,layero){	
+			layer.close(index);				
+		}
+  });
 }
 /*用户-停用*/
 function member_stop(obj,id){
@@ -379,6 +433,98 @@ function member_start(obj,id){
 /*用户-编辑*/
 function member_edit(id){
 	
+	
+	//先查到用户数据
+	selectedDoctor(id);
+	
+	//显示编辑界面
+	  layer.open({
+        type: 1,
+        title: '修改用户信息',
+		maxmin: true, 
+		shadeClose:false, //点击遮罩关闭层
+        area : ['800px' , ''],
+        content:$('#add_menber_style'),
+		btn:['提交','取消'],
+		yes:function(index,layero){	
+			
+			var msg = "";
+			
+			//ajax上传
+			var formData = new FormData($(layero).find('form')[0]);
+		     $.ajax({  
+		          url: "${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor&id="+id ,  
+		          type: 'POST',  
+		          data: formData,  
+		          async: false,  
+		          cache: false,  
+		          contentType: false,  
+		          processData: false,  
+		          success: function (data) { 
+		        	  
+		        	  if(data.isSuccess){
+		        		  msg = "修改成功！";
+		        	  }else{
+		        		  msg = data.msg;
+		        	  }
+		          },  
+		          error: function (returndata) {  
+		        	  msg = "失败请刷新后重试";  
+		          }  
+		     }); 
+		     
+		     layer.alert(msg,{
+ 	               title: '提示框',				
+ 				icon:1,		
+ 				  },function(){
+ 					 window.location.reload();
+ 				  });
+		     layer.close(index);
+		}
+    });
+}
+/*用户-删除*/
+function member_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		
+		delNotYes(id);
+		
+	});
+}
+
+/*
+ * 删除一个，不带确认的
+ */
+function delNotYes(id,checkeds){
+	//ajax
+	$.ajax({
+	type : "GET",
+	url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id+"&checkeds=" + checkeds,
+	dataType : "json",
+	success : function(data) {
+		
+		if (data['isSuccess'] == true) {
+			$(obj).parents("tr").remove();
+			layer.msg('已删除!',{icon:1,time:1000});
+		}else{
+			layer.msg(data['msg'],{icon: 0,time:1000});
+		}
+	}
+});
+}
+
+
+
+laydate({
+    elem: '#start',
+    event: 'focus' 
+});
+
+/**
+ * 请求选中的Doctor内容
+ */
+function selectedDoctor(id){
+	
 	//ajax
 	$.ajax({
 	type : "GET",
@@ -399,70 +545,32 @@ function member_edit(id){
 	});
 	
 	
-	  layer.open({
-        type: 1,
-        title: '修改用户信息',
-		maxmin: true, 
-		shadeClose:false, //点击遮罩关闭层
-        area : ['800px' , ''],
-        content:$('#add_menber_style'),
-		btn:['提交','取消'],
-		yes:function(index,layero){	
-		 
-			var formDoctor = $(layero).find('form')[0];
-			
-			//设置为修改
-			$(formDoctor).attr("action","${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor&id="+id);
-			
-			//提交
-			$(formDoctor).submit();
-     
-		  	  		     				
-		}
-    });
 }
-/*用户-删除*/
-function member_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		
-		//ajax
-		$.ajax({
-		type : "GET",
-		url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id,
-		dataType : "json",
-		success : function(data) {
-			
-			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			}else{
-				layer.msg(data['msg'],{icon: 0,time:1000});
-			}
-		}
-	});
-		
-		
-		
-		
-	});
-}
-laydate({
-    elem: '#start',
-    event: 'focus' 
-});
 
+/**
+ * 给Doctor表单赋值
+ */
 function addDate(doctor){
 	
 	$("input[name='name']").val(doctor.name);
 	$("input[name='age']").val(doctor.age);
 	
+	$("input[name='skill']").val(doctor.skill);
+	
+		
 	$("input:radio[name='sex'][value='" + doctor.sex + "']").attr('checked','checked');
+	
 	
 	$("input[name='email']").val(doctor.email);
 	$("input[name='phone']").val(doctor.phone);
 	
-	//$("").val(doctor.level);
-	 $("select[name='level']").find("option[value='" + doctor.level + "']").attr("selected",true);
+	if(doctor.level){
+		$("select[name='level']").find("option[value='" + doctor.level + "']").attr("selected",true);
+		
+	}else{//如果没有填级别
+		$("select[name='level']").find("option[value='未选择']").attr("selected",true);
+	}
+	 
 	
 	$("input[name='place']").val(doctor.place);
 	

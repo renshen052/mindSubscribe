@@ -184,7 +184,7 @@ public class DoctorDao {
 	 * @param doctorId
 	 * @param response
 	 */
-	public int deleteDoctor(String doctorId) {
+	public int deleteDoctor(Integer doctorId) {
 		
 		String sql = "DELETE FROM doctor WHERE doctor_id=?";
 		

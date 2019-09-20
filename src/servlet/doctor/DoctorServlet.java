@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 
 import com.sun.deploy.uitoolkit.impl.fx.Utils;
@@ -67,6 +68,8 @@ public class DoctorServlet extends HttpServlet {
 			
 			request.setAttribute("doctorList", list);
 			
+			request.setAttribute("listSize", list.size());
+			
 			request.getRequestDispatcher("/admin/doctorList.jsp").forward(request, response);
 			
 		}else if("updateActive".equals(m)){
@@ -88,8 +91,19 @@ public class DoctorServlet extends HttpServlet {
 			//获取要删除的doctor
 			String doctorId = request.getParameter("id");
 			
-			//删除
-			doctorService.deleteDoctor(doctorId,response);
+			//批量删除的Id
+			String checkeds = request.getParameter("checkeds");
+			
+			//删除单个的
+			if(Util.isNotEmpty(doctorId)) {
+				doctorService.deleteDoctor(Integer.parseInt(doctorId),response);
+			}
+			
+			//批量删除
+			if(Util.isNotEmpty(checkeds)) {
+				doctorService.deleteDoctorCheckeds(checkeds,response);
+			}
+			
 			
 		}else if("selecteDoctor".equals(m)) {//ajax
 			
@@ -145,6 +159,8 @@ public class DoctorServlet extends HttpServlet {
 			doctor.setImg(imgPath);
 			
 			
+			int i = 0; //结果
+			
 			if(Util.isNotEmpty(doctorId)) {
 				//id不为空，是修改
 				doctor.setDoctorId(Integer.parseInt(doctorId ));
@@ -161,22 +177,41 @@ public class DoctorServlet extends HttpServlet {
 				}
 				
 				//修改
-				int i = doctorService.updateDoctor(doctor);
+				i = doctorService.updateDoctor(doctor);
 				
 			}else {
 				//增加
-				int i = doctorService.addDoctor(doctor);
+				i = doctorService.addDoctor(doctor);
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/doctor/DoctorServlet?m=listDoctor");
+			//response.sendRedirect(request.getContextPath() + "/doctor/DoctorServlet?m=listDoctor");
 			
+			response.setContentType("application/json;charset=utf-8");
 			
-		}else if("updateDoctor2".equals(m)) {
+			ResultDate resultDate = new ResultDate();
+			if(i == 1) {//成功
+				
+				resultDate.setIsSuccess(true);
+				resultDate.setMsg("成功!");
+				
+				
+			}else {//失败
+				resultDate.setIsSuccess(true);
+				resultDate.setMsg("失败，请刷新后重试!");
+			}
 			
+			Writer writer = response.getWriter();
 			
+			try {
+				JSONUtil.serialize(writer,resultDate);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//错误 指向了这里，，重新编译一下子
+			writer.close();
 			
 		}
-	
 	
 	}
 
