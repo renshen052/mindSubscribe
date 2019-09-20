@@ -5,12 +5,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.apache.struts2.json.JSONException;
+import org.apache.struts2.json.JSONUtil;
 
 /**
  * @Description: 工具类
@@ -22,7 +27,7 @@ public class Util {
 	 * 不限类型
 	 */
 	public static final int UPLOAD_TYPE_ALL = 0;
-	
+
 	/**
 	 * 图片
 	 */
@@ -55,8 +60,7 @@ public class Util {
 
 		return pwd;
 	}
-	
-	
+
 	/**
 	 * 生成随机账号
 	 */
@@ -78,11 +82,8 @@ public class Util {
 		}
 
 		return pwd;
-		
+
 	}
-	
-	
-	
 
 	/**
 	 * @description: 判断字符串是否不为空
@@ -180,8 +181,8 @@ public class Util {
 			e1.printStackTrace();
 		}
 
-		if ( part!=null &&part.getSize() > 0) {// 判断用户是否有选择头像
-			
+		if (part != null && part.getSize() > 0) {// 判断用户是否有选择头像
+
 			// 得到请求中的头
 			String contentDisposition = part.getHeader("content-disposition");
 
@@ -194,7 +195,7 @@ public class Util {
 			if (!isAllowedType(expandName, type)) {
 
 				uploadResult.setRefuse(true);
-				
+
 				uploadResult.setResult(false);
 
 				// 设置文件大小
@@ -212,7 +213,7 @@ public class Util {
 			if (!isAllowedSize(part.getSize(), type)) {
 
 				uploadResult.setRefuse(true);
-				
+
 				uploadResult.setResult(false);
 
 				// 设置文件大小
@@ -341,6 +342,13 @@ public class Util {
 		return false;
 	}
 
+	/**
+	 * 检查文件大小是否合法
+	 * 
+	 * @param size
+	 * @param type
+	 * @return
+	 */
 	public static boolean isAllowedSize(long size, int type) {
 
 		String alloweSizeStr = "";
@@ -364,23 +372,44 @@ public class Util {
 		// 合法
 		return true;
 	}
-	
+
 	/**
 	 * 随机生成n为数字
 	 */
 	public static String randomNum(int n) {
-		
+
 		String str = "";
 		for (int i = 0; i < n; i++) {
 
 			str += (int) (Math.random() * 10);
 
 		}
-		
+
 		return str;
 	}
 
 	public static void main(String[] args) {
 		System.out.println(isAllowedType("BMP", 1));
+	}
+
+	/**
+	 * 响应JSON格式数据
+	 * @param rd
+	 * @param response
+	 */
+	public static void responseJson(ResultDate rd, HttpServletResponse response) {
+
+		// 设置响应格式
+		response.setContentType("application/json; charset=utf-8");
+
+		try (Writer witer = response.getWriter();) {
+
+			JSONUtil.serialize(witer, rd);
+
+		} catch (IOException | JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

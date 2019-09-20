@@ -48,7 +48,9 @@
         <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/H-ui.js"></script> 
         <script type="text/javascript" src="${pageContext.request.contextPath }/admin/js/H-ui.admin.js"></script> 
         <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript" ></script>
-        <script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
+<%--        <script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
+ --%>
+
 
 </head>
 
@@ -267,11 +269,9 @@ jQuery(function($) {
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-			})
+			});
 /*批量删除*/
 $("#deleteList").on('click',function(){
-	
-    <td><label><input type="checkbox" class="ace" value="${doctor.doctorId }"><span class="lbl"></span></label></td>
 
     var checkeds = "";
     
@@ -283,21 +283,18 @@ $("#deleteList").on('click',function(){
     
     checkeds = checkeds.slice(0, checkeds.length - 1);
     
-    layer.confirm('已经选中的:' + checkeds + ',确认这些都要删除吗？',function(index){
+    layer.confirm('已经选中的:' + checkeds + ' , 确认这些都要删除吗？',function(index){
     	
-    	delNotYes(id,checkeds);
+    	if(delNotYes("",checkeds)){//如果删除成功
+    		
+    		window.location.reload();//刷新页面
+    	}
+    	
+    	layer.close(index);
     	
     });
     
-    
-	
-	
-	
-	
-	
-	
-	
-})
+ });  
 			
 /*用户-添加*/
  $('#member_add').on('click', function(){
@@ -359,6 +356,8 @@ $("#deleteList").on('click',function(){
 		}
     });
 });
+
+
 /*用户-查看*/
 function member_show(id){
 	
@@ -400,8 +399,6 @@ function member_stop(obj,id){
 			}
 		}
 	});
-		
-		
 		
 	});
 }
@@ -487,8 +484,18 @@ function member_edit(id){
 function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		
-		delNotYes(id);
 		
+		//请求服务器删除 
+		if( delNotYes(id,"") == 1 ){//成功
+			
+			//删除页面上的
+			$(obj).parents("tr").remove();
+			
+		}
+		
+		
+		//关闭确认框
+		layer.close(index);
 	});
 }
 
@@ -496,29 +503,27 @@ function member_del(obj,id){
  * 删除一个，不带确认的
  */
 function delNotYes(id,checkeds){
+	var r = 0;
 	//ajax
 	$.ajax({
 	type : "GET",
-	url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id+"&checkeds=" + checkeds,
+	url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id+"&checkeds=" + checkeds
 	dataType : "json",
 	success : function(data) {
 		
 		if (data['isSuccess'] == true) {
-			$(obj).parents("tr").remove();
+			
 			layer.msg('已删除!',{icon:1,time:1000});
+			r = 1;
 		}else{
 			layer.msg(data['msg'],{icon: 0,time:1000});
 		}
 	}
 });
+	return r;
+	
 }
 
-
-
-laydate({
-    elem: '#start',
-    event: 'focus' 
-});
 
 /**
  * 请求选中的Doctor内容
@@ -586,7 +591,9 @@ function addDate(doctor){
 }
 
 
-
-
+/* laydate({
+    elem: '#start',
+    event: 'focus' 
+}); */
 
 </script>
