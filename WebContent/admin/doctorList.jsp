@@ -175,37 +175,37 @@
 </div>
 <!--添加用户图层-->
 <div class="add_menber" id="add_menber_style" style="display:none">
-  <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor" method="post" enctype="multipart/form-data" id="doctorEdit">
+  <form action="" method="post" enctype="multipart/form-data" id="doctorEdit">
     <ul class=" page-content">
-     <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" type="text" id="name"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" id="age" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
      
      <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
-     <label><input name="sex" type="radio" value="1"  class="ace"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="sex" type="radio" value="0"  class="ace"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="sex" type="radio" value="1"  class="ace" id="sex1"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="sex" type="radio" value="0"  class="ace" id="sex0"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
      </span>
      <div class="prompt r_f"></div>
      </li>
-     <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" id="email" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" id="phone" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
      
      
      <li><label class="label_name">等级：</label>
      <span class="add_name">
      <select name="level">
-     	<option value="未选择" >未选择</option>
-     	<option value="一级咨询师"  >一级咨询师</option>
-     	<option value="二级级咨询师" >二级咨询师</option>
-     	<option value="三级咨询师" >三级咨询师</option>
+     	<option value="暂无" id="level0">暂无</option>
+     	<option value="一级咨询师" id="level1" >一级咨询师</option>
+     	<option value="二级级咨询师" id="level2">二级咨询师</option>
+     	<option value="三级咨询师" id="level3">三级咨询师</option>
      </select>
      </span>
      <div class="prompt r_f"></div>
      </li>
      
      
-     <li ><label class="label_name">咨询地址：</label><span class="add_name"><input name="place" type="text"  class="text_add"  /></span> <div class="prompt r_f"></div> </li>
+     <li ><label class="label_name">咨询地址：</label><span class="add_name"><input name="place" id="place" type="text"  class="text_add"  /></span> <div class="prompt r_f"></div> </li>
      
-     <li ><label class="label_name">擅长方向</label><span class="add_name"><input name="skill" type="text"  class="text_add" /></span> <div class="prompt r_f"></div> </li>
+     <li ><label class="label_name">擅长方向</label><span class="add_name"><input name="skill" id="skill" type="text"  class="text_add" /></span> <div class="prompt r_f"></div> </li>
      
      <!-- 图片 -->
      <li >
@@ -224,8 +224,8 @@
      <li class="adderss"></li>
      
      <li class="adderss"><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
-     <label><input name="isActive" value="1" type="radio"  class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="isActive" value="0" type="radio"   class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
+     <label><input name="isActive" value="1" type="radio" id="isActive1" class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
+     <label><input name="isActive" value="0" type="radio" id="isActive0"  class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
     </ul>
     
    </form>
@@ -269,6 +269,32 @@ jQuery(function($) {
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
+				
+				
+				
+				
+				
+				/**
+				*检查表单元素合法性
+				*/
+				$("#doctorEdit :input").each(function(){
+					
+					var thisElement = $(this);
+					
+					$(this).blur(function(){ 
+					    //失去焦点处理函数
+						isAbleCheckOne(thisElement);
+
+					});	
+				})
+				
+				
+						
+				
+				
+				
+				
+				
 			});
 /*批量删除*/
 $("#deleteList").on('click',function(){
@@ -321,16 +347,20 @@ $("#deleteList").on('click',function(){
 /*用户-添加*/
  $('#member_add').on('click', function(){
 	 
-	 
 	 //清空上次的
-	 addDate("");
+	  $("input:radio:checked").removeAttr('checked');
+	  $("select[name='level']").find("option:selected").removeAttr('selected');
+	  //$("input:").val("");
+	  $("#name,#age,#email,#phone,#place,#skill").val("");
+	  $('#add_menber_style').find("div[class='prompt r_f']").text("");
+	  
 	 
-	 $("input:radio[name='sex']").removeAttr('checked');
+	 /* $("input:radio[name='sex']").removeAttr('checked');
 	 
 	 $("input:radio[name='isActive']").removeAttr('checked');
 	 
 	 $("select[name='level']").find("option").removeAttr("selected");
-	 $("select[name='level']").find("option[value='未选择']").attr("selected",true);
+	 $("select[name='level']").find("option[value='暂无']").attr("selected",true);  */
 	 
     layer.open({
         type: 1,
@@ -344,36 +374,52 @@ $("#deleteList").on('click',function(){
 			
 			var msg = "";
 			
-			//ajax上传
-			var formData = new FormData($(layero).find('form')[0]);
-		     $.ajax({  
-		          url: '${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor' ,  
-		          type: 'POST',  
-		          data: formData,  
-		          async: false,  
-		          cache: false,  
-		          contentType: false,  
-		          processData: false,  
-		          success: function (data) { 
-		        	  
-		        	  if(data.isSuccess){
-		        		  msg = "添加成功，初始密码为123456！";
-		        	  }else{
-		        		  msg = data.msg;
-		        	  }
-		          },  
-		          error: function (returndata) {  
-		        	  msg = "失败请刷新后重试";  
-		          }  
-		     }); 
-		     
-		     layer.alert(msg,{
- 	               title: '提示框',				
- 				icon:1,		
- 				  },function(){
- 					 window.location.reload();
- 				  });
-		     layer.close(index);
+			if(isAble(true)){
+				//如果数据合法
+				
+				//ajax上传
+				var formData = new FormData($(layero).find('form')[0]);
+			     $.ajax({  
+			          url: '${pageContext.request.contextPath }/doctor/DoctorServlet?m=updateDoctor' ,  
+			          type: 'POST',  
+			          data: formData,  
+			          async: false,  
+			          cache: false,  
+			          contentType: false,  
+			          processData: false,  
+			          success: function (data) { 
+			        	  
+			        	  if(data.isSuccess){
+			        		  msg = "添加成功，初始密码为123456！";
+			        	  }else{
+			        		  msg = data.msg;
+			        	  }
+			          },  
+			          error: function (returndata) {  
+			        	  msg = "失败请刷新后重试";  
+			          }  
+			     }); 
+			     
+			     layer.alert(msg,{
+	 	               title: '提示框',				
+	 				icon:1,		
+	 				  },function(){
+	 					 window.location.reload();
+	 				  });
+			     layer.close(index);
+				
+				
+				
+			}else{
+				
+				layer.alert("请填写正确的数据！",{
+	 	               title: '提示框',				
+	 				icon:1,		
+	 				  });
+				
+			}
+			
+			
 		     
 		}
     });
@@ -580,7 +626,7 @@ function addDate(doctor){
 		$("select[name='level']").find("option[value='" + doctor.level + "']").attr("selected",true);
 		
 	}else{//如果没有填级别
-		$("select[name='level']").find("option[value='未选择']").attr("selected",true);
+		$("select[name='level']").find("option[value='暂无']").attr("selected",true);
 	}
 	 
 	
@@ -596,6 +642,228 @@ function addDate(doctor){
 		$(imgPath).next().attr("src","${pageContext.request.contextPath }/admin/images/icon_error_s.png");
 	}
 }
+
+/**
+ * 对表单验证合法性
+ */
+ function isAble(){
+	
+	var isOk = true;
+	
+	 $("#doctorEdit :input").each(function(){
+		 
+		 //如果有一项不正确
+		 if( !isAbleCheckOne($(this))){
+			 isOk = false;
+		 }
+		 
+	 });
+	 
+	 return isOk;
+	
+}
+
+ function isAbleCheckOne(thisElement){
+	 
+	 var isOk = true;
+	 
+	//验证姓名
+	 if($(thisElement).is("input[name='name']")){
+		 
+		 var nameVal = $.trim($(thisElement).val()); 
+         var regName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+         if(nameVal == "" || nameVal.length > 6 || regName.test(nameVal)){
+        	 
+             var errorMsg = " 姓名非空，，且不多于6个字符，不能包含特殊字符！";
+             
+             $(thisElement).parent().next("div").attr("style","color:red");
+             
+             $(thisElement).parent().next("div").html(errorMsg);
+             
+             isOk = false;
+             
+         }else{
+        	 
+        	 $(thisElement).parent().next("div").attr("style","color:green");
+        	 
+        	 $(thisElement).parent().next("div").html("通过");
+         }
+         
+	 }
+	 
+	 //验证年龄
+		if($(thisElement).is("input[name='age']")){
+		 
+		 var nameVal = $.trim($(thisElement).val()); 
+		 
+         var regName = /((1[0-5])|[1-9])?\d/;
+         
+         var msg = "";
+         
+         if(nameVal == "" || ! regName.test(nameVal)){
+        	 
+             var msg = " 年龄为0-159，不能包含特殊字符！";
+             
+             $(thisElement).parent().next("div").attr("style","color:red");
+             
+             
+             isOk = false;
+             
+         }else{
+        	 
+        	 $(thisElement).parent().next("div").attr("style","color:green");
+        	 msg = "通过";
+        	 
+         }
+         $(thisElement).parent().next("div").html(msg);
+		 
+	 }
+	 
+		//验证性别 和 账号状态（不为空即可）
+		if($(thisElement).is("input[name='sex']")){
+			
+			alert($(thisElement).val());
+			
+			var msg = "";
+			
+			if($(thisElement).attr("checked")){
+				
+				msg = "请选择！";
+				$(thisElement).parent().next("div").attr("style","color:red");
+				
+				isOk = false;
+				
+			}else{
+				
+				$(thisElement).parent().next("div").attr("style","color:green");
+				msg = "通过";
+				
+			}
+			
+			//填写内容
+			$(thisElement).parent().next("div").html(errorMsg);
+			
+		}
+	 
+		//验证邮箱
+		if($(thisElement).is("input[name='email']")){
+		 
+		 
+		 var nameVal = $.trim($(thisElement).val()); 
+		 
+         var regName = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+         
+         var msg = "";
+         
+         if(nameVal == "" || ! regName.test(nameVal)){
+        	 
+             var msg = " 不能为空，且是一个合法的邮箱！";
+             
+             $(thisElement).parent().next("div").attr("style","color:red");
+             
+             isOk = false;
+             
+         }else{
+        	 
+        	 $(thisElement).parent().next("div").attr("style","color:green");
+        	 msg = "通过";
+        	 
+         }
+         $(thisElement).parent().next("div").html(msg);
+		
+	 }
+		
+		//验证电话
+		if($(thisElement).is("input[name='phone']")){
+		 
+		 
+		 var nameVal = $.trim($(thisElement).val()); 
+		 
+         var regName = /^1[3456789]\d{9}$/;
+         
+         var msg = "";
+         
+         if(nameVal == "" || ! regName.test(nameVal)){
+        	 
+             var msg = " 不能为空，且电话应为11位！";
+             
+             $(thisElement).parent().next("div").attr("style","color:red");
+             
+             isOk = false;
+             
+         }else{
+        	 
+        	 $(thisElement).parent().next("div").attr("style","color:green");
+        	 msg = "通过";
+        	 
+         }
+         $(thisElement).parent().next("div").html(msg);
+		 
+	 }
+		
+		
+		//验证咨询师等级（不为空即可）
+		if($(thisElement).is("select[name='level']")){
+			
+			//$("#sample-table").find("input[type='checkbox']:checked").each(function(){
+			
+			var msg = "";
+			
+			//如果列表项，都没有选择
+			if($(thisElement).find("option:selected")){
+				
+				msg = "请选择等级！";
+				$(thisElement).parent().next("div").attr("style","color:red");
+				
+				isOk = false;
+				
+			}else{
+				
+				$(thisElement).parent().next("div").attr("style","color:green");
+				msg = "通过";
+				
+			}
+			
+			//填写内容
+			$(thisElement).parent().next("div").html(errorMsg);
+			
+			
+		}
+		
+		//验证咨询地址，擅长方向（不为空，200个字符）
+		if($(thisElement).is("input[name='place']") || $(thisElement).is("input[name='skill']")){
+		 
+		 
+		var nameVal = $.trim($(thisElement).val()); 
+        
+        var msg = "";
+        
+        if(nameVal == "" || ! nameVal.length >200){
+       	 
+            var msg = " 不能为空，且不超过200个字符！";
+            
+            $(thisElement).parent().next("div").attr("style","color:red");
+            
+            isOk = false;
+            
+        }else{
+       	 
+       	 	$(thisElement).parent().next("div").attr("style","color:green");
+       	 	msg = "通过";
+       	 
+        }
+        	$(thisElement).parent().next("div").html(msg);
+			
+		}
+		
+		//个人照片，不做要求
+	 
+		return isOk;
+ }
+
+
+
+
 
 
 /* laydate({
