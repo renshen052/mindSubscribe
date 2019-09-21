@@ -112,7 +112,7 @@
 	<c:forEach items="${doctorList }" var="doctor">
 	
 		<tr>
-          <td><label><input type="checkbox" class="ace" value="${doctor.doctorId }"><span class="lbl"></span></label></td>
+          <td><label><input type="checkbox" class="ace" value="${doctor.doctorId }" checkedName="${doctor.name }"><span class="lbl"></span></label></td>
           
           <td>${doctor.doctorName }</td>
           
@@ -275,20 +275,42 @@ $("#deleteList").on('click',function(){
 
     var checkeds = "";
     
-    $("#sample-table").find("input[type='checked']:checkbox:checked").each(function(n){
+    var checkedsName= "";
+    
+    $("#sample-table").find("input[type='checkbox']:checked").each(function(){
 		
-    	checkeds += $(n).val() + ",";
+    	checkeds += $(this).val() + ",";
+    	checkedsName += $(this).attr("checkedName") + ",";
 		
 	});
     
     checkeds = checkeds.slice(0, checkeds.length - 1);
     
-    layer.confirm('已经选中的:' + checkeds + ' , 确认这些都要删除吗？',function(index){
+    layer.confirm('即将删除:' + checkedsName + '   请确认！',function(index){
     	
-    	if(delNotYes("",checkeds)){//如果删除成功
-    		
-    		window.location.reload();//刷新页面
-    	}
+    	$.ajax({
+			type : "GET",
+			url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&checkeds=" + checkeds,
+			dataType : "json",
+			success : function(data) {
+				
+				if (data['isSuccess'] == true) {
+					
+					//删除页面上的
+					var objs = $("#sample-table").find("input[type='checkbox']:checked");
+					for(var o = 0 ; o < objs.length; o++){
+						
+						$(objs[o]).parents("tr").remove();
+						
+					}
+					
+					layer.msg('已删除!',{icon:1,time:1000});
+					
+				}else{
+					layer.msg(data['msg'],{icon: 0,time:1000});
+				}
+			}
+		});
     	
     	layer.close(index);
     	
@@ -484,45 +506,30 @@ function member_edit(id){
 function member_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		
-		
-		//请求服务器删除 
-		if( delNotYes(id,"") == 1 ){//成功
-			
-			//删除页面上的
-			$(obj).parents("tr").remove();
-			
-		}
-		
+		$.ajax({
+			type : "GET",
+			url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id,
+			dataType : "json",
+			success : function(data) {
+				
+				if (data['isSuccess'] == true) {
+					
+					//删除页面上的
+					$(obj).parents("tr").remove();
+					
+					layer.msg('已删除!',{icon:1,time:1000});
+				}else{
+					layer.msg(data['msg'],{icon: 0,time:1000});
+				}
+			}
+		});
 		
 		//关闭确认框
 		layer.close(index);
+		
 	});
 }
 
-/*
- * 删除一个，不带确认的
- */
-function delNotYes(id,checkeds){
-	var r = 0;
-	//ajax
-	$.ajax({
-	type : "GET",
-	url : "${pageContext.request.contextPath}/doctor/DoctorServlet?m=deletDoctor&id="+id+"&checkeds=" + checkeds
-	dataType : "json",
-	success : function(data) {
-		
-		if (data['isSuccess'] == true) {
-			
-			layer.msg('已删除!',{icon:1,time:1000});
-			r = 1;
-		}else{
-			layer.msg(data['msg'],{icon: 0,time:1000});
-		}
-	}
-});
-	return r;
-	
-}
 
 
 /**
