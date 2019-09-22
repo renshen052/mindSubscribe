@@ -65,7 +65,7 @@
       
             <li><label class="l_f">咨询师姓名</label><input name="name" type="text"  class="text_add" placeholder="输入咨询师姓名" value="${search.name }" /></li>
             
-            <li><label class="l_f">性别</label>
+            <li><label class="l_f">性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input name="sex" type="radio"  class="ace" value="1" ${search.sex eq 1 ? "checked='checked'":"" }/><span class="lbl">男</span>
             <input name="sex" type="radio"  class="ace" value="0" ${search.sex eq 0 ? "checked='checked'":""}/><span class="lbl">女</span>
             </li>
@@ -184,7 +184,7 @@
      <label><input name="sex" type="radio" value="1"  class="ace" id="sex1"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
      <label><input name="sex" type="radio" value="0"  class="ace" id="sex0"><span class="lbl">女</span></label>&nbsp;&nbsp;&nbsp;
      </span>
-     <div class="prompt r_f"></div>
+     <div class="prompt r_f" id="sexDiv"></div>
      </li>
      <li><label class="label_name">邮箱：</label><span class="add_name"><input name="email" id="email" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
      <li><label class="label_name">电话：</label><span class="add_name"><input name="phone" id="phone" type="text"  class="text_add" "/></span><div class="prompt r_f"></div></li>
@@ -199,7 +199,7 @@
      	<option value="三级咨询师" id="level3">三级咨询师</option>
      </select>
      </span>
-     <div class="prompt r_f"></div>
+     <div class="prompt r_f" id="levleDiv"></div>
      </li>
      
      
@@ -223,9 +223,9 @@
      
      <li class="adderss"></li>
      
-     <li class="adderss"><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
+     <li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span class="add_name">
      <label><input name="isActive" value="1" type="radio" id="isActive1" class="ace"><span class="lbl">启用</span></label>&nbsp;&nbsp;&nbsp;
-     <label><input name="isActive" value="0" type="radio" id="isActive0"  class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f"></div></li>
+     <label><input name="isActive" value="0" type="radio" id="isActive0"  class="ace"><span class="lbl">停用</span></label></span><div class="prompt r_f" id="isActiveDiv"></div></li>
     </ul>
     
    </form>
@@ -281,8 +281,14 @@ jQuery(function($) {
 					
 					var thisElement = $(this);
 					
-					$(this).blur(function(){ 
+					/* $(this).blur(function(){ 
 					    //失去焦点处理函数
+						isAbleCheckOne(thisElement);
+
+					});	 */
+					//当改变的时候，触发检查函数
+					$(this).change(function(){ 
+						
 						isAbleCheckOne(thisElement);
 
 					});	
@@ -347,10 +353,14 @@ $("#deleteList").on('click',function(){
 /*用户-添加*/
  $('#member_add').on('click', function(){
 	 
+	 //可编辑
+	 toggleEdit(true);
+	 
 	 //清空上次的
 	  $("input:radio:checked").removeAttr('checked');
+	 
 	  $("select[name='level']").find("option:selected").removeAttr('selected');
-	  //$("input:").val("");
+	  
 	  $("#name,#age,#email,#phone,#place,#skill").val("");
 	  $('#add_menber_style').find("div[class='prompt r_f']").text("");
 	  
@@ -432,6 +442,10 @@ function member_show(id){
 	//先查到用户数据
 	selectedDoctor(id);
 	
+	//禁止编辑
+	toggleEdit(false);
+	
+	
 	//显示查看界面
 	  layer.open({
       type: 1,
@@ -501,6 +515,8 @@ function member_edit(id){
 	
 	//先查到用户数据
 	selectedDoctor(id);
+	
+	toggleEdit(true);
 	
 	//显示编辑界面
 	  layer.open({
@@ -696,7 +712,7 @@ function addDate(doctor){
 		 
 		 var nameVal = $.trim($(thisElement).val()); 
 		 
-         var regName = /((1[0-5])|[1-9])?\d/;
+         var regName = /^((1[0-5])|[1-9])?\d$/;
          
          var msg = "";
          
@@ -722,26 +738,48 @@ function addDate(doctor){
 		//验证性别 和 账号状态（不为空即可）
 		if($(thisElement).is("input[name='sex']")){
 			
-			alert($(thisElement).val());
-			
 			var msg = "";
 			
-			if($(thisElement).attr("checked")){
+			if( $("input[name='sex']:checked").val() == null){
 				
 				msg = "请选择！";
-				$(thisElement).parent().next("div").attr("style","color:red");
+				$("#sexDiv").attr("style","color:red");
 				
 				isOk = false;
 				
 			}else{
 				
-				$(thisElement).parent().next("div").attr("style","color:green");
+				$("#sexDiv").attr("style","color:green");
 				msg = "通过";
 				
 			}
 			
 			//填写内容
-			$(thisElement).parent().next("div").html(errorMsg);
+			$("#sexDiv").html(msg);
+			
+		}
+		
+		//验证账号状态（不为空即可）
+		if($(thisElement).is("input[name='isActive']")){
+			
+			var msg = "";
+			
+			if( $("input[name='isActive']:checked").val() == null){
+				
+				msg = "请选择！";
+				$("#isActiveDiv").attr("style","color:red");
+				
+				isOk = false;
+				
+			}else{
+				
+				$("#isActiveDiv").attr("style","color:green");
+				msg = "通过";
+				
+			}
+			
+			//填写内容
+			$("#isActiveDiv").html(msg);
 			
 		}
 	 
@@ -805,27 +843,25 @@ function addDate(doctor){
 		//验证咨询师等级（不为空即可）
 		if($(thisElement).is("select[name='level']")){
 			
-			//$("#sample-table").find("input[type='checkbox']:checked").each(function(){
-			
 			var msg = "";
 			
 			//如果列表项，都没有选择
-			if($(thisElement).find("option:selected")){
+			if($(thisElement).val() ==""){
 				
 				msg = "请选择等级！";
-				$(thisElement).parent().next("div").attr("style","color:red");
+				$("#levleDiv").attr("style","color:red");
 				
 				isOk = false;
 				
 			}else{
 				
-				$(thisElement).parent().next("div").attr("style","color:green");
+				$("#levleDiv").attr("style","color:green");
 				msg = "通过";
 				
 			}
 			
 			//填写内容
-			$(thisElement).parent().next("div").html(errorMsg);
+			$("#levleDiv").html(msg);
 			
 			
 		}
@@ -861,7 +897,26 @@ function addDate(doctor){
 		return isOk;
  }
 
+ /**
+ * 	切换是否可编辑
+ */
+function toggleEdit(isAble){
+	
+	
+	$("#doctorEdit :input").each(function(){
+		
+		if(isAble=="1"){
+			//可编辑，去掉disabled=
+			$(this).removeAttr("disabled");
+		}else{
+			
+			$(this).attr("disabled","disabled");
+		}
 
+	});
+	 
+	
+}
 
 
 
