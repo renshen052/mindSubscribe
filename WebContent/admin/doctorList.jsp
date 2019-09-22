@@ -216,7 +216,7 @@
      </span>
      </li>
      <li>
-     <input name="img" type="file"  class="text_add" style=" width:350px"/>
+     <input id="img" name="img" type="file"  class="text_add" style=" width:350px"/>
      </span>
      </li>
     
@@ -357,12 +357,7 @@ $("#deleteList").on('click',function(){
 	 toggleEdit(true);
 	 
 	 //清空上次的
-	  $("input:radio:checked").removeAttr('checked');
-	 
-	  $("select[name='level']").find("option:selected").removeAttr('selected');
-	  
-	  $("#name,#age,#email,#phone,#place,#skill").val("");
-	  $('#add_menber_style').find("div[class='prompt r_f']").text("");
+	 removeForm();
 	  
 	 
 	 /* $("input:radio[name='sex']").removeAttr('checked');
@@ -439,6 +434,9 @@ $("#deleteList").on('click',function(){
 /*用户-查看*/
 function member_show(id){
 	
+	//清空提示
+	$('#add_menber_style').find("div[class='prompt r_f']").text("");
+	
 	//先查到用户数据
 	selectedDoctor(id);
 	
@@ -512,11 +510,17 @@ function member_start(obj,id){
 /*用户-编辑*/
 function member_edit(id){
 	
+	//清空上次的
+	 $('#add_menber_style').find("div[class='prompt r_f']").text("");
+	
 	
 	//先查到用户数据
 	selectedDoctor(id);
 	
+	//让页面变成可编辑
 	toggleEdit(true);
+	
+	
 	
 	//显示编辑界面
 	  layer.open({
@@ -918,7 +922,19 @@ function toggleEdit(isAble){
 	
 }
 
-
+ /**
+ * 清空表单里的内容
+ */
+function removeForm(){
+	
+	$("input:radio:checked").removeAttr('checked');
+	 
+	  $("select[name='level']").find("option:selected").removeAttr('selected');
+	  
+	  $("#name,#age,#email,#phone,#place,#skill,#img").val("");
+	  $('#add_menber_style').find("div[class='prompt r_f']").text("");
+	
+}
 
 
 /* laydate({
