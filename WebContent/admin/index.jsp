@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -235,17 +236,14 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 								name="Feedback.html" title="意见反馈" class="iframeurl"><i
 									class="icon-double-angle-right"></i>意见反馈</a></li>
 						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-edit"></i><span class="menu-text"> 公告管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="Guestbook.html" title="文章列表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>文章列表</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="Feedback.html" title="分类分类" class="iframeurl"><i
-									class="icon-double-angle-right"></i>分类分类</a></li>
-						</ul></li>
+					
+						
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"
+						class="iframeurl"><i class="icon-desktop"></i><span
+							class="menu-text"> 公告管理 </span></a></li>
+						
+						
+						
 
 					<li><a href="javascript:void(0)"
 						name="${pageContext.request.contextPath }/admin/admin_info.jsp"

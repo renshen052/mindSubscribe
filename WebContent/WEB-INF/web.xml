@@ -60,4 +60,14 @@
     <servlet-name>ClientServlet</servlet-name>
     <url-pattern>/client/ClientServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AnnouncmentServlet</display-name>
+    <servlet-name>AnnouncmentServlet</servlet-name>
+    <servlet-class>servlet.admin.AnnouncmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnnouncmentServlet</servlet-name>
+    <url-pattern>/admin/AnnouncmentServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
