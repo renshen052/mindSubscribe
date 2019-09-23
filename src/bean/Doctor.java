@@ -1,4 +1,4 @@
-package baen;
+package bean;
 
 public class Doctor {
 

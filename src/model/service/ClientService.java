@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import baen.Client;
+import bean.Client;
 import model.dao.ClientDao;
 import utils.ResultDate;
 import utils.Util;

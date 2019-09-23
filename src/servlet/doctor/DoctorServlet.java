@@ -18,7 +18,7 @@ import org.apache.struts2.json.JSONUtil;
 
 import com.sun.deploy.uitoolkit.impl.fx.Utils;
 
-import baen.Doctor;
+import bean.Doctor;
 import model.service.DoctorService;
 import utils.ResultDate;
 import utils.UploadResult;

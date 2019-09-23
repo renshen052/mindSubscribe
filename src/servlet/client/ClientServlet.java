@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import baen.Client;
-import baen.Doctor;
+import bean.Client;
+import bean.Doctor;
 import model.service.ClientService;
 
 /**

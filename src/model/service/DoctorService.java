@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 
-import baen.Doctor;
+import bean.Doctor;
 import model.dao.DoctorDao;
 import utils.ResultDate;
 import utils.Util;

@@ -2,7 +2,8 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import baen.Admin;
+
+import bean.Admin;
 import utils.jdbc.JdbcUtil;
 
 public class AdminDao {

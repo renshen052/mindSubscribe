@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import baen.Doctor;
+import bean.Doctor;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
 

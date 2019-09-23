@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.json.JSONUtil;
 
-import baen.Admin;
+import bean.Admin;
 import model.service.AdminService;
 
 /**

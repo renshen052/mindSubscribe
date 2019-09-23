@@ -1,6 +1,6 @@
 package model.service;
 
-import baen.Admin;
+import bean.Admin;
 import model.dao.AdminDao;
 
 public class AdminService {

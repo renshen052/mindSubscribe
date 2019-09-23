@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import baen.Admin;
+import bean.Admin;
 import servlet.admin.AdminLoginServlet;
 import servlet.admin.AdminServlet;
 
