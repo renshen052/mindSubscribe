@@ -50,4 +50,14 @@
     <servlet-name>DoctorServlet</servlet-name>
     <url-pattern>/doctor/DoctorServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientServlet</display-name>
+    <servlet-name>ClientServlet</servlet-name>
+    <servlet-class>servlet.client.ClientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientServlet</servlet-name>
+    <url-pattern>/client/ClientServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

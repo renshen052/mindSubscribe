@@ -31,7 +31,7 @@ public class Client {
 	
 	private String email;
 	
-	private Integer is_active;
+	private Integer isActive;
 	
 	/**
 	 * 注册时间
@@ -102,12 +102,12 @@ public class Client {
 		this.email = email;
 	}
 
-	public Integer getIs_active() {
-		return is_active;
+	public Integer getIsActive() {
+		return isActive;
 	}
 
-	public void setIs_active(Integer is_active) {
-		this.is_active = is_active;
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
 	}
 
 	public Date getRegionTime() {
@@ -121,8 +121,8 @@ public class Client {
 	@Override
 	public String toString() {
 		return "Client [clientId=" + clientId + ", clientName=" + clientName + ", clientPwd=" + clientPwd + ", name="
-				+ name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", email=" + email + ", is_active="
-				+ is_active + ", regionTime=" + regionTime + "]";
+				+ name + ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", email=" + email + ", isActive="
+				+ isActive + ", regionTime=" + regionTime + "]";
 	}
 	
 	

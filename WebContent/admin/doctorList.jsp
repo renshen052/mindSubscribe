@@ -71,8 +71,8 @@
             </li>
             
            
-            <li><label class="l_f">年龄：从</label><input style="width:90px;" name="startAge" type="text"  class="text_add" placeholder="最小年龄" value="${search.startAge }" /></li>
-            <li><label class="l_f">到</label><input style="width:90px;" name="endAge" type="text"  class="text_add" placeholder="最大年龄"  value="${search.endAge }"/>止</li>
+            <li><label class="l_f">年龄：从</label><input style="width:90px;" name="startAge" type="number" step="1" min="0" class="text_add" placeholder="最小年龄" value="${search.startAge }" /></li>
+            <li><label class="l_f">到</label><input style="width:90px;" name="endAge" type="number" step="1" min="0" class="text_add" placeholder="最大年龄"  value="${search.endAge }"/>止</li>
             <li><label class="l_f">电话</label><input name="phone" type="text"  class="text_add" placeholder="电话"  value="${search.phone }"/></li>
             <li><label class="l_f">邮箱</label><input name="email" type="text"  class="text_add" placeholder="邮箱"  value="${search.email }"/></li>
        		<li ><button type="submit" class="btn_search"><i class="icon-search"></i>查询</button></li>
@@ -178,7 +178,7 @@
   <form action="" method="post" enctype="multipart/form-data" id="doctorEdit">
     <ul class=" page-content">
      <li><label class="label_name">姓名：</label><span class="add_name"><input name="name" type="text" id="name"  class="text_add"/></span><div class="prompt r_f"></div></li>
-     <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" id="age" type="text"  class="text_add"/></span><div class="prompt r_f"></div></li>
+     <li><label class="label_name">年龄</label><span class="add_name"><input  name="age" id="age" type="number" step="1" min="0"  class="text_add"/></span><div class="prompt r_f"></div></li>
      
      <li><label class="label_name">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label><span class="add_name">
      <label><input name="sex" type="radio" value="1"  class="ace" id="sex1"><span class="lbl">男</span></label>&nbsp;&nbsp;&nbsp;
@@ -447,7 +447,7 @@ function member_show(id){
 	//显示查看界面
 	  layer.open({
       type: 1,
-      title: '修改用户信息',
+      title: '查看咨询师信息',
 		maxmin: true, 
 		shadeClose:false, //点击遮罩关闭层
       area : ['800px' , ''],

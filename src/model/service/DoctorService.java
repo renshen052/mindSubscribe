@@ -53,6 +53,11 @@ public class DoctorService {
 
 	}
 
+	/**
+	 * 查询符合条件的咨询师
+	 * @param search
+	 * @return
+	 */
 	public List<Doctor> listSearch(Map<String, String> search) {
 
 		return doctorDao.listSearch(search);

@@ -216,7 +216,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 咨询师管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/clientList.jsp"
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/ClientServlet?m=listClient"
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 来访者管理 </span></a></li>
 							

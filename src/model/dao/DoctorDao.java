@@ -84,7 +84,7 @@ public class DoctorDao {
 	}
 
 	/**
-	 * 根据条件查询咨询师
+	 * 查询符合条件的咨询师
 	 * 
 	 * @param search
 	 * @return
