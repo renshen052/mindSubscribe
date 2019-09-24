@@ -2,6 +2,8 @@ package servlet.admin;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 
+import bean.Admin;
+import bean.Announcement;
 import bean.Doctor;
 import model.service.AnnouncmentService;
 import utils.ResultDate;
@@ -26,7 +30,7 @@ import utils.Util;
 public class AnnouncmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	AnnouncmentService announcmentService = new AnnouncmentService();
+	AnnouncmentService announcementService = new AnnouncmentService();
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
@@ -40,71 +44,78 @@ public class AnnouncmentServlet extends HttpServlet {
 		if ("listAnnouncment".equals(m)) {
 
 			// 接受查询条件
-			String context = request.getParameter("context");
+			
 			String creater = request.getParameter("creater");
+			String title = request.getParameter("title");
+			String context = request.getParameter("context");
 			String startTime = request.getParameter("startTime");
 			String endTime = request.getParameter("endTime");
 			
 
 			// 将条件封装到search中
 			Map<String, String> search = new HashMap<String, String>();
-			search.put("context", context);
 			search.put("creater", creater);
+			search.put("title", title);
+			search.put("context", context);
 			search.put("startTime", startTime);
 			search.put("endTime", endTime);
 
 			// 查询符合条件的公告
-			List<Doctor> list = announcmentService.listSearch(search);
+			List<Announcement> list = announcementService.listSearch(search);
 
 			request.setAttribute("search", search);
 
-			request.setAttribute("announcmentList", list);
+			request.setAttribute("announcementList", list);
 
 			request.setAttribute("listSize", list.size());
 
-			request.getRequestDispatcher("/admin/announcmentList.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/announcementList.jsp").forward(request, response);
 
 		} else if ("updateActive".equals(m)) {
 
 			// 停用和启用切换
 
-			String doctorId = request.getParameter("id");
+			String announcementId = request.getParameter("id");
 
 			String action = request.getParameter("action");
 
-			announcmentService.toggleDoctorActive(doctorId, action, response);
+			announcementService.toggleDoctorActive(announcementId, action, response);
 
-		} else if ("selecteDoctor".equals(m)) {// ajax
+		} else if ("selecteAnnouncement".equals(m)) {// ajax
 
-			// 查看详情
+			// 查看公告
 
-			// 要查看的人
-			String doctorId = request.getParameter("id");
+			String announcementId = request.getParameter("id");
 
 			// 查询，并且将数据返回（JSON格式）
-			announcmentService.getAnnouncmentToResponse(Integer.parseInt(doctorId), response);
+			announcementService.getAnnouncementToResponse(Integer.parseInt(announcementId), response);
 
-		} else if ("updateDoctor".equals(m)) {
-
+		} else if ("addAnnouncement".equals(m)) {
+			
 			// 增加
 
 			// 取得表单里的值
-			String name = request.getParameter("name");
-			String age = request.getParameter("age");
-			String sex = request.getParameter("sex");
-			String email = request.getParameter("email");
-			String phone = request.getParameter("phone");
-			String level = request.getParameter("level");
-			String place = request.getParameter("place");
-			String skill = request.getParameter("skill");
+			
+			String title = request.getParameter("title");
+			String context = request.getParameter("context");
+			
 			String isActive = request.getParameter("isActive");
 
+			//创建者
+			Admin admin =  (Admin) request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 
 
-
-			// 将表单对象封装为Announcment对象
-
-
+			// 将表单对象封装为Announcement对象
+			Announcement announcement = new Announcement();
+			announcement.setTitle(title);
+			announcement.setContext(context);
+			announcement.setCreateTime(new Date());
+			announcement.setIsActive(Integer.parseInt(isActive));
+			announcement.setCreaterId(admin.getAdminId());
+			
+			//增加一个公告
+			announcementService.addAnnouncement(announcement,response);
+			
 		}
 
 	}

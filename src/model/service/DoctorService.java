@@ -1,14 +1,9 @@
 package model.service;
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.json.JSONException;
-import org.apache.struts2.json.JSONUtil;
 
 import bean.Doctor;
 import model.dao.DoctorDao;
@@ -18,10 +13,6 @@ import utils.Util;
 public class DoctorService {
 
 	DoctorDao doctorDao = new DoctorDao();
-
-	public List<Doctor> listAll() {
-		return doctorDao.listAll();
-	}
 
 	/**
 	 * 修改doctor表中is_active的值，是否为激活状态

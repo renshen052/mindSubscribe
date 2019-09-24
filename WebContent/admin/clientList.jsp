@@ -98,7 +98,7 @@
 		<thead>
 		 <tr>
 				<th><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
-				<th >登录账号</th>
+ 				<th >登录账号</th>
 				<th>姓名</th>
 				<th>性别</th>
 				<th>年龄</th>
@@ -113,8 +113,8 @@
 	<c:forEach items="${clientList }" var="client">
 	
 		<tr>
-          <td><label><input type="checkbox" class="ace" value="${client.clientId }" checkedName="${client.name }"><span class="lbl"></span></label></td>
-          
+           <td><label><input type="checkbox" class="ace" value="${client.clientId }" checkedName="${client.name }"><span class="lbl"></span></label></td>
+           
           <td>${client.clientName }</td>
           
           <td><u style="cursor:pointer" class="text-primary" onclick="member_show(${client.clientId })">${client.name }</u></td>

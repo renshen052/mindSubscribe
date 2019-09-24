@@ -2,10 +2,12 @@ package bean;
 
 import java.util.Date;
 
+import org.apache.struts2.json.annotations.JSON;
+
 /**
  *公告实体类
  */
-public class Announcment {
+public class Announcement {
 
 	/**
 	 * 一条的公告主键
@@ -39,6 +41,13 @@ public class Announcment {
 	 * 是否显示,0 不显示，1 显示
 	 */
 	private Integer isActive;
+	
+	
+	/**
+	 * 创建公告的管理员
+	 */
+	private Admin admin;
+	
 
 	public Integer getAnnouncementId() {
 		return announcementId;
@@ -64,6 +73,7 @@ public class Announcment {
 		this.createrId = createrId;
 	}
 
+	@JSON(format="yyyy-MM-dd HH:mm:ss")
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -86,6 +96,14 @@ public class Announcment {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 	
 	
