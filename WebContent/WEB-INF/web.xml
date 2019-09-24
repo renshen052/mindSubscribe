@@ -70,4 +70,14 @@
     <servlet-name>AnnouncmentServlet</servlet-name>
     <url-pattern>/admin/AnnouncmentServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageServlet</display-name>
+    <servlet-name>MessageServlet</servlet-name>
+    <servlet-class>servlet.MessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageServlet</servlet-name>
+    <url-pattern>/message/MessageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
