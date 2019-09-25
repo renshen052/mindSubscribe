@@ -21,7 +21,33 @@ public class MessageServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+		String m = request.getParameter("m");
+
+		if("addMessage".equals(m)) {
+			
+			//发送一条消息
+			
+			//接受参数
+			
+			
+			
+			
+		}else if("getUserSendMessage".equals(m)) {
+			
+			//查询一个用户发送的所有消息
+			
+			
+			
+		}else if("getUserReceivMessage".equals(m)) {
+			
+			//查询一个用户接收到的所有消息
+			
+			
+		}else if("getTalk".equals(m)) {
+			
+			//查询对话上下文
+			
+		}
 		
 	
 	
