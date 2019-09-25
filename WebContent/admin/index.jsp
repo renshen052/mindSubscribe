@@ -7,41 +7,41 @@
 		<meta charset="utf-8" />
 		<title>后台管理系统  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
+		<link href="${pageContext.request.contextPath }/mutualResource/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome.min.css" />
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-skins.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/css/style.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/css/style.css"/>
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-ie.min.css" />
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-extra.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/ace-extra.min.js"></script>
 		<!--[if lt IE 9]>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/html5shiv.js"></script>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/html5shiv.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/respond.min.js"></script>
 		<![endif]-->
         <!--[if !IE]> -->
-		<script src="${pageContext.request.contextPath }/admin/js/jquery-1.9.1.min.js"></script>        
+		<script src="${pageContext.request.contextPath }/mutualResource/js/jquery-1.9.1.min.js"></script>        
 		<!-- <![endif]-->
 		<!--[if IE]>
-         <script type="text/javascript">window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");</script>
+         <script type="text/javascript">window.jQuery || document.write("<script src='${pageContext.request.contextPath }/mutualResource/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");</script>
         <![endif]-->
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/mutualResource/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
 		</script>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/typeahead-bs2.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/typeahead-bs2.min.js"></script>
 		<!--[if lte IE 8]>
-		  <script src="${pageContext.request.contextPath }/admin/assets/js/excanvas.min.js"></script>
+		  <script src="${pageContext.request.contextPath }/mutualResource/assets/js/excanvas.min.js"></script>
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-elements.min.js"></script>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/ace.min.js"></script>
-        <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript"></script>
-		<script src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/ace-elements.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/ace.min.js"></script>
+        <script src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/laydate/laydate.js" type="text/javascript"></script>
         
         
 <script type="text/javascript">
@@ -144,7 +144,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 				<div class="navbar-header pull-left">
 					<a href="#" class="navbar-brand">
 						<small>					
-						<img src="${pageContext.request.contextPath }/admin/images/logo.png">
+						<img src="${pageContext.request.contextPath }/mutualResource/images/logo.png">
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
@@ -209,7 +209,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					
 					<!-- #sidebar-shortcuts -->
 				<ul class="nav nav-list" id="nav_list">
-					<li class="home"><a href="javascript:void(0)" name="home.html"
+					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/base?m=adminIndex"
 						class="iframeurl" title=""><i class="icon-dashboard"></i><span
 							class="menu-text"> 系统首页 </span></a></li>
 							
@@ -231,10 +231,10 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)"
 								name="Guestbook.html" title="留言列表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>留言列表</a></li>
+									class="icon-double-angle-right"></i>收到的消息</a></li>
 							<li class="home"><a href="javascript:void(0)"
 								name="Feedback.html" title="意见反馈" class="iframeurl"><i
-									class="icon-double-angle-right"></i>意见反馈</a></li>
+									class="icon-double-angle-right"></i>发送的消息</a></li>
 						</ul></li>
 					
 						
@@ -275,7 +275,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						</ul>
 					</div>
                     
-                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="home.html">  </iframe>
+                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="${pageContext.request.contextPath }/admin/base?m=adminIndex">  </iframe>
 				 
 
 <!-- /.page-content -->

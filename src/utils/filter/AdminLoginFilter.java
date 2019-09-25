@@ -48,7 +48,12 @@ public class AdminLoginFilter implements Filter {
 
 			// 未登录
 			// 重定向到登录页面
-			response.sendRedirect(request.getContextPath() + "/admin/login");
+			java.io.PrintWriter writer = response.getWriter();
+			
+			writer.println("<html><script>");
+			writer.println("window.open('" + request.getContextPath() + "/admin/login','_top')");
+			writer.println("</script></html>");
+			writer.close();
 			return;
 		}
 

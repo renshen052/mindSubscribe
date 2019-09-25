@@ -3,25 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
+		<link href="${pageContext.request.contextPath }/mutualResource/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome.min.css" />
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-skins.min.css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/css/style.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/css/style.css"/>
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-ie.min.css" />
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/admin/assets/js/ace-extra.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/ace-extra.min.js"></script>
 		<!--[if lt IE 9]>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/html5shiv.js"></script>
-		<script src="${pageContext.request.contextPath }/admin/assets/js/respond.min.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/html5shiv.js"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/assets/js/respond.min.js"></script>
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/admin/js/jquery-1.9.1.min.js"></script>        
-        <script src="${pageContext.request.contextPath }/admin/assets/layer/layer.js" type="text/javascript"></script>
+		<script src="${pageContext.request.contextPath }/mutualResource/js/jquery-1.9.1.min.js"></script>        
+        <script src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js" type="text/javascript"></script>
 <title>登陆</title>
 </head>
 
@@ -56,7 +56,7 @@
 												管理员登陆
 											</h4>
 
-											<div class="login_icon"><img src="${pageContext.request.contextPath }/admin/images/login.png" /></div>
+											<div class="login_icon"><img src="${pageContext.request.contextPath }/mutualResource/images/login.png" /></div>
 
 											<form action="${pageContext.request.contextPath }/admin/login?m=saveLogin" method="post" >
 												<fieldset>

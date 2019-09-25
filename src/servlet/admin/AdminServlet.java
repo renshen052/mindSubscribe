@@ -29,7 +29,7 @@ public class AdminServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String m = request.getParameter("m");
-		
+
 		if("updatePwd".equals(m)){
 			
 			//修改密码
@@ -110,6 +110,11 @@ public class AdminServlet extends HttpServlet {
 			writer.write(msg);
 			writer.close();
 		
+		}else if("adminIndex".equals(m)){
+			
+			//回到首页
+			request.getRequestDispatcher("/admin/home.jsp").forward(request, response);
+			
 		}
 		
 	

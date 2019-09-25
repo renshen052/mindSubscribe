@@ -7,25 +7,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link
-	href="${pageContext.request.contextPath }/admin/assets/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/mutualResource/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/admin/css/style.css" />
+	href="${pageContext.request.contextPath }/mutualResource/css/style.css" />
 <link
-	href="${pageContext.request.contextPath }/admin/assets/css/codemirror.css"
+	href="${pageContext.request.contextPath }/mutualResource/assets/css/codemirror.css"
 	rel="stylesheet">
 	<link rel="stylesheet"
-		href="${pageContext.request.contextPath }/admin/assets/css/ace.min.css" />
+		href="${pageContext.request.contextPath }/mutualResource/assets/css/ace.min.css" />
 	<link rel="stylesheet"
-		href="${pageContext.request.contextPath }/admin/assets/css/font-awesome.min.css" />
+		href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome.min.css" />
 	<!--[if IE 7]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 	<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${pageContext.request.contextPath }/admin/assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/ace-ie.min.css" />
 		<![endif]-->
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/js/jquery.min.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/assets/js/jquery.min.js"></script>
 
 	<!-- <![endif]-->
 
@@ -36,38 +36,38 @@
 	<!--[if !IE]> -->
 
 	<script type="text/javascript">
-			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/mutualResource/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 	<!-- <![endif]-->
 
 	<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='${pageContext.request.contextPath }/mutualResource/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 	<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/mutualResource/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/js/bootstrap.min.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/assets/js/bootstrap.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/js/typeahead-bs2.min.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/assets/js/typeahead-bs2.min.js"></script>
 	<!-- page specific plugin scripts -->
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/js/jquery.dataTables.min.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/assets/js/jquery.dataTables.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/js/jquery.dataTables.bootstrap.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/assets/js/jquery.dataTables.bootstrap.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/admin/js/H-ui.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/js/H-ui.js"></script>
 	<script type="text/javascript"
-		src="${pageContext.request.contextPath }/admin/js/H-ui.admin.js"></script>
+		src="${pageContext.request.contextPath }/mutualResource/js/H-ui.admin.js"></script>
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/layer/layer.js"
+		src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js"
 		type="text/javascript"></script>
 	<script
-		src="${pageContext.request.contextPath }/admin/assets/laydate/laydate.js"
+		src="${pageContext.request.contextPath }/mutualResource/assets/laydate/laydate.js"
 		type="text/javascript"></script>
 </head>
 
