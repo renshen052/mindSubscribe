@@ -20,6 +20,11 @@ public class Message {
 	private Integer senderId;
 	
 	/**
+	 * 消息发送者的名字
+	 */
+	private String senderName;
+	
+	/**
 	 * 消息接受者的身份
 	 */
 	private String receiver;
@@ -28,6 +33,11 @@ public class Message {
 	 * 消息接受者的id
 	 */
 	private Integer receiverId;
+	
+	/**
+	 * 消息接受者的名字
+	 */
+	private String receiverName;
 	
 	/**
 	 * 发送时间
@@ -122,6 +132,22 @@ public class Message {
 
 	public void setContext(String context) {
 		this.context = context;
+	}
+
+	public String getSenderName() {
+		return senderName;
+	}
+
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+
+	public String getReceiverName() {
+		return receiverName;
+	}
+
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
 	}
 	
 	

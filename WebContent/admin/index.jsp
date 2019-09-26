@@ -225,17 +225,19 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl"><i class="icon-desktop"></i><span
 							class="menu-text"> 问卷管理 </span></a></li>
 
-					<li><a href="#" class="${pageContext.request.contextPath }/admin/dropdown-toggle"><i
+					<li>
+					<a href="#" class="dropdown-toggle"><i
 							class="icon-edit"></i><span class="menu-text"> 消息管理 </span><b
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)"
-								name="Guestbook.html" title="留言列表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>收到的消息</a></li>
+								name="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin" title="消息查看" class="iframeurl"><i
+									class="icon-double-angle-right"></i>消息查看</a></li>
 							<li class="home"><a href="javascript:void(0)"
-								name="Feedback.html" title="意见反馈" class="iframeurl"><i
-									class="icon-double-angle-right"></i>发送的消息</a></li>
-						</ul></li>
+								name="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser=admin" title="发送消息" class="iframeurl"><i
+									class="icon-double-angle-right"></i>消息发送</a></li>
+						</ul>
+					</li>
 					
 						
 						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"

@@ -72,7 +72,7 @@
     <div id="Member_Ratings">
       <div class="d_Confirm_Order_style">
     <div class="search_style">
-      <div class="title_names">搜索查询</div>
+      <div class="title_names">搜索咨询师</div>
       <ul class="search_content clearfix">
       <form action="${pageContext.request.contextPath }/doctor/DoctorServlet?m=listDoctor" method="post">
       
