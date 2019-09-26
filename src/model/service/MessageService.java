@@ -1,5 +1,6 @@
 package model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -95,5 +96,16 @@ public class MessageService {
 		Util.responseJson(rd, response);
 
 	
+	}
+
+
+	/**
+	 * 查询所有未读的消息（最新的num条）
+	 * @param i
+	 * @param adminId
+	 * @return
+	 */
+	public ArrayList<Message> getMessageNum(int num, Integer reqeustUserId,String requestUser) {
+		return messageDao.getMessageNum(num,reqeustUserId,requestUser);
 	}
 }

@@ -142,7 +142,6 @@ public class MessageDao {
 		searchList.add(reqeustUserId);
 		searchList.add(reqeustUser);
 		
-		System.out.println(search.toString());
 
 		// 发送人身份
 		if (Util.isNotEmpty(search.get("sender"))) {
@@ -256,6 +255,73 @@ public class MessageDao {
 		String sql = "UPDATE `message` SET `is_read` = 1 WHERE `message_id` =?";
 		
 		return jdbcUtil.executeUpdate(sql, messageId);
+
+	}
+
+	
+	/**
+	 * 查询所有未读的消息（最新的num条）
+	 * @param i
+	 * @param adminId
+	 * @return
+	 */
+	public ArrayList<Message> getMessageNum(int num, Integer reqeustUserId,String requestUser) {
+
+		ArrayList<Message> list = new ArrayList<Message>();
+
+		String sql = "SELECT * FROM message m ";
+
+		sql += "WHERE receiver_id=? ";
+		
+		sql += " AND receiver=? ";
+		
+		sql += " AND is_read=0 ";
+		
+		sql += " ORDER BY send_time DESC";
+		
+		sql += "LIMIT ?";
+
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, reqeustUserId,requestUser,num);
+		
+
+		try {
+			while (rs.next()) {
+
+				Message message = new Message();
+				message.setMessageId(rs.getInt("message_id"));
+				message.setSender(rs.getString("sender"));
+				message.setSenderId(rs.getInt("sender_id"));
+				message.setSenderName(rs.getString("sender_name"));
+				message.setReceiver(rs.getString("receiver"));
+				message.setReceiverId(rs.getInt("receiver_id"));
+				message.setSendTime(rs.getTimestamp("send_time"));
+				message.setIsRead(rs.getInt("is_read"));
+				message.setContext(rs.getString("context"));
+				
+				message.setReceiverName(rs.getString("receiver_name"));
+				
+				list.add(message);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return list;
 
 	}
 }

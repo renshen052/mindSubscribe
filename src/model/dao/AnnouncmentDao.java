@@ -205,4 +205,67 @@ public class AnnouncmentDao {
 		return announcement;
 	}
 
+	
+	/**
+	 * 查询所有显示的公告（最新十条）
+	 * @param num
+	 * @return
+	 */
+	public ArrayList<Announcement> getAnnouncmentNum(int num) {
+
+		ArrayList<Announcement> list = new ArrayList<>();
+
+
+		String sql = "SELECT * FROM announcement an LEFT JOIN admin ad ON an.creater_id=ad.admin_id WHERE an.is_active=1 ";
+		
+		sql += " ORDER BY an.create_time DESC LIMIT ?";
+
+
+		ResultSet rs = jdbcUtil.executeQuery(sql, num);
+
+		try {
+			while (rs.next()) {
+
+				Announcement announcement = new Announcement();
+				announcement.setAnnouncementId(rs.getInt("announcement_id"));
+				announcement.setTitle(rs.getString("title"));
+				announcement.setContext(rs.getString("context"));
+				
+				//使用getTimestamp
+				announcement.setCreateTime(rs.getTimestamp("create_time"));
+				
+				announcement.setCreaterId(rs.getInt("creater_id"));
+				announcement.setIsActive(rs.getInt("an.is_active"));
+				
+				Admin admin = new Admin();
+				admin.setAdminId(rs.getInt("admin_id"));
+				admin.setName(rs.getString("name"));
+				admin.setEmail(rs.getString("email"));
+				admin.setPhone(rs.getString("phone"));
+				
+				announcement.setAdmin(admin); 
+				
+				list.add(announcement);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return list;
+	}
+
 }

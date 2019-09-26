@@ -1,5 +1,6 @@
 package model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -106,6 +107,15 @@ public class MessageBoardService {
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 
+	}
+
+	/**
+	 * 得到最新的num条留言
+	 * @return
+	 */
+	public ArrayList<MessageBoard> getMessageBoardNum(int num) {
+		
+		return messageBoardDao.getMessageBoardNum(num);
 	}
 
 }

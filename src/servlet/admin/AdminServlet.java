@@ -2,16 +2,25 @@ package servlet.admin;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import model.service.ClientService;
 import org.apache.struts2.json.JSONUtil;
 
 import bean.Admin;
+import bean.Announcement;
+import bean.Message;
+import bean.MessageBoard;
 import model.service.AdminService;
+import model.service.AnnouncmentService;
+import model.service.ClientArchiveService;
+import model.service.DoctorService;
+import model.service.MessageBoardService;
+import model.service.MessageService;
 
 /**
  * Servlet implementation class AdminLoginServlet
@@ -21,6 +30,18 @@ public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	AdminService adminService = new AdminService();
+	
+	DoctorService doctorService = new DoctorService();
+	
+	ClientService clientService = new ClientService();
+	
+	ClientArchiveService clientArchiveService = new ClientArchiveService();
+	
+	MessageBoardService messageBoardService = new MessageBoardService();
+	
+	MessageService messageService = new MessageService();
+	
+	AnnouncmentService announcmentService = new AnnouncmentService();
 	
 	
 	/**
@@ -40,10 +61,6 @@ public class AdminServlet extends HttpServlet {
 			String newPwd = request.getParameter("newPwd");
 			
 			String password = request.getParameter("password");
-			
-			
-			
-			
 			
 			String msg = "";
 			if( adminNow.getAdminPwd().equals(password) ) {
@@ -112,7 +129,42 @@ public class AdminServlet extends HttpServlet {
 		
 		}else if("adminIndex".equals(m)){
 			
-			//回到首页
+			//查数据（首页用到的）
+			
+			//查询共有多少咨询师
+			int doctorNum = doctorService.getDoctorNum();
+			
+			request.setAttribute("doctorNum", doctorNum);
+			
+			//查询共有多少注册来访者
+			int clientNum = clientService.getClientNum();
+			
+			request.setAttribute("clientNum", clientNum);
+			
+			//查询共有多少咨询记录
+			int clientArchive = clientArchiveService.getClientArchiveNum();
+			
+			request.setAttribute("clientArchive", clientArchive);
+			
+			
+			//查询所有显示的留言(最新的十条）
+			ArrayList<MessageBoard> newMessageBoardList = messageBoardService.getMessageBoardNum(10);
+			
+			request.setAttribute("newMessageBoardList", newMessageBoardList);
+			
+			
+			//查询所有未读的消息(最新的十条）
+			ArrayList<Message> messageList = messageService.getMessageNum(10,adminNow.getAdminId(),"admin");
+			
+			request.setAttribute("messageList", messageList);
+			
+			//查询所有显示的公告(最新的十条)
+			ArrayList<Announcement> AnnouncmentList = announcmentService.getAnnouncmentNum(10); 
+			
+			request.setAttribute("AnnouncmentList", AnnouncmentList);
+			  
+			
+			//转发到首页
 			request.getRequestDispatcher("/admin/home.jsp").forward(request, response);
 			
 		}else if("adminInfo".equals(m)) {

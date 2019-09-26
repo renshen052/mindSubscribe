@@ -188,4 +188,59 @@ public class MessageBoardDao {
 		return messageBoard;
 	}
 
+	/**
+	 * 得到最新的num条留言
+	 * @return
+	 */
+	public ArrayList<MessageBoard> getMessageBoardNum(int num) {
+
+		ArrayList<MessageBoard> list = new ArrayList<>();
+
+		String sql = "SELECT * FROM message_board m LEFT JOIN CLIENT c ON m.board_id=c.client_id WHERE is_active=1 ORDER BY create_time DESC LIMIT ?; ";
+
+
+		ResultSet rs = jdbcUtil.executeQuery(sql, num);
+
+		try {
+			while (rs.next()) {
+
+				MessageBoard messageBoard = new MessageBoard();
+				messageBoard.setBoardId(rs.getInt("board_id"));
+				messageBoard.setContext(rs.getString("context"));
+				messageBoard.setCreaterId(rs.getInt("client_id"));
+				messageBoard.setCreateTime(rs.getTimestamp("create_time"));
+				messageBoard.setIsActive(rs.getInt("is_active"));
+				
+				
+				Client client = new Client();
+				client.setClientId(rs.getInt("client_id"));
+				client.setName(rs.getString("name"));
+				client.setEmail(rs.getString("email"));
+				client.setPhone(rs.getString("phone"));
+				
+				messageBoard.setClient(client); 
+				
+				list.add(messageBoard);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return list;
+	}
+
 }

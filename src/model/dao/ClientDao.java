@@ -133,6 +133,45 @@ public class ClientDao {
 		return jdbcUtil.executeUpdate(sql, action, clientId);
 
 	}
+
+
+	/**
+	 * 查询 共有多少注册的来访者
+	 * @return
+	 */
+	public int getClientNum() {
+
+		String sql = "SELECT COUNT(1) FROM client;";
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql);
+		
+		int num = 0;
+		
+		try {
+			if(rs.next()) {
+				
+				num = rs.getInt("count(1)");
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			jdbcUtil.close();
+		}
+		
+		return num;
+	}
 	
 	
 	

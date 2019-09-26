@@ -1,5 +1,6 @@
 package model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +111,17 @@ public class AnnouncmentService {
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 		
+	}
+
+
+	/**
+	 * 查询所有显示的公告（最新十条）
+	 * @param num
+	 * @return
+	 */
+	public ArrayList<Announcement> getAnnouncmentNum(int num) {
+		
+		return announcmentDao.getAnnouncmentNum(num);
 	}
 	
 }

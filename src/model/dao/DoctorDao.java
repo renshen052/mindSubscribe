@@ -228,4 +228,43 @@ public class DoctorDao {
 				doctor.getSkill(),doctor.getImg(),doctor.getPlace());
 	}
 
+	
+	/**
+	 * 查询咨询师总数
+	 * @return
+	 */
+	public int getDoctorNum() {
+		
+		String sql = "SELECT COUNT(1) FROM doctor";
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql);
+		
+		int num = 0;
+		
+		try {
+			if(rs.next()) {
+				
+				num = rs.getInt("count(1)");
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			jdbcUtil.close();
+		}
+		
+		return num;
+	}
+
 }

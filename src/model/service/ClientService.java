@@ -71,6 +71,15 @@ public class ClientService {
 		
 		
 	}
+
+
+	/**
+	 * 查询 共有多少注册的来访者
+	 * @return
+	 */
+	public int getClientNum() {
+		return clientDao.getClientNum();
+	}
 	
 	
 	

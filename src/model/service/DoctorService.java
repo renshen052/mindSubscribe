@@ -178,4 +178,13 @@ public class DoctorService {
 
 	}
 
+	/**
+	 * 查询咨询师总数
+	 * @return
+	 */
+	public int getDoctorNum() {
+		
+		return doctorDao.getDoctorNum();
+	}
+
 }
