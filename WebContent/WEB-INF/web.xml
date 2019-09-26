@@ -39,6 +39,9 @@
   <filter-mapping>
     <filter-name>AdminLoginFilter</filter-name>
     <url-pattern>/admin/base</url-pattern>
+    <url-pattern>/doctor/DoctorServlet?*</url-pattern>
+    <url-pattern>/client/ClientServlet?*</url-pattern>
+    <url-pattern>/admin/AnnouncmentServlet</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -80,4 +83,33 @@
     <servlet-name>MessageServlet</servlet-name>
     <url-pattern>/message/MessageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoctorLoginServlet</display-name>
+    <servlet-name>DoctorLoginServlet</servlet-name>
+    <servlet-class>servlet.client.DoctorLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorLoginServlet</servlet-name>
+    <url-pattern>/doctor/DoctorLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientLoginServlet</display-name>
+    <servlet-name>ClientLoginServlet</servlet-name>
+    <servlet-class>servlet.client.ClientLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientLoginServlet</servlet-name>
+    <url-pattern>/client/ClientLoginServlet</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>MessageSendFilter</display-name>
+    <filter-name>MessageSendFilter</filter-name>
+    <filter-class>utils.filter.MessageSendFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MessageSendFilter</filter-name>
+    <url-pattern>/message/MessageServlet</url-pattern>
+  </filter-mapping>
 </web-app>

@@ -127,9 +127,104 @@ public class MessageDao {
 	 * @param search
 	 * @return
 	 */
-	public List<Message> listReceivMessage(Map<String, String> search) {
+	public List<Message> listReceivMessage(Map<String, String> search, String reqeustUser, Integer reqeustUserId) {
 
-		return null;
+		List<Message> list = new ArrayList<Message>();
+
+		List<Object> searchList = new ArrayList<Object>();
+
+		String sql = "SELECT * FROM message m ";
+
+		sql += "WHERE receiver_id=? ";
+		
+		sql += " AND receiver=? ";
+		
+		searchList.add(reqeustUserId);
+		searchList.add(reqeustUser);
+		
+		System.out.println(search.toString());
+
+		// 发送人身份
+		if (Util.isNotEmpty(search.get("sender"))) {
+
+			sql += " AND sender=?";
+			searchList.add(search.get("sender"));
+		}
+
+		// 发送人名字
+		if (Util.isNotEmpty(search.get("senderName"))) {
+
+			sql += " AND sender_name like concat('%',?,'%')";
+			searchList.add(search.get("senderName"));
+		}
+
+		// 发送时间，从xx起
+		if (Util.isNotEmpty(search.get("startSendTime"))) {
+			sql += " AND send_time >= ? ";
+			searchList.add(search.get("startSendTime"));
+		}
+		// 注册时间，止到xx
+		if (Util.isNotEmpty(search.get("endSendTime"))) {
+			sql += " AND send_time <= ? ";
+			searchList.add(search.get("endSendTime"));
+		}
+
+		// 是否已读
+		if (Util.isNotEmpty(search.get("isRead"))) {
+
+			sql += " AND is_read=?";
+			searchList.add(search.get("isRead"));
+		}
+
+		// 消息内容
+		if (Util.isNotEmpty(search.get("context"))) {
+
+			sql += " AND context like concat('%',?,'%')";
+			searchList.add(search.get("context"));
+		}
+
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, searchList.toArray());
+		
+
+		try {
+			while (rs.next()) {
+
+				Message message = new Message();
+				message.setMessageId(rs.getInt("message_id"));
+				message.setSender(rs.getString("sender"));
+				message.setSenderId(rs.getInt("sender_id"));
+				message.setSenderName(rs.getString("sender_name"));
+				message.setReceiver(rs.getString("receiver"));
+				message.setReceiverId(rs.getInt("receiver_id"));
+				message.setSendTime(rs.getTimestamp("send_time"));
+				message.setIsRead(rs.getInt("is_read"));
+				message.setContext(rs.getString("context"));
+				
+				message.setReceiverName(rs.getString("receiver_name"));
+				
+				list.add(message);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return list;
+
 	}
 
 	
@@ -150,5 +245,17 @@ public class MessageDao {
 				message.getReceiver(),message.getReceiverId(),message.getReceiverName(),message.getSendTime(),
 				message.getIsRead(),message.getContext());
 	
+	}
+
+	/**
+	 * 切换消息为已读状态
+	 * @param string
+	 */
+	public int toggleIsRead(int messageId) {
+		
+		String sql = "UPDATE `message` SET `is_read` = 1 WHERE `message_id` =?";
+		
+		return jdbcUtil.executeUpdate(sql, messageId);
+
 	}
 }

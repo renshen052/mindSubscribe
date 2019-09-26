@@ -34,9 +34,9 @@ public class MessageService {
 	 * @param search
 	 * @return
 	 */
-	public List<Message> listReceivMessage(Map<String, String> search) {
+	public List<Message> listReceivMessage(Map<String, String> search, String reqeustUser, Integer reqeustUserId) {
 
-		return messageDao.listReceivMessage(search);
+		return messageDao.listReceivMessage(search,reqeustUser,reqeustUserId);
 	}
 
 
@@ -61,6 +61,33 @@ public class MessageService {
 			// 修改失败
 			rd.setIsSuccess(false);
 			rd.setMsg("失败，请刷新页面后重试");
+
+		}
+
+		// 响应，JSON格式数据
+		Util.responseJson(rd, response);
+
+	
+	}
+
+
+	/**
+	 * 切换消息为已读状态
+	 * @param string
+	 */
+	public void toggleIsRead(int messageId, HttpServletResponse response) {
+
+
+		int i = messageDao.toggleIsRead(messageId);
+
+		ResultDate rd = new ResultDate();
+		if (i == 1) {
+			// 成功
+			rd.setIsSuccess(true);
+
+		} else {
+			// 修改失败
+			rd.setIsSuccess(false);
 
 		}
 

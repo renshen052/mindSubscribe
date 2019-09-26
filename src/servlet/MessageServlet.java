@@ -49,6 +49,7 @@ public class MessageServlet extends HttpServlet {
 			String receiverName = request.getParameter("receiverName");// 接受者名字
 			String context = request.getParameter("context");// 消息内容
 			
+			System.out.println(receiver+"  receiver");
 			
 			//得到当前登录的用户
 			Map<String, Object> currentUser = getCurrentUser(request);
@@ -84,31 +85,6 @@ public class MessageServlet extends HttpServlet {
 			
 			//得到当前登录的用户
 			Map<String, Object> currentUser = getCurrentUser(request);
-			
-			/*//请求查询的人 ：admin client doctor
-			String reqeustUser = request.getParameter("reqeustUser");
-			
-			
-			//得到请求查询的人 的id
-			Integer reqeustUserId = -1;
-			if("admin".equals(reqeustUser)) {
-				//当前登录用户 是管理员
-				
-				Admin admin = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
-				reqeustUserId = admin.getAdminId();
-				
-			}if("doctor".equals(reqeustUser)) {
-				//当前登录用户是 咨询师
-				Doctor doctor = (Doctor)request.getSession().getAttribute(DoctorLoginServlet.LOGIN_DOCTOR);
-				reqeustUserId = doctor.getDoctorId();
-				
-			}if("client".equals(reqeustUser)) {
-				//当前登录用户是 来访者
-				Client client = (Client)request.getSession().getAttribute(ClientLoginServlet.LOGIN_CLIENT);
-				reqeustUserId = client.getClientId();
-			}*/
-			
-			
 
 			// 将条件封装到search中
 			Map<String, String> search = new HashMap<String, String>();
@@ -136,7 +112,7 @@ public class MessageServlet extends HttpServlet {
 
 			// 接受查询条件
 			String sender = request.getParameter("sender");// 身份
-			String sender_id = request.getParameter("sender_id");// 发送者id
+			String senderName = request.getParameter("senderName");// 发送者姓名
 			String startSendTime = request.getParameter("startSendTime");// 发送时间,开始
 			String endSendTime = request.getParameter("endSendTime");// 发送时间,止
 			String isRead = request.getParameter("isRead");// 是否已读
@@ -145,14 +121,17 @@ public class MessageServlet extends HttpServlet {
 			// 将条件封装到search中
 			Map<String, String> search = new HashMap<String, String>();
 			search.put("sender", sender);
-			search.put("sender_id", sender_id);
+			search.put("senderName", senderName);
 			search.put("startSendTime", startSendTime);
 			search.put("endSendTime", endSendTime);
 			search.put("isRead", isRead);
 			search.put("context", context);
+			
+			//得到当前登录的用户
+			Map<String, Object> currentUser = getCurrentUser(request);
 
-			// 查询发送的消息
-			List<Message> list = MessageService.listReceivMessage(search);
+			// 查询接收到的
+			List<Message> list = MessageService.listReceivMessage(search,(String)currentUser.get("reqeustUser"),(Integer)currentUser.get("reqeustUserId"));
 
 			request.setAttribute("search", search);
 
@@ -160,9 +139,17 @@ public class MessageServlet extends HttpServlet {
 
 			request.setAttribute("listSize", list.size());
 
-			request.getRequestDispatcher("/admin/messageReceivList.jsp").forward(request, response);
+			request.getRequestDispatcher("/admin/messageReceiveList.jsp").forward(request, response);
 
-		} else if ("getTalk".equals(m)) {
+		}else if("updateIsRead".equals(m)) {
+			//切换为已读
+			
+			//要切换消息的Id
+			String messageId = request.getParameter("messageId");
+			
+			MessageService.toggleIsRead(Integer.parseInt(messageId),response);
+		} 
+		else if ("getTalk".equals(m)) {
 
 			// 查询对话上下文
 

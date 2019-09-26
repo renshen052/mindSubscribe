@@ -75,24 +75,24 @@
 		<div id="Member_Ratings">
 			<div class="d_Confirm_Order_style">
 				<div class="search_style">
-					<div class="title_names">搜索发送过的消息${search.receiver}</div>
+					<div class="title_names">搜索接受到的消息${search.receiver}</div>
 					<ul class="search_content clearfix">
 						<form
-							action="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser=admin"
+							action="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage"
 							method="post">
 
-							<li><label class="l_f">接收人身份</label>
-							<select name="receiver" value="${search.receiver}">
+							<li><label class="l_f">发送人身份</label>
+							<select name="sender" value="${search.sender}">
 								<option value="">所有</option>
-								<option value="admin" ${search.receiver eq "admin" ? "selected":""}>管理员</option>
-								<option value="doctor" ${search.receiver eq "doctor" ? "selected":""}>咨询师</option>
-								<option value="client" ${search.receiver eq "client" ? "selected":""}>来访者</option>
+								<option value="admin" ${search.sender eq "admin" ? "selected":""}>管理员</option>
+								<option value="doctor" ${search.sender eq "doctor" ? "selected":""}>咨询师</option>
+								<option value="client" ${search.sender eq "client" ? "selected":""}>来访者</option>
 							</select>
 							</li>
 							
-							<li><label class="l_f">姓名</label><input name="receiverName"
-								type="text" class="text_add" placeholder="接受者姓名"
-								value="${search.receiverName }" /></li>
+							<li><label class="l_f">姓名</label><input name="senderName"
+								type="text" class="text_add" placeholder="发送者姓名"
+								value="${search.senderName }" /></li>
 
 							<li><label class="l_f">内容</label><input name="context"
 								type="text" class="text_add" placeholder="消息内容"
@@ -139,7 +139,7 @@
 
 						<thead>
 							<tr>
-								<th width="100">发送给</th>
+								<th width="100">消息发送人</th>
 								<th>内容</th>
 								<th width="100">发送时间</th>
 								<th width="70">是否已读</th>
@@ -152,7 +152,7 @@
 
 								<tr>
 
-									<td>${message.receiverName}</td>
+									<td>${message.senderName}</td>
 
 									<td class="text-l">${message.context }</td>
 
@@ -165,19 +165,30 @@
 											class="label label-success radius">未读</span>
 										</td>
 
+										<td>
+										<a style="text-decoration:none"
+											onClick="toggleIsRead(this,'${message.messageId }')"
+											href="javascript:;" title="标为已读"
+											class="btn btn-xs btn-success">标为已读</a>
+										<a style="text-decoration:none"
+											onClick="sendMessage(this,'${message.senderId }','${message.senderName }','${message.sender }')"
+											href="javascript:;" title="回复"
+											class="btn btn-xs btn-success">回复</a>
+										</td>
+
 									</c:if>
 									<c:if test="${message.isRead eq 1}">
 										<td class="td-status"><span
 											class="label label-defaunt radius">已读</span></td>
-										
+										<td>
+										<a style="text-decoration:none"
+											onClick="sendMessage(this,'${message.senderId }','${message.senderName }','${message.sender }')"
+											href="javascript:;" title="回复"
+											class="btn btn-xs btn-success">回复</a>
+										</td>
 									</c:if>
 									
-									<td>
-									<a style="text-decoration:none"
-											onClick="sendMessage(this,'${message.receiverId }','${message.receiverName }','${message.receiver }')"
-											href="javascript:;" title="继续发送"
-											class="btn btn-xs btn-success">继续发送</a>
-									</td>
+									
 
 								</tr>
 
@@ -243,6 +254,29 @@ jQuery(function($) {
 				})
 				
 			});
+			
+			
+/**
+ * 切换到已读
+ messageId 要切换的消息id
+ */
+ function toggleIsRead(obj,messageId){
+	//ajax
+		$.ajax({
+		type : "GET",
+		url : "${pageContext.request.contextPath }/message/MessageServlet?m=updateIsRead&messageId="+messageId,
+		dataType : "json",
+		success : function(data) {
+			
+			if (data['isSuccess'] == true) {
+				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt  radius">已读</span>');
+				$(obj).remove();
+			}else{
+				layer.msg('失败,请刷新后重试！ '+data['msg'],{icon: 0,time:1000});
+			}
+		}
+	});
+}
  
 /*
  * 
@@ -254,9 +288,9 @@ jQuery(function($) {
  */
 function sendMessage(an,receiverId,receiverName,receiver){
 	
-	 var receiverParm = "&receiverId=" + receiverId;
-	receiverParm += "&receiverName=" + receiverName;
-	receiverParm += "&receiver=" + receiver; 
+	 var receiverParm = "\&receiverId=" + receiverId;
+	receiverParm += "\&receiverName=" + receiverName;
+	receiverParm += "\&receiver" + receiver; 
 	
 	$("#receiverName").text(receiverName);
 	
