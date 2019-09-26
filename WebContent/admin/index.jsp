@@ -213,16 +213,16 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl" title=""><i class="icon-dashboard"></i><span
 							class="menu-text"> 系统首页 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/doctor/DoctorServlet?m=listDoctor"
-						class="iframeurl"><i class="icon-desktop"></i><span
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/doctor/DoctorServlet?m=listDoctor" title="咨询师管理" 
+						class="iframeurl"><i class="icon-user"></i><span
 							class="menu-text"> 咨询师管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/ClientServlet?m=listClient"
-						class="iframeurl"><i class="icon-desktop"></i><span
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/ClientServlet?m=listClient"  title="来访者管理" 
+						class="iframeurl"><i class="icon-user"></i><span
 							class="menu-text"> 来访者管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/question.jsp"
-						class="iframeurl"><i class="icon-desktop"></i><span
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/question.jsp" title="问卷管理" 
+						class="iframeurl"><i class="icon-list"></i><span
 							class="menu-text"> 问卷管理 </span></a></li>
 
 					<li>
@@ -240,15 +240,19 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					</li>
 					
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"
-						class="iframeurl"><i class="icon-desktop"></i><span
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"  title="公告管理" 
+						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 公告管理 </span></a></li>
 						
+						
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/MessageBoardServlet?m=listMessageBoard"  title="留言管理" 
+						class="iframeurl"><i class="icon-edit"></i><span
+							class="menu-text"> 留言管理 </span></a></li>
 						
 						
 
 					<li><a href="javascript:void(0)"
-						name="${pageContext.request.contextPath }/admin/base?m=adminInfo"
+						name="${pageContext.request.contextPath }/admin/base?m=adminInfo" title="个人信息"
 						class="iframeurl"><i class="icon-group"></i><span
 							class="menu-text"> 个人信息 </span></a></li>
 				</ul>
@@ -269,7 +273,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="index.html">首页</a>
+								<a href="${pageContext.request.contextPath }/admin/base?m=adminIndex">首页</a>
 							</li>
 							<li class="active"><span class="Current_page iframeurl"></span></li>
                             <li class="active" id="parentIframe"><span class="parentIframe iframeurl"></span></li>
