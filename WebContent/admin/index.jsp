@@ -245,7 +245,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 							class="menu-text"> 公告管理 </span></a></li>
 						
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/MessageBoardServlet?m=listMessageBoard"  title="留言管理" 
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/board/MessageBoardServlet?m=listMessageBoard"  title="留言管理" 
 						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 留言管理 </span></a></li>
 						

@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>mindSubscribe</display-name>
   <welcome-file-list>
-    <welcome-file></welcome-file>
+    <welcome-file>indexAll.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -111,5 +111,24 @@
   <filter-mapping>
     <filter-name>MessageSendFilter</filter-name>
     <url-pattern>/message/MessageServlet</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MessageBoardServlet</display-name>
+    <servlet-name>MessageBoardServlet</servlet-name>
+    <servlet-class>servlet.MessageBoardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessageBoardServlet</servlet-name>
+    <url-pattern>/board/MessageBoardServlet</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <display-name>MessageBoardFilter</display-name>
+    <filter-name>MessageBoardFilter</filter-name>
+    <filter-class>utils.filter.MessageBoardFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>MessageBoardFilter</filter-name>
+    <url-pattern>/board/MessageBoardServlet</url-pattern>
   </filter-mapping>
 </web-app>
