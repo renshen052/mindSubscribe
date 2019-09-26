@@ -141,7 +141,7 @@
 							<tr>
 								<th width="100">消息发送人</th>
 								<th>内容</th>
-								<th width="100">发送时间</th>
+								<th width="110">发送时间</th>
 								<th width="70">是否已读</th>
 								<th width="250">操作</th>
 							</tr>

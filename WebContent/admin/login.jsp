@@ -62,7 +62,7 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="登录名"  name="adminName">
+															<input type="text" class="form-control" placeholder="登录名"  name="adminName" value="${param.adminName }"/>
 															<i class="icon-user"></i>
 														</span>
 													</label>
@@ -77,6 +77,7 @@
 													<div class="space"></div>
 
 													<div class="clearfix">
+													<font style="color:red">${msg }</font><br/>
 														<label class="inline">
 															<input type="checkbox" class="ace">
 															<span class="lbl">保存密码</span>
@@ -88,7 +89,7 @@
 														</button>
 													</div>
 
-													<div class="space-4"><font style="color:red">${msg }</font></div>
+													<div class="space-4"></div>
 												</fieldset>
 											</form>
 

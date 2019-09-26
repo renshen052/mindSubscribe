@@ -248,7 +248,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						
 
 					<li><a href="javascript:void(0)"
-						name="${pageContext.request.contextPath }/admin/admin_info.jsp"
+						name="${pageContext.request.contextPath }/admin/base?m=adminInfo"
 						class="iframeurl"><i class="icon-group"></i><span
 							class="menu-text"> 个人信息 </span></a></li>
 				</ul>

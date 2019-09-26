@@ -85,6 +85,54 @@ public class AdminDao {
 		return jdbcUtil.executeUpdate(sql, admin.getName(),admin.getSex(),admin.getAge(),admin.getPhone(),admin.getEmail(),adminId);
 		
 	}
+
+	/**
+	 * 根据Id查询管理员个人信息
+	 * 
+	 * @param adminId
+	 * @return
+	 */
+	public Admin getAdminById(Integer adminId) {
+		
+		Admin admin = null;
+		
+		String sql = "SELECT * FROM admin WHERE admin_id=?";
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, adminId);
+		
+		try {
+			if(rs.next()) {
+				
+				admin = new Admin();
+				
+				admin.setAdminId(rs.getInt("admin_id"));
+				admin.setAdminName(rs.getString("admin_name"));
+				//admin.setAdminPwd(rs.getString("admin_pwd"));
+				admin.setName(rs.getString("name"));
+				admin.setSex(rs.getInt("sex"));
+				admin.setAge(rs.getInt("age"));
+				admin.setPhone(rs.getString("phone"));
+				admin.setEmail(rs.getString("email"));
+				admin.setIs_active(rs.getInt("is_active"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			jdbcUtil.close();
+			
+		}
+		
+		return admin;
+	}
 	
 	
 }

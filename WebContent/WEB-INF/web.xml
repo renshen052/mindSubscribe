@@ -39,8 +39,8 @@
   <filter-mapping>
     <filter-name>AdminLoginFilter</filter-name>
     <url-pattern>/admin/base</url-pattern>
-    <url-pattern>/doctor/DoctorServlet?*</url-pattern>
-    <url-pattern>/client/ClientServlet?*</url-pattern>
+    <url-pattern>/doctor/DoctorServlet</url-pattern>
+    <url-pattern>/client/ClientServlet</url-pattern>
     <url-pattern>/admin/AnnouncmentServlet</url-pattern>
   </filter-mapping>
   <servlet>

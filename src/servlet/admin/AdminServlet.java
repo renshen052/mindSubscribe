@@ -29,6 +29,9 @@ public class AdminServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String m = request.getParameter("m");
+		
+		//当前登录用户
+		Admin adminNow = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 
 		if("updatePwd".equals(m)){
 			
@@ -38,22 +41,22 @@ public class AdminServlet extends HttpServlet {
 			
 			String password = request.getParameter("password");
 			
-			Admin admin = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
+			
 			
 			
 			
 			String msg = "";
-			if( admin.getAdminPwd().equals(password) ) {
+			if( adminNow.getAdminPwd().equals(password) ) {
 				
 				//成功
-				adminService.updateAdminPwd(admin.getAdminId(),newPwd);
+				adminService.updateAdminPwd(adminNow.getAdminId(),newPwd);
 				
 				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请重新登录！\"}";
 				
 				request.getSession().removeAttribute(AdminLoginServlet.LOGIN_ADMIN);
 				
 				
-			}else if(!admin.getAdminPwd().equals(password)){
+			}else if(!adminNow.getAdminPwd().equals(password)){
 				msg = "{\"result\":\"false\",\"msg\":\"修改失败，原始密码错误！\"}";
 			}else {
 				msg = "{\"result\":\"false\",\"msg\":\"修改失败，请重试！\"}";
@@ -79,9 +82,6 @@ public class AdminServlet extends HttpServlet {
 			admin.setAge(Integer.parseInt(request.getParameter("age")));
 			admin.setPhone(request.getParameter("phone"));
 			admin.setEmail(request.getParameter("email"));
-			
-			//当前登录用户
-			Admin adminNow = (Admin)request.getSession().getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 			
 			
 			//更新
@@ -115,6 +115,11 @@ public class AdminServlet extends HttpServlet {
 			//回到首页
 			request.getRequestDispatcher("/admin/home.jsp").forward(request, response);
 			
+		}else if("adminInfo".equals(m)) {
+			
+			//查看个人信息
+			
+			request.getRequestDispatcher("/admin/admin_info.jsp").forward(request, response);
 		}
 		
 	
