@@ -26,14 +26,7 @@
 </head>
 
 <body class="login-layout">
-<div class="logintop">    
-    <span>欢迎后台管理界面平台</span>    
-    <ul>
-    <li><a href="#">返回首页</a></li>
-    <li><a href="#">帮助</a></li>
-    <li><a href="#">关于</a></li>
-    </ul>    
-    </div>
+
     <div class="loginbody">
 <div class="login-container">
 	<div class="center">

@@ -82,6 +82,12 @@ public class MessageBoard {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
+	@Override
+	public String toString() {
+		return "MessageBoard [boardId=" + boardId + ", context=" + context + ", createrId=" + createrId
+				+ ", createTime=" + createTime + ", isActive=" + isActive + ", client=" + client + "]\n";
+	}
 	
 }
 

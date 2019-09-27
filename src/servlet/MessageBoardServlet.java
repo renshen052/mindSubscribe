@@ -51,6 +51,7 @@ public class MessageBoardServlet extends HttpServlet {
 
 			// 查询符合条件的留言
 			List<MessageBoard> list = messageBoardService.listSearch(search);
+			
 
 			request.setAttribute("search", search);
 

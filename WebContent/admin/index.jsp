@@ -128,7 +128,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 	 icon:2,
     }, 
 	function(){
-	  location.href="${pageContext.request.contextPath}/admin/login";
+	  location.href="${pageContext.request.contextPath}/admin/login?m=logOutAdmin";
         
     });
 });
@@ -142,11 +142,11 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 			</script>
 			<div class="navbar-container" id="navbar-container">
 				<div class="navbar-header pull-left">
-					<a href="#" class="navbar-brand">
+					
 						<small>					
 						<img src="${pageContext.request.contextPath }/mutualResource/images/logo.png">
 						</small>
-					</a><!-- /.brand -->
+					
 				</div><!-- /.navbar-header -->
 			   <div class="navbar-header pull-right" role="navigation">
                <ul class="nav ace-nav">	
@@ -155,28 +155,9 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_ADMIN.name }	</span>
 								<i class="icon-caret-down"></i>
 							</a>
-							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<li><a href="#"><i class="icon-cog"></i>设置</a></li>
-								<li><a href="#"><i class="icon-user"></i>个人资料</a></li>
-								<li class="divider"></li>
-								<li><a href="javascript:ovid(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
+								<li><a href="javascript:void(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
 							</ul>
 						</li>
-	                   <li class="purple">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-bell-alt"></i><span class="badge badge-important">8</span></a>
-							<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                            <li class="dropdown-header"><i class="icon-warning-sign"></i>8条通知</li>
-
-
-								<li>
-									<a href="#">
-										查看所有通知
-										<i class="icon-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
 					
 					</ul>
 

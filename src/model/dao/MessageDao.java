@@ -277,9 +277,9 @@ public class MessageDao {
 		
 		sql += " AND is_read=0 ";
 		
-		sql += " ORDER BY send_time DESC";
+		sql += " ORDER BY send_time DESC ";
 		
-		sql += "LIMIT ?";
+		sql += " LIMIT ?";
 
 		
 		ResultSet rs = jdbcUtil.executeQuery(sql, reqeustUserId,requestUser,num);

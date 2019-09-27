@@ -157,11 +157,12 @@ public class AdminServlet extends HttpServlet {
 			ArrayList<Message> messageList = messageService.getMessageNum(10,adminNow.getAdminId(),"admin");
 			
 			request.setAttribute("messageList", messageList);
+
 			
 			//查询所有显示的公告(最新的十条)
-			ArrayList<Announcement> AnnouncmentList = announcmentService.getAnnouncmentNum(10); 
+			ArrayList<Announcement> announcmentList = announcmentService.getAnnouncmentNum(10); 
 			
-			request.setAttribute("AnnouncmentList", AnnouncmentList);
+			request.setAttribute("announcmentList", announcmentList);
 			  
 			
 			//转发到首页

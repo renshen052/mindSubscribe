@@ -83,7 +83,7 @@ body
 #breadcrumbs .iframeurl{ color:#333;text-decoration : none;}
 /******************边框样式**************/
 .t_Record{ border:1px solid #ddd; border-radius:3px; -moz-border-radius:3px;-webkit-border-radius:3px; padding:10px; float:left}
-.news_style{ width:250px; float:left; border:1px solid #ddd; margin-left:15px; height:320px; }
+.news_style{ width:32%; float:left; border:1px solid #ddd; margin-left:15px; height:320px; }
 .news_style .title_name{padding-left:20px;
 	font-size:16px;
 	border-bottom:1px solid #dddddd;

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -37,66 +39,95 @@
  <div class="state-overview clearfix">
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
-                      <a href="#" title="商城会员">
                           <div class="symbol terques">
                              <i class="icon-user"></i>
                           </div>
                           <div class="value">
-                              <h1>34522</h1>
-                              <p>商城用户</p>
+                              <h1>${doctorNum }</h1>
+                              <p>咨询师</p>
                           </div>
-                          </a>
+                          
                       </section>
                   </div>
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol red">
-                              <i class="icon-tags"></i>
+                              <i class="icon-user"></i>
                           </div>
                           <div class="value">
-                              <h1>140</h1>
-                              <p>分销记录</p>
+                              <h1>${clientNum }</h1>
+                              <p>来访者</p>
                           </div>
                       </section>
                   </div>
                   <div class="col-lg-3 col-sm-6">
                       <section class="panel">
                           <div class="symbol yellow">
-                              <i class="icon-shopping-cart"></i>
-                          </div>
-                          <div class="value">
-                              <h1>345</h1>
-                              <p>商城订单</p>
-                          </div>
-                      </section>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                      <section class="panel">
-                          <div class="symbol blue">
                               <i class="icon-bar-chart"></i>
                           </div>
                           <div class="value">
-                              <h1>￥34,500</h1>
-                              <p>交易记录</p>
+                              <h1>${clientArchive }</h1>
+                              <p>咨询</p>
                           </div>
                       </section>
                   </div>
+                  
               </div>
-             <!--实时交易记录-->
              <div class="clearfix">
-             <div class="t_Record">
+             <!-- <div class="t_Record">
                <div id="main" style="height:300px; overflow:hidden; width:100%; overflow:auto" ></div>     
-              </div> 
+              </div> --> 
          <div class="news_style">
           <div class="title_name">最新消息</div>
           <ul class="list">
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">6月共处理订单3451比，作废为...</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-           <li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
+          	<c:forEach items="${messageList }" var="message">
+          	
+          		<li><i class="icon-bell red"></i><a title="查看消息" href="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin">
+          	 	<fmt:formatDate value="${message.sendTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+          		&nbsp;
+          		来自${message.senderName}的消息 &nbsp;${message.context }
+          		</a></li>
+          	
+          	</c:forEach>
           </ul>
          </div> 
+          <div class="news_style">
+          <div class="title_name">最新公告</div>
+          <ul class="list">
+          
+          	<c:forEach items="${announcmentList }" var="announcment">
+          	
+          		<li><i class="icon-bell red"></i>
+          		<a title="公告管理" href="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment">
+          			<b>${announcment.title}:</b>&nbsp;
+          			${announcment.context}&nbsp;---${announcment.admin.name}&nbsp;
+          	 		<fmt:formatDate value="${message.sendTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+          		</a>
+          		</li>
+          	
+          	</c:forEach>
+          </ul>
+         </div> 
+         
+          <div class="news_style">
+          <div class="title_name">最新留言</div>
+          <ul class="list">
+          
+          	<c:forEach items="${newMessageBoardList }" var="messageBoard">
+          	
+          		<li><i class="icon-bell red"></i><a title="留言管理" href="${pageContext.request.contextPath }/board/MessageBoardServlet?m=listMessageBoard">
+          	 	
+          	 	${messageBoard.context }&nbsp;&nbsp;
+          	 	${messageBoard.client.name }
+          		
+          		<fmt:formatDate value="${messageBoard.createTime}" pattern="yyyy-MM-dd HH:mm:ss" />
+          		</a></li>
+          	
+          	</c:forEach>
+          </ul>
+         </div>
+         
+         
          </div>
  
 <script type="text/javascript">

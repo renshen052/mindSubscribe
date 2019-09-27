@@ -59,6 +59,12 @@ public class AdminLoginServlet extends HttpServlet {
 
 			}
 
+		}else if("logOutAdmin".equals(m)){
+			
+			request.getSession().removeAttribute(LOGIN_ADMIN);
+			
+			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
+			
 		}else {
 			
 			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);

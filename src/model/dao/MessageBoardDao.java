@@ -31,7 +31,7 @@ public class MessageBoardDao {
 
 		List<Object> searchList = new ArrayList<Object>();
 
-		String sql = "SELECT * FROM message_board m LEFT JOIN client c ON m.board_id=c.client_id WHERE 1=1 ";
+		String sql = "SELECT * FROM message_board m LEFT JOIN client c ON m.creater_id=c.client_id WHERE 1=1 ";
 
 		// 创建者
 		if (Util.isNotEmpty(search.get("creater"))) {
@@ -140,7 +140,7 @@ public class MessageBoardDao {
 	 */
 	public MessageBoard getMessageBoard(int messageBoardId) {
 
-		String sql = "SELECT * FROM message_board m LEFT JOIN client c ON m.board_id=c.clientId WHERE m.board_id=? ";
+		String sql = "SELECT * FROM message_board m LEFT JOIN client c ON m.creater_id=c.clientId WHERE m.board_id=? ";
 		
 		ResultSet rs = jdbcUtil.executeQuery(sql, messageBoardId);
 		
@@ -196,7 +196,7 @@ public class MessageBoardDao {
 
 		ArrayList<MessageBoard> list = new ArrayList<>();
 
-		String sql = "SELECT * FROM message_board m LEFT JOIN CLIENT c ON m.board_id=c.client_id WHERE is_active=1 ORDER BY create_time DESC LIMIT ?; ";
+		String sql = "SELECT * FROM message_board m LEFT JOIN CLIENT c ON m.creater_id=c.client_id WHERE m.is_active=1 ORDER BY create_time DESC LIMIT ?; ";
 
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, num);

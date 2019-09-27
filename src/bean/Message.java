@@ -149,6 +149,13 @@ public class Message {
 	public void setReceiverName(String receiverName) {
 		this.receiverName = receiverName;
 	}
+
+	@Override
+	public String toString() {
+		return "Message [messageId=" + messageId + ", sender=" + sender + ", senderId=" + senderId + ", senderName="
+				+ senderName + ", receiver=" + receiver + ", receiverId=" + receiverId + ", receiverName="
+				+ receiverName + ", sendTime=" + sendTime + ", isRead=" + isRead + ", context=" + context + "]";
+	}
 	
 	
 }
