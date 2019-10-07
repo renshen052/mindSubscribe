@@ -142,4 +142,14 @@
     <servlet-name>QuestionServlet</servlet-name>
     <url-pattern>/question/QuestionServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoctorBaseServlet</display-name>
+    <servlet-name>DoctorBaseServlet</servlet-name>
+    <servlet-class>servlet.doctor.DoctorBaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorBaseServlet</servlet-name>
+    <url-pattern>/doctor/DoctorBaseServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
