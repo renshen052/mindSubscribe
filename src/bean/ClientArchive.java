@@ -22,7 +22,7 @@ public class ClientArchive {
 	/**
 	 * 申请人(client)做的问卷 内容
 	 */
-	private String questionnaireContext;
+	private String questionContext;
 	
 	/**
 	 * 评测结果
@@ -65,6 +65,17 @@ public class ClientArchive {
 	 * 一次咨询的记录文档，命名：日期_来访者id_咨询师id.xxx
 	 */
 	private String doc_path;
+	
+	
+	/**
+	 * 回访记录内容
+	 */
+	private String secondQuestionContext;
+	
+	/**
+	 * 是否回访，0否，1是
+	 */
+	private Integer isSendDo;
 
 	public Integer getArchivesId() {
 		return archivesId;
@@ -91,11 +102,11 @@ public class ClientArchive {
 	}
 
 	public String getQuestionnaireContext() {
-		return questionnaireContext;
+		return questionContext;
 	}
 
-	public void setQuestionnaireContext(String questionnaireContext) {
-		this.questionnaireContext = questionnaireContext;
+	public void setQuestionnaireContext(String questionContext) {
+		this.questionContext = questionContext;
 	}
 
 	public Integer getLevel() {
@@ -160,6 +171,22 @@ public class ClientArchive {
 
 	public void setDoc_path(String doc_path) {
 		this.doc_path = doc_path;
+	}
+
+	public String getSecondQuestionContext() {
+		return secondQuestionContext;
+	}
+
+	public void setSecondQuestionContext(String secondQuestionContext) {
+		this.secondQuestionContext = secondQuestionContext;
+	}
+
+	public Integer getIsSendDo() {
+		return isSendDo;
+	}
+
+	public void setIsSendDo(Integer isSendDo) {
+		this.isSendDo = isSendDo;
 	}
 	
 	

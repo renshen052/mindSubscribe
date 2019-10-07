@@ -153,7 +153,6 @@ setInterval(function(){$('#time').html(currentTime)},1000);
                 <li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_ADMIN.name }	</span>
-								<i class="icon-caret-down"></i>
 							</a>
 								<li><a href="javascript:void(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
 							</ul>
@@ -202,7 +201,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl"><i class="icon-user"></i><span
 							class="menu-text"> 来访者管理 </span></a></li>
 							
-					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/question.jsp" title="问卷管理" 
+					<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/question/QuestionServlet?m=listQuestion" title="问卷管理" 
 						class="iframeurl"><i class="icon-list"></i><span
 							class="menu-text"> 问卷管理 </span></a></li>
 

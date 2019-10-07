@@ -42,6 +42,7 @@
     <url-pattern>/doctor/DoctorServlet</url-pattern>
     <url-pattern>/client/ClientServlet</url-pattern>
     <url-pattern>/admin/AnnouncmentServlet</url-pattern>
+    <url-pattern>/question/QuestionServlet</url-pattern>
   </filter-mapping>
   <servlet>
     <description></description>
@@ -131,4 +132,14 @@
     <filter-name>MessageBoardFilter</filter-name>
     <url-pattern>/board/MessageBoardServlet</url-pattern>
   </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QuestionServlet</display-name>
+    <servlet-name>QuestionServlet</servlet-name>
+    <servlet-class>servlet.QuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuestionServlet</servlet-name>
+    <url-pattern>/question/QuestionServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
