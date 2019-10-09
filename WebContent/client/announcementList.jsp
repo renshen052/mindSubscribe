@@ -128,7 +128,6 @@
 								<th width="100">标题</th>
 								<th>内容</th>
 								<th width="100">创建时间</th>
-								<th width="70">状态</th>
 								<th width="250">操作</th>
 							</tr>
 						</thead>
@@ -151,13 +150,9 @@
 									</td>
 
 									<c:if test="${announcement.isActive eq 1}">
-										<td class="td-status"><span
-											class="label label-success radius">显示</span></td>
 
-										<td class="td-manage"><a
-											onClick="member_stop(this,${announcement.announcementId })"
-											href="javascript:;" title="隐藏" class="btn btn-xs btn-success"><i
-												class="icon-ok bigger-120"></i></a> <a
+										<td class="td-manage">
+										 <a
 											style="text-decoration: none"
 											onClick="member_show(this,${announcement.announcementId })"
 											href="javascript:;" title="查看公告"
@@ -165,12 +160,7 @@
 
 									</c:if>
 									<c:if test="${announcement.isActive eq 0}">
-										<td class="td-status"><span
-											class="label label-defaunt radius">隐藏</span></td>
-										<td><a style="text-decoration: none"
-											onClick="member_start(this,${announcement.announcementId })"
-											href="javascript:;" title="显示" class="btn btn-xs btn"><i
-												class="icon-ok bigger-120"></i></a> <a
+										<td> <a
 											style="text-decoration: none"
 											onClick="member_show(this,${announcement.announcementId })"
 											href="javascript:;" title="查看公告"
@@ -282,89 +272,6 @@ jQuery(function($) {
 			});
  
 			
-/*用户-添加*/
- $('#member_add').on('click', function(){
-	 
-    layer.open({
-        type: 1,
-        title: '创建公告&nbsp;&nbsp;<font style="color:red">*注意:公告一经发布不可修改*</font>',
-		maxmin: true, 
-		shadeClose: false, //点击遮罩关闭层
-        area : ['800px' , '500px'],
-        content:$('#add_menber_style'),
-		btn:['创建','取消'],
-		yes:function(index,layero){	
-			
-			var msg = "";
-			
-			if(isAble()){
-				//如果数据合法
-				
-				//ajax上传
-			     $.ajax({  
-			          url: '${pageContext.request.contextPath }/announcment/AnnouncmentServlet?m=addAnnouncement' ,  
-			          type: 'POST',  
-			          dataType:'json', 
-			          data: $("#announcementForm").serialize(),  
-			          cache: false,  
-			          success: function (data) { 
-			        	  
-			        	  if(data.isSuccess){
-			        		  
-			        		  msg = "创建成功！";
-			        		  
-			        		  //清空
-			        		  $("#tilte,#context").val("");
-			        		  $("#tilte,#context").text("");
-			        		  $("#announcementForm").find("input:radio:checked").removeAttr('checked');
-			        		  $('#add_menber_style').find("div[class='prompt r_f']").text("");
-			        		  
-			        		  layer.alert(msg,
-						    		  
-			   	 	               {title: '提示框',				
-			   	 					icon:1,	}	,
-			   	 					function(){
-			   	 						location.reload();
-			   	 				  }); 
-			        		  
-			        	  }else{
-			        		  msg = data.msg;
-			        		  layer.alert(msg,
-						    		  
-			   	 	               {title: '提示框',				
-			   	 					icon:1,	}	,
-			   	 					);
-			        	  }
-			          },  
-			          error: function (returndata) {  
-			        	  msg = "失败请刷新后重试"; 
-			        	  layer.alert(msg,
-					    		  
-				 	               {title: '提示框',				
-				 					icon:1,	}	,
-				 					);
-			        	  
-			          }  
-			     }); 
-				
-			     layer.close(index);
-			     
-				
-			}else{
-				
-				layer.alert("请填写正确的数据！",{
-	 	               title: '提示框',				
-	 				icon:1,		
-	 				  });
-				
-			}
-			
-			
-		     
-		}
-    });
-});
-
 
 /*用户-查看
  * 代表触发oclick的当前对象
@@ -388,59 +295,6 @@ function member_show(an,id){
 		}
   });
 }
-/*公告隐藏*/
-function member_stop(obj,id){
-	layer.confirm('确认要隐藏吗？',function(index){
-		
-		//ajax
-		$.ajax({
-		type : "GET",
-		url : "${pageContext.request.contextPath}/announcment/AnnouncmentServlet?m=updateActive&action=0&id="+id,
-		dataType : "json",
-		success : function(data) {
-			
-			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,' + id +')" href="javascript:;" title="显示"><i class="icon-ok bigger-120"></i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">隐藏</span>');
-				$(obj).remove();
-				layer.msg('已隐藏!',{icon: 5,time:1000});
-			}else{
-				layer.msg('隐藏失败! '+data['msg'],{icon: 0,time:1000});
-			}
-		}
-	});
-		
-	});
-}
-
-/*公告显示*/
-function member_start(obj,id){
-	layer.confirm('确认要显示吗？',function(index){
-		
-		//ajax
-		$.ajax({
-		type : "GET",
-		url : "${pageContext.request.contextPath}/announcment/AnnouncmentServlet?m=updateActive&action=1&id="+id,
-		dataType : "json",
-		success : function(data) {
-			
-			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,' + id +')" href="javascript:;" title="隐藏"><i class="icon-ok bigger-120"></i></a>');
-				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">显示</span>');
-				$(obj).remove();
-				layer.msg('已显示!',{icon: 6,time:1000});
-			}else{
-				layer.msg('显示失败! '+data['msg'],{icon: 0,time:1000});
-			}
-		}
-	});
-		
-		
-	});
-}
-
-
-
 
 
 /**
@@ -451,7 +305,7 @@ function selectedDoctor(id){
 	//ajax
 	$.ajax({
 	type : "GET",
-	url : "${pageContext.request.contextPath}/announcment/AnnouncmentServlet?m=selecteAnnouncement&id="+id,
+	url : "${pageContext.request.contextPath}/admin/AnnouncmentServlet?m=selecteAnnouncement&id="+id,
 	dataType : "json",
 	success : function(data) {
 		
@@ -521,27 +375,6 @@ function selectedDoctor(id){
 }
 
 
-
-/**
- * 对表单验证合法性
- */
- function isAble(){
-	
-	var isOk = true;
-	
-	 $("#announcementForm :input").each(function(){
-		 
-		 //如果有一项不正确
-		 if( !isAbleCheckOne($(this))){
-			 isOk = false;
-		 }
-		 
-	 });
-	 
-	 return isOk;
-	
-}
-
  function isAbleCheckOne(thisElement){
 	 
 	 var isOk = true;
@@ -570,59 +403,6 @@ function selectedDoctor(id){
          
 	 }
 	
-	//验证内容
-	 if($(thisElement).is("#context")){
-		 
-		 var len = $(thisElement).val().length;
-		 
-         if(len > 1000 || len < 1){
-        	 
-             var errorMsg = "标题为1-1000个字符！";
-             
-             $("#contextDiv").attr("style","color:red");
-             
-             $("#contextDiv").html(errorMsg);
-             
-             isOk = false;
-             
-         }else{
-        	 
-        	 $("#contextDiv").attr("style","color:green");
-        	 
-        	 $("#contextDiv").html("通过");
-         }
-         
-	 }
-	 
-	 
-		//验证公告状态（不为空即可）
-		if($(thisElement).is("input[name='isActive']")){
-			
-			var msg = "";
-			
-			if( $("input[name='isActive']:checked").val() == null){
-				
-				msg = "请选择！";
-				$("#isActiveDiv").attr("style","color:red");
-				
-				isOk = false;
-				
-			}else{
-				
-				$("#isActiveDiv").attr("style","color:green");
-				msg = "通过";
-				
-			}
-			
-			//填写内容
-			$("#isActiveDiv").html(msg);
-			
-		}
-	 
-		return isOk;
- }
-
-
 
 
  laydate({

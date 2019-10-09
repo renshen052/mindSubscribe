@@ -41,7 +41,6 @@
     <url-pattern>/admin/base</url-pattern>
     <url-pattern>/doctor/DoctorServlet</url-pattern>
     <url-pattern>/client/ClientServlet</url-pattern>
-    <url-pattern>/admin/AnnouncmentServlet</url-pattern>
     <url-pattern>/question/QuestionServlet</url-pattern>
   </filter-mapping>
   <servlet>
@@ -68,11 +67,11 @@
     <description></description>
     <display-name>AnnouncmentServlet</display-name>
     <servlet-name>AnnouncmentServlet</servlet-name>
-    <servlet-class>servlet.admin.AnnouncmentServlet</servlet-class>
+    <servlet-class>servlet.AnnouncmentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AnnouncmentServlet</servlet-name>
-    <url-pattern>/admin/AnnouncmentServlet</url-pattern>
+    <url-pattern>/announcment/AnnouncmentServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -151,5 +150,13 @@
   <servlet-mapping>
     <servlet-name>DoctorBaseServlet</servlet-name>
     <url-pattern>/doctor/DoctorBaseServlet</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>ClientBaseServlet</servlet-name>
+    <servlet-class>servlet.client.ClientBaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientBaseServlet</servlet-name>
+    <url-pattern>/client/base</url-pattern>
   </servlet-mapping>
 </web-app>

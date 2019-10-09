@@ -80,11 +80,40 @@ public class ClientService {
 	public int getClientNum() {
 		return clientDao.getClientNum();
 	}
+
+
+	/**
+	 * 根据用户名查询 来访者
+	 * @param clientName
+	 * @return
+	 */
+	public Client getClient(String clientName) {
+		
+		return clientDao.getClient(clientName);
 	
-	
-	
-	
-	
+	}
+
+
+	/**
+	 * 根据来访者的id，修改他的密码
+	 * @param clientId
+	 * @param newPwd
+	 */
+	public int updateClientPwd(Integer clientId, String newPwd) {
+
+		return clientDao.updateClientPwd(clientId,newPwd);
+	}
+
+
+	/**
+	 * 修改来访者的个人信息
+	 * @param client
+	 * @param clientId
+	 * @return
+	 */
+	public int updateClientBase(Client client, Integer clientId) {
+		return clientDao.updateClientBase(client,clientId);
+	}
 	
 	
 

@@ -140,6 +140,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
         <script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
+			<c:if test="${not empty LOGIN_ADMIN}">
 			<div class="navbar-container" id="navbar-container">
 				<div class="navbar-header pull-left">
 					
@@ -155,13 +156,25 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_ADMIN.name }	</span>
 							</a>
 								<li><a href="javascript:void(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
-							</ul>
-						</li>
-					
-					</ul>
-
+				</ul>
                 </div>
 			</div>
+			
+			</c:if>
+			<c:if test="${empty LOGIN_ADMIN}">
+			<div class="navbar-header pull-right" role="navigation">
+               <ul class="nav ace-nav">	
+                <li class="light-blue">
+					<a  href="${pageContext.request.contextPath }/admin/AdminLoginServlet">
+						请登录
+					</a>	
+				</li>	
+			   </ul>
+
+            </div>
+			
+			</c:if>
+			
 		</div>
 		<div class="main-container" id="main-container">
         <script type="text/javascript">
@@ -220,7 +233,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					</li>
 					
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"  title="公告管理" 
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/announcment/AnnouncmentServlet?m=listAnnouncment"  title="公告管理" 
 						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 公告管理 </span></a></li>
 						

@@ -128,7 +128,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 	 icon:2,
     }, 
 	function(){
-	  location.href="${pageContext.request.contextPath}/admin/login?m=logOutAdmin";
+	  location.href="${pageContext.request.contextPath}/client/ClientLoginServlet?m=logOutClient";
         
     });
 });
@@ -141,7 +141,9 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
 			<div class="navbar-container" id="navbar-container">
-				<div class="navbar-header pull-left">
+			
+			<c:if test="${not empty LOGIN_CLIENT}">
+			<div class="navbar-header pull-left">
 					
 						<small>					
 						<img src="${pageContext.request.contextPath }/mutualResource/images/logo.png">
@@ -152,15 +154,28 @@ setInterval(function(){$('#time').html(currentTime)},1000);
                <ul class="nav ace-nav">	
                 <li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_DOCTOR.name }	</span>
+								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_CLIENT.name }	</span>
 							</a>
 								<li><a href="javascript:void(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
 							</ul>
-						</li>
-					
-					</ul>
-
                 </div>
+			
+			</c:if>
+			<c:if test="${empty LOGIN_CLIENT }">
+			<div class="navbar-header pull-right" role="navigation">
+               <ul class="nav ace-nav">	
+                <li class="light-blue">
+					<a  href="${pageContext.request.contextPath }/client/ClientLoginServlet">
+						请登录
+					</a>	
+				</li>	
+			   </ul>
+
+            </div>
+			
+			</c:if>
+			
+				
 			</div>
 		</div>
 		<div class="main-container" id="main-container">
@@ -189,7 +204,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					
 					<!-- #sidebar-shortcuts -->
 				<ul class="nav nav-list" id="nav_list">
-					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/base?m=adminIndex"
+					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/base?m=clientIndex"
 						class="iframeurl" title=""><i class="icon-dashboard"></i><span
 							class="menu-text"> 首页 </span></a></li>
 					
@@ -209,7 +224,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						</ul>
 					</li>
 					
-					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/base?m=adminIndex"
+					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/base?m=clientIndex"
 						class="iframeurl" title=""><i class="icon-dashboard"></i><span
 							class="menu-text"> 咨询历史 </span></a></li>
 
@@ -228,19 +243,19 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					</li>
 					
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"  title="公告管理" 
+						
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/board/MessageBoardServlet?m=listMessageBoard"  title="留言" 
+						class="iframeurl"><i class="icon-edit"></i><span
+							class="menu-text"> 留言 </span></a></li>
+						
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"  title="公告" 
 						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 公告 </span></a></li>
 						
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/board/MessageBoardServlet?m=listMessageBoard"  title="留言管理" 
-						class="iframeurl"><i class="icon-edit"></i><span
-							class="menu-text"> 留言 </span></a></li>
-						
-						
 
 					<li><a href="javascript:void(0)"
-						name="${pageContext.request.contextPath }/doctor/DoctorBaseServlet?m=doctorInfo" title="个人信息"
+						name="${pageContext.request.contextPath }/client/base?m=clientInfo" title="个人信息"
 						class="iframeurl"><i class="icon-group"></i><span
 							class="menu-text"> 个人信息 </span></a></li>
 				</ul>
@@ -261,7 +276,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="${pageContext.request.contextPath }/admin/base?m=adminIndex">首页</a>
+								<a href="${pageContext.request.contextPath }/client/base?m=clientIndex">首页</a>
 							</li>
 							<li class="active"><span class="Current_page iframeurl"></span></li>
                             <li class="active" id="parentIframe"><span class="parentIframe iframeurl"></span></li>
@@ -269,7 +284,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						</ul>
 					</div>
                     
-                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="${pageContext.request.contextPath }/admin/base?m=adminIndex">  </iframe>
+                 <iframe id="iframe" style="border:0; width:100%; background-color:#FFF;"name="iframe" frameborder="0" src="${pageContext.request.contextPath }/client/base?m=clientIndex">  </iframe>
 				 
 
 <!-- /.page-content -->

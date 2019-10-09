@@ -1,4 +1,4 @@
-package servlet.admin;
+package servlet;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -20,6 +20,7 @@ import bean.Admin;
 import bean.Announcement;
 import bean.Doctor;
 import model.service.AnnouncmentService;
+import servlet.admin.AdminLoginServlet;
 import utils.ResultDate;
 import utils.UploadResult;
 import utils.Util;
@@ -42,6 +43,8 @@ public class AnnouncmentServlet extends HttpServlet {
 		String m = request.getParameter("m");
 
 		if ("listAnnouncment".equals(m)) {
+			
+			String user = request.getParameter("user");
 
 			// 接受查询条件
 			
@@ -68,8 +71,21 @@ public class AnnouncmentServlet extends HttpServlet {
 			request.setAttribute("announcementList", list);
 
 			request.setAttribute("listSize", list.size());
+			
+			//得到当前登录的用户
+			Map<String, Object> currentUser =MessageServlet.getCurrentUser(request);
+			
+			if(currentUser.get("reqeustUser").equals("admin")) { //管理员（有创建公管的权限）
+				
+				request.getRequestDispatcher("/admin/announcementList.jsp").forward(request, response);
+			
+			}else {//普通来访者和咨询师
+				
+				request.getRequestDispatcher("/client/announcementList.jsp").forward(request, response);
+				
+			}
 
-			request.getRequestDispatcher("/admin/announcementList.jsp").forward(request, response);
+			
 
 		} else if ("updateActive".equals(m)) {
 

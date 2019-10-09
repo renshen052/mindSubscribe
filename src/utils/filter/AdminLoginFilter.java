@@ -41,6 +41,8 @@ public class AdminLoginFilter implements Filter {
 			return;
 		}
 		
+		System.out.println("被拦截路径：" + path);
+		
 
 		Admin admin = (Admin) session.getAttribute(AdminLoginServlet.LOGIN_ADMIN);
 

@@ -172,8 +172,84 @@ public class ClientDao {
 		
 		return num;
 	}
-	
-	
-	
+
+
+	/**
+	 * 根据用户名查询 来访者
+	 * @param clientName
+	 * @return
+	 */
+	public Client getClient(String clientName) {
+		
+		Client client = null;
+		
+		String sql = "SELECT * FROM client WHERE client_name=?";
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, clientName);
+
+		try {
+			while (rs.next()) {
+
+				client = new Client();
+				client.setClientId(rs.getInt("client_id"));
+				client.setClientName(rs.getString("client_name"));
+				client.setClientPwd(rs.getString("client_pwd"));
+				client.setName(rs.getString("name"));
+				client.setSex(rs.getInt("sex"));
+				client.setAge(rs.getInt("age"));
+				client.setPhone(rs.getString("phone"));
+				client.setEmail(rs.getString("email"));
+				client.setIsActive(rs.getInt("is_active"));
+				client.setRegionTime( rs.getDate("region_time") );
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return client;
+	}
+
+
+	/**
+	 * 根据来访者的id，修改他的密码
+	 * @param clientId
+	 * @param newPwd
+	 */
+	public int updateClientPwd(Integer clientId, String newPwd) {
+
+		String sql = "UPDATE client SET client_pwd=? WHERE client_id=?";
+		
+		return jdbcUtil.executeUpdate(sql, newPwd,clientId);
+		
+	}
+
+
+	/**
+	 * 修改来访者的个人信息
+	 * @param client
+	 * @param clientId
+	 * @return
+	 */
+	public int updateClientBase(Client client, Integer clientId) {
+		
+		String sql = "UPDATE client SET name=?,sex=?,age=?,phone=?,email=? WHERE client_id=?";
+		
+		return jdbcUtil.executeUpdate(sql, client.getName(),client.getSex(),client.getAge(),client.getPhone(),client.getEmail(),clientId);
+		
+	}
 
 }

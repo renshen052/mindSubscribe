@@ -58,8 +58,21 @@ public class MessageBoardServlet extends HttpServlet {
 			request.setAttribute("messageBoardList", list);
 
 			request.setAttribute("listSize", list.size());
+			
+			//得到当前登录的用户
+			Map<String, Object> currentUser =MessageServlet.getCurrentUser(request);
+			
+			if(currentUser.get("reqeustUser").equals("admin")) { //管理员（有创建公管的权限）
+				
+				request.getRequestDispatcher("/admin/messageBoard.jsp").forward(request, response);
+				
+			}else {//普通来访者和咨询师
+				
+				request.getRequestDispatcher("/client/messageBoard.jsp").forward(request, response);
+			}
+			
 
-			request.getRequestDispatcher("/admin/messageBoard.jsp").forward(request, response);
+			
 
 		} else if ("updateActive".equals(m)) {
 
@@ -105,7 +118,7 @@ public class MessageBoardServlet extends HttpServlet {
 			messageBoard.setIsActive(Integer.parseInt(isActive));
 			messageBoard.setCreaterId(client.getClientId());
 			
-			//增加一个公告
+			//增加一个留言
 			messageBoardService.addMessageBoard(messageBoard,response);
 			
 		}
