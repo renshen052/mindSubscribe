@@ -110,25 +110,17 @@
 
 					</ul>
 				</div>
-				<!---->
-				<div class="border clearfix">
-					<span class="l_f"> <a href="javascript:void()"
-						id="member_add" class="btn btn-warning"><i class="icon-plus"></i>添加公告</a>
-					</span> <span class="r_f">共：<b>${listSize }</b>条
-					</span>
-				</div>
-				<!---->
+				
 				<div class="table_menu_list">
 					<table class="table table-striped table-bordered table-hover"
 						id="sample-table">
 
 						<thead>
 							<tr>
-								<th width="100">创建者</th>
-								<th width="100">标题</th>
+								<th width=>创建者</th>
+								<th width=>标题</th>
 								<th>内容</th>
-								<th width="100">创建时间</th>
-								<th width="250">操作</th>
+								<th width=>创建时间</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -148,28 +140,7 @@
 									<td>
 									<fmt:formatDate value="${announcement.createTime }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</td>
-
-									<c:if test="${announcement.isActive eq 1}">
-
-										<td class="td-manage">
-										 <a
-											style="text-decoration: none"
-											onClick="member_show(this,${announcement.announcementId })"
-											href="javascript:;" title="查看公告"
-											class="btn btn-xs btn-success">查看公告</a></td>
-
-									</c:if>
-									<c:if test="${announcement.isActive eq 0}">
-										<td> <a
-											style="text-decoration: none"
-											onClick="member_show(this,${announcement.announcementId })"
-											href="javascript:;" title="查看公告"
-											class="btn btn-xs btn-success">查看公告</a></td>
-									</c:if>
-
 								</tr>
-
-
 							</c:forEach>
 
 
@@ -180,46 +151,6 @@
 			</div>
 		</div>
 	</div>
-	<!--添加用户图层-->
-	<div class="add_menber" id="add_menber_style" style="display: none">
-		<form id="announcementForm">
-			<ul class=" page-content">
-
-				<li><label class="label_name">公告标题：</label><span
-					class="add_name"><input name="title" type="text" id="title"
-						class="text_add" /></span>
-				<div class="prompt r_f"></div></li>
-
-				<li><label class="label_name">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</label><span
-					class="add_name"> <label><input name="isActive"
-							value="1" type="radio" id="isActive1" class="ace"><span
-								class="lbl">显示</span></label>&nbsp;&nbsp;&nbsp; <label><input
-							name="isActive" value="0" type="radio" id="isActive0" class="ace"><span
-								class="lbl">隐藏</span></label></span>
-				<div class="prompt r_f" id="isActiveDiv"></div></li>
-
-				<li><label class="label_name">公告内容:</label> <textarea
-						name="context" id="context" class="textarea"
-						onKeyUp="textarealength(this,1000)" cols="100" rows="10"></textarea>
-					<p class="textarea-numberbar">
-						<em class="textarea-length">0</em>/1000
-					</p>
-					<div class="prompt r_f" id="contextDiv"></div></li>
-
-			</ul>
-
-		</form>
-	</div>
-	<div id=announcementSee class="add_menber" style="display: none">
-		<h1 id="titleSee">标题</h1>
-		<hr />
-		<div id="contextSee">公告内容</div>
-		<hr />
-		<font style="color:green">
-		由:<span id="createrSee">创建者</span>于<span id="createTimeSee">日期</span> 创建
-		</font>
-	</div>
-
 
 </body>
 </html>
@@ -252,158 +183,7 @@ jQuery(function($) {
 					return 'left';
 				}
 				
-				
-				
-				/**
-				*检查表单元素合法性
-				*/
-				$("#announcementForm :input").each(function(){
-					
-					var thisElement = $(this);
-					
-					//当改变的时候，触发检查函数
-					$(this).change(function(){ 
-						
-						isAbleCheckOne(thisElement);
-
-					});	
-				})
-				
 			});
- 
-			
-
-/*用户-查看
- * 代表触发oclick的当前对象
- */
-function member_show(an,id){
-	
-	//先查到用户数据
-	selectedDoctor(id);
-	
-	//显示查看界面
-	  layer.open({
-      type: 1,
-      title: '查看公告',
-		maxmin: true, 
-		shadeClose:false, //点击遮罩关闭层
-      area : ['500px' , '500px'],
-      content:$('#announcementSee'),
-		btn:['查看完毕'],
-		yes:function(index,layero){	
-			layer.close(index);				
-		}
-  });
-}
-
-
-/**
- * 请求选中的内容
- */
-function selectedDoctor(id){
-	
-	//ajax
-	$.ajax({
-	type : "GET",
-	url : "${pageContext.request.contextPath}/admin/AnnouncmentServlet?m=selecteAnnouncement&id="+id,
-	dataType : "json",
-	success : function(data) {
-		
-		//成功查到
-		if (data['isSuccess'] == true) {
-			
-			
-			//给表单赋值
-			
-			//标题
-			$("#titleSee").text(data.dataList[0].title);
-			console.log("data.dataList[0].title-> " + data.dataList[0].title);
-			
-			//内容
-			$("#contextSee").text(data.dataList[0].context);
-			
-			//创建日期
-			$("#createTimeSee").text(data.dataList[0].createTime);
-			
-			//创建者
-			$("#createrSee").text(data.dataList[0].admin.name);
-			/* 
-			$("#announcementSee").each(function(){
-				
-				if($(this).is("h1")){
-					
-					console.log("data.dataList[0].title-> " + data.dataList[0].title);
-					$(this).val(data.dataList[0].title);
-					return;
-				}
-				
-				if($(this).is("div")){
-					
-					console.log("data.dataList[0].context-> " + data.dataList[0].context);
-					
-					$(this).val(data.dataList[0].context);
-					return;
-				}
-				
-				if($(this).is("#createTime")){
-					
-					console.log("data.dataList[0].createTime-> " + data.dataList[0].createTime);
-					
-					$(this).val(data.dataList[0].createTime);
-					return;
-				}
-				
-				if($(this).is("#creater")){
-					
-					console.log("data.dataList[0].admin.name-> " + data.dataList[0].admin.name);
-					
-					$(this).val(data.dataList[0].admin.name);
-					return;
-				}
-				
-			}); */
-			
-		
-		
-		}else{
-			layer.msg(data['msg'],{icon: 0,time:1000});
-		}
-	}
-	});
-	
-	
-}
-
-
- function isAbleCheckOne(thisElement){
-	 
-	 var isOk = true;
-	 
-	//验证标题
-	 if($(thisElement).is("#title")){
-		 
-		 var len = $(thisElement).val().length;
-		 
-         if(len > 10 || len < 1){
-        	 
-             var errorMsg = "标题为1-10个字符！";
-             
-             $(thisElement).parent().next("div").attr("style","color:red");
-             
-             $(thisElement).parent().next("div").html(errorMsg);
-             
-             isOk = false;
-             
-         }else{
-        	 
-        	 $(thisElement).parent().next("div").attr("style","color:green");
-        	 
-        	 $(thisElement).parent().next("div").html("通过");
-         }
-         
-	 }
-	
-
 
  laydate({
     elem: '#startTime',

@@ -248,7 +248,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 留言 </span></a></li>
 						
-						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment"  title="公告" 
+						<li><a href="javascript:void(0)" name="${pageContext.request.contextPath }/announcment/AnnouncmentServlet?m=listAnnouncment"  title="公告" 
 						class="iframeurl"><i class="icon-edit"></i><span
 							class="menu-text"> 公告 </span></a></li>
 						

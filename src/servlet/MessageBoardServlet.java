@@ -105,8 +105,6 @@ public class MessageBoardServlet extends HttpServlet {
 			
 			String context = request.getParameter("context");
 			
-			String isActive = request.getParameter("isActive");
-
 			//创建者
 			Client client =  (Client) request.getSession().getAttribute(ClientLoginServlet.LOGIN_CLIENT);
 
@@ -115,7 +113,7 @@ public class MessageBoardServlet extends HttpServlet {
 			MessageBoard messageBoard = new MessageBoard();
 			messageBoard.setContext(context);
 			messageBoard.setCreateTime(new Date());
-			messageBoard.setIsActive(Integer.parseInt(isActive));
+			messageBoard.setIsActive(1);
 			messageBoard.setCreaterId(client.getClientId());
 			
 			//增加一个留言

@@ -126,7 +126,7 @@ public class MessageBoardDao {
 		
 		sql += " ( `context`, `creater_id`, `create_time`, `is_active`) ";
 		
-		sql +=" VALUES (?,?,?,?,?)";
+		sql +=" VALUES (?,?,?,?)";
 		
 		return jdbcUtil.executeUpdate(sql,messageBoard.getContext(),messageBoard.getCreaterId()
 				,sdf.format( messageBoard.getCreateTime() ),messageBoard.getIsActive());

@@ -108,16 +108,24 @@
 					</ul>
 				</div>
 				
+				<!---->
+				<div class="border clearfix">
+					<span class="l_f"> <a href="javascript:void()"
+						id="member_add" class="btn btn-warning"><i class="icon-plus"></i>留言</a>
+					</span> <span class="r_f">共：<b>${listSize }</b>条
+					</span>
+				</div>
+				<!---->
+				
 				<div class="table_menu_list">
 					<table class="table table-striped table-bordered table-hover"
 						id="sample-table">
 
 						<thead>
 							<tr>
-								<th width="100">留言创建者</th>
+								<th width=>留言创建者</th>
 								<th>内容</th>
-								<th width="100">创建时间</th>
-								<th width="70">状态</th>
+								<th width=>创建时间</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -148,7 +156,23 @@
 			</div>
 		</div>
 	</div>
+<!--添加用户图层-->
+	<div class="add_menber" id="add_menber_style" style="display: none">
+		<form id="messageBoardForm">
+			<ul class=" page-content">
 
+				<li><label class="label_name">留言内容:</label> <textarea
+						name="context" id="context" class="textarea"
+						onKeyUp="textarealength(this,1000)" cols="100" rows="10"></textarea>
+					<p class="textarea-numberbar">
+						<em class="textarea-length">0</em>/1000
+					</p>
+					<div class="prompt r_f" id="contextDiv"></div></li>
+
+			</ul>
+
+		</form>
+	</div>
 </body>
 </html>
 <script>
@@ -185,22 +209,114 @@ jQuery(function($) {
 				/**
 				*检查表单元素合法性
 				*/
-				$("#announcementForm :input").each(function(){
+				$("#messageBoardForm :input").each(function(){
 					
 					var thisElement = $(this);
 					
 					//当改变的时候，触发检查函数
 					$(this).change(function(){ 
 						
-						isAbleCheckOne(thisElement);
+						isAbleCheck(thisElement);
 
 					});	
 				})
 				
 			});
 
+/*留言-添加*/
+$('#member_add').on('click', function(){
+	 
+   layer.open({
+       type: 1,
+       title: '留言',
+		maxmin: true, 
+		shadeClose: false, //点击遮罩关闭层
+       area : ['800px' , '400px'],
+       content:$('#add_menber_style'),
+		btn:['创建','取消'],
+		yes:function(index,layero){	
+			
+			var msg = "";
+			
+			if(isAbleCheck()){
+				//如果数据合法
+				
+				//ajax上传
+			     $.ajax({  
+			          url: '${pageContext.request.contextPath }/board/MessageBoardServlet?m=addMessageBoard' ,  
+			          type: 'POST',  
+			          dataType:'json', 
+			          data: $("#messageBoardForm").serialize(),  
+			          cache: false,  
+			          success: function (data) { 
+			        	  
+			        	  if(data.isSuccess){
+			        		  
+			        		  //清空
+			        		  $("#context").val("");
+			        		  $('#add_menber_style').find("div[class='prompt r_f']").text("");
+			        		  
+			        		  layer.alert(data.msg,
+			   	 	               {title: '提示框',				
+			   	 					icon:1,	}	,
+			   	 					function(){
+			   	 					window.location.reload();
+			   	 				  }); 
+			        		  
+			        	  }else{
+			        		  layer.alert(data.msg,
+			   	 	               {title: '提示框',				
+			   	 					icon:1,	}
+			   	 					);
+			        	  }
+			          },  
+			          error: function (returndata) {  
+			        	  msg = "失败请刷新后重试"; 
+			        	  layer.alert(msg,
+					    		  
+				 	               {title: '提示框',				
+				 					icon:1,	}
+				 					);
+			        	  
+			          }  
+			     }); 
+				
+			     layer.close(index);
+			     
+				
+			}else{
+				
+				layer.alert("请填写正确的数据！",{
+	 	               title: '提示框',				
+	 				icon:1,		
+	 				  });
+				
+			}
+		     
+		}
+   });
+});
 
-
+function isAbleCheck(){
+	
+	
+	var len = $("#context").val().length;
+	if(len > 1000 || len < 1){
+		
+		$("#contextDiv").html("<font style='color:red'>留言为1-1000个字符</fong>");
+		
+		return false;
+		
+	}else{
+		
+		$("#contextDiv").html("<font style='color:green'>通过</fong>");
+		
+		return true;
+		
+	}
+	
+	
+}
 
  laydate({
     elem: '#startTime',
