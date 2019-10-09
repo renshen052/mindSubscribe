@@ -57,14 +57,19 @@ public class ClientArchive {
 	
 	
 	/**
-	 * -1 失败，0 未完成，1 完成
+	 * -1 失败，0 未完成，1 通过申请但未完成，2完成咨询
 	 */
 	private Integer status;
 	
 	/**
 	 * 一次咨询的记录文档，命名：日期_来访者id_咨询师id.xxx
 	 */
-	private String doc_path;
+	private String docPath;
+	
+	/**
+	 * 咨询师
+	 */
+	private Doctor doctor;
 	
 	
 	/**
@@ -75,7 +80,7 @@ public class ClientArchive {
 	/**
 	 * 是否回访，0否，1是
 	 */
-	private Integer isSendDo;
+	private Integer isSecondDo;
 
 	public Integer getArchivesId() {
 		return archivesId;
@@ -101,11 +106,11 @@ public class ClientArchive {
 		this.doctorId = doctorId;
 	}
 
-	public String getQuestionnaireContext() {
+	public String getQuestionContext() {
 		return questionContext;
 	}
 
-	public void setQuestionnaireContext(String questionContext) {
+	public void setQuestionContext(String questionContext) {
 		this.questionContext = questionContext;
 	}
 
@@ -165,12 +170,12 @@ public class ClientArchive {
 		this.status = status;
 	}
 
-	public String getDoc_path() {
-		return doc_path;
+	public String getDocPath() {
+		return docPath;
 	}
 
-	public void setDoc_path(String doc_path) {
-		this.doc_path = doc_path;
+	public void setDocPath(String doc_path) {
+		this.docPath = doc_path;
 	}
 
 	public String getSecondQuestionContext() {
@@ -181,12 +186,20 @@ public class ClientArchive {
 		this.secondQuestionContext = secondQuestionContext;
 	}
 
-	public Integer getIsSendDo() {
-		return isSendDo;
+	public Integer getIsSecondDo() {
+		return isSecondDo;
 	}
 
-	public void setIsSendDo(Integer isSendDo) {
-		this.isSendDo = isSendDo;
+	public void setIsSecondDo(Integer isSendDo) {
+		this.isSecondDo = isSendDo;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 	
 	

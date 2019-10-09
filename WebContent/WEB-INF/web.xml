@@ -151,12 +151,22 @@
     <servlet-name>DoctorBaseServlet</servlet-name>
     <url-pattern>/doctor/DoctorBaseServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>ClientBaseServlet</servlet-name>
     <servlet-class>servlet.client.ClientBaseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ClientBaseServlet</servlet-name>
     <url-pattern>/client/base</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientSubServlet</display-name>
+    <servlet-name>ClientSubServlet</servlet-name>
+    <servlet-class>servlet.client.ClientSubServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientSubServlet</servlet-name>
+    <url-pattern>/client/ClientSubServlet</url-pattern>
   </servlet-mapping>
 </web-app>

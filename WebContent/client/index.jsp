@@ -211,22 +211,22 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					
 
 				<li>
-					<a href="#" class="dropdown-toggle"><i
-							class="icon-edit"></i><span class="menu-text"> 我的预约 </span><b
+					<a href="" class="dropdown-toggle"><i
+							class="icon-edit"></i><span class="menu-text"> 预约 </span><b
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)"
-								name="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin" title="消息查看" class="iframeurl"><i
-									class="icon-double-angle-right"></i>咨询申请</a></li>
+								name="${pageContext.request.contextPath }/client/ClientSubServlet?m=subDoctorList" title="可预约咨询师" class="iframeurl"><i
+									class="icon-double-angle-right"></i>可预约咨询师</a></li>
 							<li class="home"><a href="javascript:void(0)"
-								name="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser=admin" title="发送消息" class="iframeurl"><i
-									class="icon-double-angle-right"></i>我的咨询</a></li>
+								name="${pageContext.request.contextPath }/client/ClientSubServlet?m=subClientList" title="我的预约" class="iframeurl"><i
+									class="icon-double-angle-right"></i>我的预约</a></li>
 						</ul>
 					</li>
 					
-					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/base?m=clientIndex"
+					<li class="home"><a href="javascript:void(0)" name="${pageContext.request.contextPath }/client/ClientSubServlet?m=clientConsult"
 						class="iframeurl" title=""><i class="icon-dashboard"></i><span
-							class="menu-text"> 咨询历史 </span></a></li>
+							class="menu-text"> 我的咨询 </span></a></li>
 
 					<li>
 					<a href="#" class="dropdown-toggle"><i
