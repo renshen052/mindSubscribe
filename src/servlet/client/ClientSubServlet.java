@@ -101,6 +101,8 @@ public class ClientSubServlet extends HttpServlet {
 			
 			String doctorId = request.getParameter("doctorId");
 			
+			String clientDescription = request.getParameter("clientDescription");
+			
 			
 			
 			//返回questionId，，用"，"隔开
@@ -113,6 +115,7 @@ public class ClientSubServlet extends HttpServlet {
 			ClientArchive clientArchive = new ClientArchive();
 			clientArchive.setClientId(clientNow.getClientId());
 			clientArchive.setDoctorId(Integer.parseInt(doctorId));
+			clientArchive.setClientDescription(clientDescription);
 			clientArchive.setQuestionContext(mapJsonLevel.get("JSON"));
 			clientArchive.setLevel(Integer.parseInt(mapJsonLevel.get("level")));
 			clientArchive.setApplyTime(new Date());

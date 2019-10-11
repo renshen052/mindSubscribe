@@ -76,7 +76,7 @@
 		<div class="clearfix cl">
 			<label class="form-label col-2">主观描述</label>
 			<div class="formControls col-10">
-				<textarea id="context" name="context" cols="" rows="" class="textarea"  placeholder="说点什么...对您自身目前状况的描述，如：我现在感觉如何？遇到的问题是什么？" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,300)"></textarea>
+				<textarea id="context" name="clientDescription" cols="" rows="" class="textarea"  placeholder="说点什么...对您自身目前状况的描述，如：我现在感觉如何？遇到的问题是什么？" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="textarealength(this,300)"></textarea>
 				<p class="textarea-numberbar"><em class="textarea-length">0</em>/300</p>
 				
 			</div>

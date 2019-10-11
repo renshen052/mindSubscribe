@@ -119,12 +119,14 @@ public class ClientArchiveDao {
 		clientArchive.setClientId(rs.getInt("client_id"));
 		clientArchive.setDoctorId(rs.getInt("doctor_id"));
 		clientArchive.setQuestionContext(rs.getString("question_context"));
+		clientArchive.setClientDescription(rs.getString("client_description"));
 		clientArchive.setLevel(rs.getInt("level"));
 		clientArchive.setApplyTime(rs.getTimestamp("apply_time"));
 		clientArchive.setExpectPlace(rs.getString("expect_place"));
 		clientArchive.setExpectTime(rs.getString("expect_time"));
 		clientArchive.setStartDatetime(rs.getTimestamp("start_datetime"));
 		clientArchive.setEndDatetime(rs.getTimestamp("end_datetime"));
+		clientArchive.setSubPlace(rs.getString("sub_place"));
 		clientArchive.setStatus(rs.getInt("status"));
 		clientArchive.setDocPath(rs.getString("doc_path"));
 		clientArchive.setSecondQuestionContext(rs.getString("second_question_context"));
@@ -143,16 +145,18 @@ public class ClientArchiveDao {
 
 		String sql = "INSERT INTO `client_archive` ";
 		
-		sql += "( `client_id`, `doctor_id`, `question_context`, `level`, `apply_time`, `expect_place`, ";
+		sql += "( `client_id`, `doctor_id`, `question_context`,`client_description`, `level`, `apply_time`, `expect_place`, ";
 		
-		sql += " `expect_time`, `start_datetime`, `end_datetime`, `status`, `doc_path`, `second_question_context`, `is_second_do` )";
+		sql += " `expect_time`, `start_datetime`, `end_datetime`, `sub_place`,`status`, `doc_path`, `second_question_context`, `is_second_do` )";
 		
 		sql += "VALUES(?,?,?,?,?,?,  ?,?,?,?,?,?,?)";
 	
 		
 		return jdbcUtil.executeUpdate(sql, clientArchive.getClientId(),clientArchive.getDoctorId(),clientArchive.getQuestionContext()
+				,clientArchive.getClientDescription()
 				,clientArchive.getLevel(),clientArchive.getApplyTime(),clientArchive.getExpectPlace(),clientArchive.getExpectTime()
-				,clientArchive.getStartDatetime(),clientArchive.getEndDatetime(),clientArchive.getStatus(),clientArchive.getDocPath()
+				,clientArchive.getStartDatetime(),clientArchive.getEndDatetime(),clientArchive.getSubPlace()
+				,clientArchive.getStatus(),clientArchive.getDocPath()
 				,clientArchive.getSecondQuestionContext(),clientArchive.getIsSecondDo());
 	
 	}

@@ -24,6 +24,12 @@ public class ClientArchive {
 	 */
 	private String questionContext = "";
 	
+	
+	/**
+	 * 申请人主观描述
+	 */
+	private String clientDescription;
+	
 	/**
 	 * 评测结果,等级分数
 	 * 
@@ -55,6 +61,10 @@ public class ClientArchive {
 	 */
 	private Date endDatetime;
 	
+	/**
+	 * 咨询地点
+	 */
+	private String subPlace;
 	
 	/**
 	 * -1 失败，0 申请中，1 通过申请但未完成，2完成咨询但未完善资料, 3全部完成
@@ -212,6 +222,22 @@ public class ClientArchive {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public String getClientDescription() {
+		return clientDescription;
+	}
+
+	public void setClientDescription(String clientDescription) {
+		this.clientDescription = clientDescription;
+	}
+
+	public String getSubPlace() {
+		return subPlace;
+	}
+
+	public void setSubPlace(String subPlace) {
+		this.subPlace = subPlace;
 	}
 	
 	
