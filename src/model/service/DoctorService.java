@@ -187,4 +187,13 @@ public class DoctorService {
 		return doctorDao.getDoctorNum();
 	}
 
+	/**
+	 * 根据doctorId查询doctor
+	 * @param parseInt
+	 * @return
+	 */
+	public Doctor getDoctorById(int doctorId) {
+		return doctorDao.getDoctorByDoctorId(doctorId);
+	}
+
 }

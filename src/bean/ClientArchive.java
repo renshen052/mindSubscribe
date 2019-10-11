@@ -22,11 +22,11 @@ public class ClientArchive {
 	/**
 	 * 申请人(client)做的问卷 内容
 	 */
-	private String questionContext;
+	private String questionContext = "";
 	
 	/**
-	 * 评测结果
-	 * 0 轻微，1 严重，2 非常严重
+	 * 评测结果,等级分数
+	 * 
 	 */
 	private Integer level;
 	
@@ -38,12 +38,12 @@ public class ClientArchive {
 	/**
 	 * 申请人期望的咨询地点，最终只是一个参考
 	 */
-	private String expectPlace;
+	private String expectPlace = "";
 	
 	/**
 	 * 申请人期望的咨询时间，最终只是一个参考
 	 */
-	private String expectTime;
+	private String expectTime = "";
 	
 	/**
 	 * 咨询开始时间，几月几日几时
@@ -59,12 +59,12 @@ public class ClientArchive {
 	/**
 	 * -1 失败，0 未完成，1 通过申请但未完成，2完成咨询
 	 */
-	private Integer status;
+	private Integer status = 0;
 	
 	/**
 	 * 一次咨询的记录文档，命名：日期_来访者id_咨询师id.xxx
 	 */
-	private String docPath;
+	private String docPath = "";
 	
 	/**
 	 * 咨询师
@@ -75,12 +75,12 @@ public class ClientArchive {
 	/**
 	 * 回访记录内容
 	 */
-	private String secondQuestionContext;
+	private String secondQuestionContext = "";
 	
 	/**
 	 * 是否回访，0否，1是
 	 */
-	private Integer isSecondDo;
+	private Integer isSecondDo = 0;
 
 	public Integer getArchivesId() {
 		return archivesId;

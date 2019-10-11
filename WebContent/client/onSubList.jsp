@@ -86,7 +86,6 @@
 				<th>申请时间</th>
 				<th>期望时间</th>
 				<th>期望地点</th>
-				<th>风险等级</th>
 				<th >状态</th>                
 				<th >操作</th>
 			</tr>
@@ -103,12 +102,6 @@
           <td>${clientArchive.expectTime }</td>
           
           <td>${clientArchive.expectPlace }</td>
-          
-          <td>
-          <c:if test="${clientArchive.level eq 0 }"> 轻微 </c:if>
-          <c:if test="${clientArchive.level eq 1 }"> 严重 </c:if>
-          <c:if test="${clientArchive.level eq 2 }"> 非常严重 </c:if>
-          </td>
           
           <td>
           	 <c:if test="${clientArchive.status eq 0 }"> 待安排 </c:if>
@@ -139,15 +132,14 @@
 </html>
 <script>
 jQuery(function($) {
-	
-	
-				var oTable1 = $('#sample-table').dataTable( {
-				"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	var oTable1 = $('#sample-table').dataTable( {
+		 "bSort" : true, //是否启动各个字段的排序功能  
 		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
-		] } );
+		"bPaginate" : true, 
+		 "bInfo" : true, //是否显示页脚信息，DataTables插件左下角显示记录数  
+		"searching": true//搜索输入框显示
+		
+	} );
 				
 				
 				$('table th input:checkbox').on('click' , function(){

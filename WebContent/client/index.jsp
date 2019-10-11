@@ -146,7 +146,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 			<div class="navbar-header pull-left">
 					
 						<small>					
-						<img src="${pageContext.request.contextPath }/mutualResource/images/logo.png">
+						<img src="##${pageContext.request.contextPath }/mutualResource/images/logo.png">
 						</small>
 					
 				</div><!-- /.navbar-header -->

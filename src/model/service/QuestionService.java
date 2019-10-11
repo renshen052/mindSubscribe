@@ -1,10 +1,12 @@
 package model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Doctor;
 import bean.Question;
 import model.dao.QuestionDao;
 import utils.ResultDate;
@@ -13,6 +15,7 @@ import utils.Util;
 public class QuestionService {
 
 	QuestionDao questionDao = new QuestionDao();
+	
 	
 	/**
 	 * 添加一个预约问题
@@ -167,6 +170,64 @@ public class QuestionService {
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 
+	}
+
+	
+	/**
+	 * 通过questionIds来返回一个json字符串（包括用户回答内容，题目）
+	 * @param questionIds
+	 * @param request
+	 * @return
+	 * //题目内容context，是的分值answer_yes_score，否的分值answer_no_score，
+			//clientSelected用户选项的分值
+	 */
+	public HashMap<String,String> getJSON(String questionIds, HttpServletRequest request) {
+		
+		HashMap<String,String> mapJsonLevel = new HashMap<String,String>();
+		
+		String[] questions = questionIds.split(",");
+		
+		//计算分值
+		Integer level = 0;
+		
+		//构造JSON
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("{");
+		
+		for(String id : questions) {
+			
+			String questionId = id;
+			
+			String context = request.getParameter("context" + id);
+			
+			String answer_yes_score = request.getParameter("answer_yes_score" + id);
+			
+			String answer_no_score = request.getParameter("answer_no_score" + id);
+			
+			String clientSelected = request.getParameter(id);
+			
+			level += Integer.parseInt(clientSelected);
+			
+			
+			sb.append("\"" + questionId + "\":{");
+			sb.append("\"context\":\"" + context + "\",");
+			sb.append("\"answer_yes_score\":\"" + answer_yes_score + "\",");
+			sb.append("\"answer_no_score\":\"" + answer_no_score + "\",");
+			sb.append("\"clientSelected\":\"" + clientSelected + "\"");
+			sb.append("},");
+			
+		}
+		
+		//删掉多余的","号
+		sb.deleteCharAt(sb.length()-1);
+		
+		sb.append("}");
+		
+		mapJsonLevel.put("JSON", sb.toString());
+		mapJsonLevel.put("level", level+"");
+		
+		return mapJsonLevel;
 	}
 	
 	

@@ -142,13 +142,14 @@
 jQuery(function($) {
 	
 	
-				var oTable1 = $('#sample-table').dataTable( {
-				"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	var oTable1 = $('#sample-table').dataTable( {
+		 "bSort" : true, //是否启动各个字段的排序功能  
 		"bStateSave": true,//状态保存
-		"aoColumnDefs": [
-		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-		  {"orderable":false,"aTargets":[0,8,9]}// 制定列不参与排序
-		] } );
+		"bPaginate" : true, 
+		 "bInfo" : true, //是否显示页脚信息，DataTables插件左下角显示记录数  
+		"searching": true//搜索输入框显示
+		
+	} );
 				
 				
 				$('table th input:checkbox').on('click' , function(){
@@ -179,15 +180,5 @@ jQuery(function($) {
 				
 			});
 
-
-
- laydate({
-    elem: '#startRegionTime',
-    event: 'focus' 
-}); 
- laydate({
-	    elem: '#endRegionTime',
-	    event: 'focus' 
-	}); 
 
 </script>

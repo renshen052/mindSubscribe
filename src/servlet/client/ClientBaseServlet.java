@@ -43,8 +43,6 @@ public class ClientBaseServlet extends HttpServlet {
 
 		String m = request.getParameter("m");
 		
-		System.out.println("ClientBaseServlet控制器，m=" + m);
-
 		// 当前登录用户
 		Client clientNow = (Client) request.getSession().getAttribute(ClientLoginServlet.LOGIN_CLIENT);
 

@@ -129,4 +129,28 @@ public class ClientArchiveDao {
 
 		return clientArchive;
 	}
+
+	
+	/**
+	 * 添加一次申请,并且返回响应
+	 * @param clientArchive
+	 * @param response 
+	 */
+	public int addClientArchive(ClientArchive clientArchive) {
+
+		String sql = "INSERT INTO `client_archive` ";
+		
+		sql += "( `client_id`, `doctor_id`, `question_context`, `level`, `apply_time`, `expect_place`, ";
+		
+		sql += " `expect_time`, `start_datetime`, `end_datetime`, `status`, `doc_path`, `second_question_context`, `is_second_do` )";
+		
+		sql += "VALUES(?,?,?,?,?,?,  ?,?,?,?,?,?,?)";
+	
+		
+		return jdbcUtil.executeUpdate(sql, clientArchive.getClientId(),clientArchive.getDoctorId(),clientArchive.getQuestionContext()
+				,clientArchive.getLevel(),clientArchive.getApplyTime(),clientArchive.getExpectPlace(),clientArchive.getExpectTime()
+				,clientArchive.getStartDatetime(),clientArchive.getEndDatetime(),clientArchive.getStatus(),clientArchive.getDocPath()
+				,clientArchive.getSecondQuestionContext(),clientArchive.getIsSecondDo());
+	
+	}
 }

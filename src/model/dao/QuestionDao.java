@@ -44,9 +44,11 @@ public class QuestionDao {
 		if(Util.isNotEmpty(context)) {
 			
 			sql += " AND context like concat('%',?,'%')";
+			sql += " ORDER BY question_num";
 			rs = jdbcUtil.executeQuery(sql,context);
 			
 		}else {
+			sql += " ORDER BY question_num";
 			rs = jdbcUtil.executeQuery(sql);
 		}
 
