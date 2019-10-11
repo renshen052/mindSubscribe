@@ -46,23 +46,23 @@
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="icon-coffee green"></i>
-												来访者登录
+												咨询师登录
 											</h4>
 
 											<%-- <div class="login_icon"><img src="${pageContext.request.contextPath }/mutualResource/images/login.png" /></div> --%>
 
-											<form action="${pageContext.request.contextPath }/client/ClientLoginServlet?m=saveLogin" method="post" >
+											<form action="${pageContext.request.contextPath }/doctor/DoctorLoginServlet?m=saveLogin" method="post" >
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="登录名"  name="clientName" value="${param.clientName }"/>
+															<input type="text" class="form-control" placeholder="登录名"  name="doctorName" value="${param.doctorName }"/>
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" name="clientPwd">
+															<input type="password" class="form-control" placeholder="密码" name="doctorPwd">
 															<i class="icon-lock"></i>
 														</span>
 													</label>
@@ -114,9 +114,9 @@ $(document).ready(function(){
 	
 	$("#login_btn").on('click' ,function(){
 		
-		var adminName = $("input[name=clientName]");
+		var adminName = $("input[name=doctorName]");
 		  
-		var adminPwd = $("input[name=clientPwd]");
+		var adminPwd = $("input[name=doctorPwd]");
 		
 		if(adminName.val() == ""){
 			

@@ -196,4 +196,22 @@ public class DoctorService {
 		return doctorDao.getDoctorByDoctorId(doctorId);
 	}
 
+	/**
+	 * 通过doctorName获得咨询师
+	 * @param doctorName
+	 * @return
+	 */
+	public Doctor getDoctor(String doctorName) {
+		return doctorDao.getDoctor(doctorName);
+	}
+
+	/**
+	 * 修改咨询师密码
+	 * @param doctorId
+	 * @param newPwd
+	 */
+	public int updateDoctorPwd(Integer doctorId, String newPwd) {
+		return doctorDao.updateDoctorPwd(doctorId,newPwd);
+	}
+
 }

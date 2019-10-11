@@ -57,7 +57,7 @@ public class ClientArchive {
 	
 	
 	/**
-	 * -1 失败，0 未完成，1 通过申请但未完成，2完成咨询
+	 * -1 失败，0 申请中，1 通过申请但未完成，2完成咨询但未完善资料, 3全部完成
 	 */
 	private Integer status = 0;
 	
@@ -71,6 +71,10 @@ public class ClientArchive {
 	 */
 	private Doctor doctor;
 	
+	/**
+	 * 来访者
+	 */
+	private Client client;
 	
 	/**
 	 * 回访记录内容
@@ -200,6 +204,14 @@ public class ClientArchive {
 
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	
 	

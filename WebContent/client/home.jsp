@@ -44,7 +44,7 @@
           <ul class="list">
           	<c:forEach items="${messageList }" var="message">
           	
-          		<li><i class="icon-bell red"></i><a title="查看消息" href="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin">
+          		<li><i class="icon-bell red"></i><a title="查看消息" href="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage">
           	 	<fmt:formatDate value="${message.sendTime}" pattern="yyyy-MM-dd HH:mm:ss" />
           		&nbsp;
           		来自${message.senderName}的消息 &nbsp;${message.context }
@@ -60,7 +60,7 @@
           	<c:forEach items="${announcmentList }" var="announcment">
           	
           		<li><i class="icon-bell red"></i>
-          		<a title="公告管理" href="${pageContext.request.contextPath }/admin/AnnouncmentServlet?m=listAnnouncment">
+          		<a title="公告管理" href="${pageContext.request.contextPath }/announcment/AnnouncmentServlet?m=listAnnouncment">
           			<b>${announcment.title}:</b>&nbsp;
           			${announcment.context}&nbsp;---${announcment.admin.name}&nbsp;
           	 		<fmt:formatDate value="${message.sendTime}" pattern="yyyy-MM-dd HH:mm:ss" />

@@ -234,10 +234,10 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)"
-								name="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin" title="消息查看" class="iframeurl"><i
+								name="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser" title="消息查看" class="iframeurl"><i
 									class="icon-double-angle-right"></i>消息查看</a></li>
 							<li class="home"><a href="javascript:void(0)"
-								name="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser=admin" title="发送消息" class="iframeurl"><i
+								name="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser" title="发送消息" class="iframeurl"><i
 									class="icon-double-angle-right"></i>消息发送</a></li>
 						</ul>
 					</li>

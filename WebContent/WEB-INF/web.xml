@@ -87,7 +87,7 @@
     <description></description>
     <display-name>DoctorLoginServlet</display-name>
     <servlet-name>DoctorLoginServlet</servlet-name>
-    <servlet-class>servlet.client.DoctorLoginServlet</servlet-class>
+    <servlet-class>servlet.doctor.DoctorLoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DoctorLoginServlet</servlet-name>
@@ -149,7 +149,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DoctorBaseServlet</servlet-name>
-    <url-pattern>/doctor/DoctorBaseServlet</url-pattern>
+    <url-pattern>/doctor/base</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ClientBaseServlet</servlet-name>
@@ -168,5 +168,15 @@
   <servlet-mapping>
     <servlet-name>ClientSubServlet</servlet-name>
     <url-pattern>/client/ClientSubServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoctorSubServlet</display-name>
+    <servlet-name>DoctorSubServlet</servlet-name>
+    <servlet-class>servlet.doctor.DoctorSubServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoctorSubServlet</servlet-name>
+    <url-pattern>/doctor/DoctorSubServlet</url-pattern>
   </servlet-mapping>
 </web-app>

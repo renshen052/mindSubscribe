@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.Client;
 import bean.ClientArchive;
 import bean.Doctor;
 import utils.jdbc.JdbcUtil;
@@ -67,6 +68,8 @@ public class ClientArchiveDao {
 		sql += " FROM `client_archive` ca LEFT JOIN doctor d ON ca.doctor_id=d.doctor_id";
 		
 		sql += "  WHERE client_id=? AND status >= ? AND status <= ?";
+		
+		sql += " ORDER BY start_datetime";
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, clientId, statusStart,statusEnd);
 
@@ -152,5 +155,58 @@ public class ClientArchiveDao {
 				,clientArchive.getStartDatetime(),clientArchive.getEndDatetime(),clientArchive.getStatus(),clientArchive.getDocPath()
 				,clientArchive.getSecondQuestionContext(),clientArchive.getIsSecondDo());
 	
+	}
+
+
+	/**
+	 * 查询咨询师咨询记录
+	 * @param doctorId
+	 * @param statusStart
+	 * @param statusEnd
+	 * @return
+	 */
+	public List<ClientArchive> listDoctorArchive(Integer doctorId, int statusStart,int statusEnd) {
+		
+		List<ClientArchive> list = new ArrayList<>();
+
+		String sql = "SELECT *";
+
+		sql += " FROM `client_archive` ca LEFT JOIN client c ON ca.client_id=c.client_id";
+		
+		sql += "  WHERE doctor_id=? AND status >= ? AND status <= ?";
+		
+		sql += " ORDER BY start_datetime";
+
+		ResultSet rs = jdbcUtil.executeQuery(sql, doctorId, statusStart,statusEnd);
+
+		try {
+			while (rs.next()) {
+
+				ClientArchive clientArchive = getCAList(rs);
+				Client client = new Client();
+				client.setClientId(clientArchive.getClientId());
+				client.setName(rs.getString("c.name"));
+				clientArchive.setClient(client);
+				
+				list.add(clientArchive);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+		}
+
+		return list;
 	}
 }

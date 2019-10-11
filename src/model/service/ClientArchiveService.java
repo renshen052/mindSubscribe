@@ -71,4 +71,33 @@ public class ClientArchiveService {
 		
 		
 	}
+
+	/**
+	 * 查询 id为doctorId 的咨询师，接受到的所有申请(未通过的)
+	 * @param doctorId
+	 * @return
+	 */
+	public List<ClientArchive> getAllSubFromClient(Integer doctorId) {
+		return clientArchiveDao.listDoctorArchive(doctorId,0,0);
+	}
+
+	
+	/**
+	 * 显示咨询师所有正在咨询中的记录
+	 * @param doctorId
+	 * @return
+	 */
+	public List<ClientArchive> subOnList(Integer doctorId) {
+		return clientArchiveDao.listDoctorArchive(doctorId,1,2);
+	}
+
+	
+	/**
+	 * 显示咨询师已经完成的咨询
+	 * @param doctorId
+	 * @return
+	 */
+	public List<ClientArchive> getSubOk(Integer doctorId) {
+		return clientArchiveDao.listDoctorArchive(doctorId,3,3);
+	}
 }

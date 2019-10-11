@@ -267,4 +267,75 @@ public class DoctorDao {
 		return num;
 	}
 
+	
+	/**
+	 * 通过doctorName获得咨询师
+	 * @param doctorName
+	 * @return
+	 */
+	public Doctor getDoctor(String doctorName) {
+
+		String sql = "SELECT * FROM doctor WHERE doctor_name=?";
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, doctorName);
+		
+		Doctor doctor = null;
+		
+		try {
+			if(rs.next()) {
+				
+				doctor = new Doctor();
+				doctor.setDoctorId(rs.getInt("doctor_id"));
+				doctor.setDoctorName(rs.getString("doctor_name"));
+				doctor.setDoctorPwd(rs.getString("doctor_pwd"));
+				doctor.setName(rs.getString("name"));
+				doctor.setSex(rs.getInt("sex"));
+				doctor.setAge(rs.getInt("age"));
+				doctor.setPhone(rs.getString("phone"));
+				doctor.setEmail(rs.getString("email"));
+				doctor.setIsActive(rs.getInt("is_active"));
+				doctor.setLevel(rs.getString("level"));
+				doctor.setSkill(rs.getString("skill"));
+				doctor.setImg(rs.getString("img"));
+				doctor.setPlace(rs.getString("place"));
+				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			jdbcUtil.close();
+		}
+		
+		return doctor;
+	}
+
+	
+	/**
+	 * 修改咨询师密码
+	 * @param doctorId
+	 * @param newPwd
+	 */
+	public int updateDoctorPwd(Integer doctorId, String newPwd) {
+
+		String sql = "UPDATE doctor SET ";
+		
+		sql += "doctor_pwd=?";
+		
+		sql += "WHERE doctor_id = ?";
+		
+		return jdbcUtil.executeUpdate(sql,newPwd,doctorId);
+	}
+
 }
