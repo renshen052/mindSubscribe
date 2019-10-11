@@ -5,7 +5,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>咨询预约系统咨询师端  </title>
+		<title>咨询师端  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="${pageContext.request.contextPath }/mutualResource/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/mutualResource/assets/css/font-awesome.min.css" />
@@ -192,7 +192,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					</script>
 					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
                      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						咨询师系统  
+						咨询师  
 						</div>
 						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
 							<span class="btn btn-success"></span>

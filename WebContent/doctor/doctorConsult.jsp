@@ -87,7 +87,7 @@
 				<th>咨询结束时间</th>
 				<th>咨询地点</th>
 				<th >咨询文档</th> 
-				<th >操作</th>
+				<th>回访</th>      
 			</tr>
 		</thead>
 	<tbody>
@@ -97,14 +97,15 @@
            
           <td>${clientArchive.client.name }</td>
           
-          <td class="text-l"><fmt:formatDate value="${clientArchive.startDatetime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+          <td class="text-l"><fmt:formatDate value="${clientArchive.applyTime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
           
-          <td class="text-l"><fmt:formatDate value="${clientArchive.endDatetime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+          <td>${clientArchive.expectTime }</td>
           
+          <td>${clientArchive.expectPlace }</td>
           
-          <td>${clientArchive.subPlace }</td>
+          <td>${clientArchive.clientDescription }</td>
           
-          <td>${clientArchive.docPath }</td>
+          <td>${clientArchive.secondQuestionContext }</td>
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系咨询者</a>
@@ -120,7 +121,6 @@
          
       </tbody>
 	</table>
-	<b>完成咨询后请点击"完成"，结束本次咨询</b>
    </div>
   </div>
  </div>
@@ -168,15 +168,5 @@ jQuery(function($) {
 				
 			});
 
-
-
- laydate({
-    elem: '#startRegionTime',
-    event: 'focus' 
-}); 
- laydate({
-	    elem: '#endRegionTime',
-	    event: 'focus' 
-	}); 
 
 </script>

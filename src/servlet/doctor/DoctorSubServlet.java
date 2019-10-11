@@ -54,7 +54,7 @@ public class DoctorSubServlet extends HttpServlet {
 			List<ClientArchive> list = clientArchiveService.getAllSubFromClient(doctorNow.getDoctorId());
 			
 			
-			request.setAttribute("subClientList", list);
+			request.setAttribute("clientArchiveList", list);
 
 			request.getRequestDispatcher("/doctor/subClientList.jsp").forward(request, response);
 

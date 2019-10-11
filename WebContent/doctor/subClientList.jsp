@@ -82,11 +82,12 @@
        <table class="table table-striped table-bordered table-hover" id="sample-table">
 		<thead>
 		 <tr>
- 				<th >咨询者</th>
-				<th>咨询开始时间</th>
-				<th>咨询结束时间</th>
-				<th>咨询地点</th>
-				<th >咨询文档</th> 
+ 				<th >申请者</th>
+				<th>申请时间</th>
+				<th>期望时间</th>
+				<th>期望地点</th>
+				<th>主观描述</th>
+				<th >问卷分数</th>                
 				<th >操作</th>
 			</tr>
 		</thead>
@@ -97,19 +98,21 @@
            
           <td>${clientArchive.client.name }</td>
           
-          <td class="text-l"><fmt:formatDate value="${clientArchive.startDatetime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+          <td class="text-l"><fmt:formatDate value="${clientArchive.applyTime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
           
-          <td class="text-l"><fmt:formatDate value="${clientArchive.endDatetime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+          <td>${clientArchive.expectTime }</td>
           
+          <td>${clientArchive.expectPlace }</td>
           
-          <td>${clientArchive.subPlace }</td>
+          <td>${clientArchive.clientDescription }</td>
           
-          <td>${clientArchive.docPath }</td>
+          <td>${clientArchive.level }</td>
           
           <td class="td-manage">
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系咨询者</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">上传文档</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">完成咨询</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系申请者</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">查看详情</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">安排咨询</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">驳回</a>
           </td>
           
 		</tr>
@@ -120,7 +123,7 @@
          
       </tbody>
 	</table>
-	<b>完成咨询后请点击"完成"，结束本次咨询</b>
+	<b>安排咨询前请与来访者协商具体的时间地点</b>
    </div>
   </div>
  </div>

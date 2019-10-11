@@ -190,7 +190,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 					</script>
 					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
                      <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						网站后台管理系统  
+						管理员  
 						</div>
 						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
 							<span class="btn btn-success"></span>
