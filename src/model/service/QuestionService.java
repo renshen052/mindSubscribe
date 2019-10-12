@@ -197,13 +197,13 @@ public class QuestionService {
 		
 		for(String id : questions) {
 			
-			String questionId = id;
+			String questionId = "question" + id;
 			
 			String context = request.getParameter("context" + id);
 			
-			String answer_yes_score = request.getParameter("answer_yes_score" + id);
+			String answer_yes_score = request.getParameter("answerYesScore" + id);
 			
-			String answer_no_score = request.getParameter("answer_no_score" + id);
+			String answer_no_score = request.getParameter("answerNoScore" + id);
 			
 			String clientSelected = request.getParameter(id);
 			

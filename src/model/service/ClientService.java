@@ -59,7 +59,7 @@ public class ClientService {
 	
 
 	/**
-	 * 通过doctor的doctorId 查询doctor,并且做响应
+	 * 通过client的clientId 查询client,并且做响应
 	 * 
 	 * @param response
 	 * @param parseInt
@@ -113,6 +113,16 @@ public class ClientService {
 	 */
 	public int updateClientBase(Client client, Integer clientId) {
 		return clientDao.updateClientBase(client,clientId);
+	}
+
+
+	/**
+	 * 拿到Client
+	 * @param clientId
+	 * @return
+	 */
+	public Client getClientByClientId(int clientId) {
+		return clientDao.getClientByClientId(clientId);
 	}
 	
 	

@@ -89,6 +89,8 @@
 		<c:forEach items="${questionList }" var="question" varStatus="statu">
 		
 		<c:set var="questionIds" value="${questionIds }${question.questionId },"></c:set>
+		<input type="hidden" name="answerYesScore${question.questionId }" value="${question.answerYesScore }"/>
+		<input type="hidden" name="answerNoScore${question.questionId }" value="${question.answerNoScore }"/>
 		
 		<div class="clearfix cl" >
 		<label class="form-label col-2">&nbsp;</label>
@@ -102,12 +104,13 @@
 						
 						<input name="${question.questionId }" type="radio" class="ace" value="${question.answerYesScore }">
 						
-						<span class="lbl">是</span>
 						
+						<span class="lbl">是</span>
 						
 						&nbsp;&nbsp;&nbsp; 
 						
 						<input name="${question.questionId }" type="radio" class="ace" value="${question.answerNoScore }">
+						
 						<span class="lbl">否</span>
 						
 						</span>

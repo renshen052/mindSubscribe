@@ -110,7 +110,7 @@
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.doctor.doctorId}','${clientArchive.doctor.name}','doctor')">联系咨询师</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">查看详情</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="cancelSub(${clientArchive.archivesId})">取消预约</a>
           </td>
           
 		</tr>
@@ -170,7 +170,11 @@ jQuery(function($) {
 				
 			});
 
-
+function cancelSub(){
+	
+	layer.msg('请联系咨询师撤销申请!');
+	
+}
 
  laydate({
     elem: '#startRegionTime',

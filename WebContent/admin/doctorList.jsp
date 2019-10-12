@@ -371,14 +371,6 @@ $("#deleteList").on('click',function(){
 	 
 	 //清空上次的
 	 removeForm();
-	  
-	 
-	 /* $("input:radio[name='sex']").removeAttr('checked');
-	 
-	 $("input:radio[name='isActive']").removeAttr('checked');
-	 
-	 $("select[name='level']").find("option").removeAttr("selected");
-	 $("select[name='level']").find("option[value='暂无']").attr("selected",true);  */
 	 
     layer.open({
         type: 1,

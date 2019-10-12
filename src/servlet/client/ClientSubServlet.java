@@ -137,6 +137,18 @@ public class ClientSubServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("/client/clientConsult.jsp").forward(request, response);
 
+		}else if("evaluateSub".equals(m)) {
+			//评价本次咨询
+			
+			String archivesId = request.getParameter("archivesId");
+			
+			String context = request.getParameter("context");
+			
+			System.out.println(context + "---");
+			
+			//评价本次咨询
+			clientArchiveService.evaluateSub(archivesId,context,response);
+			
 		}
 
 	}

@@ -76,7 +76,6 @@
 <div class="page-content clearfix">
     <div id="Member_Ratings">
       <div class="d_Confirm_Order_style">
-     
      <!-- 表格 -->
      <div class="table_menu_list">
        <table class="table table-striped table-bordered table-hover" id="sample-table">
@@ -110,9 +109,9 @@
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系申请者</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">查看详情</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">安排咨询</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">驳回</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub('${clientArchive.archivesId}','${clientArchive.clientId}')">查看详情</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="consult(this,'${clientArchive.archivesId}','${clientArchive.client.clientId}')">安排咨询</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="cancelSub(this,'${clientArchive.archivesId}','${clientArchive.client.clientId}','${clientArchive.applyTime }')">驳回申请</a>
           </td>
           
 		</tr>
@@ -129,6 +128,27 @@
  </div>
 </div>
 <%@include file="/mutualResource/form/SendMessageForm.jsp"%>
+<!--添加用户图层-->
+<div class="add_menber" id="add_menber_style" style="display:none">
+  <form action="" method="post" id="sub">
+    <ul class=" page-content">
+    <li class="adderss">
+    <label class="label_name">咨询：</label>
+    
+    <input style="width: 200px;" id="startDatetime" name="startDatetime" type="text" class="inline laydate-icon" placeholder="开始时间" />
+    到
+    <input  style="width: 200px;" id="endDatetime" name="endDatetime" type="text" class="inline laydate-icon" placeholder="结束时间" />
+    <span id="dateTime"></span>
+    </li>
+     
+     <li class="adderss"><label class="label_name">咨询地址：</label><span class="add_name"><input name="subPlace" style="width: 300px;" id="subPlace" type="text"  class="text_add"  /></span> <div class="prompt r_f"></div> 
+     <span id="place"></span>
+     </li>
+     
+    </ul>
+    
+   </form>
+ </div>
 </body>
 </html>
 <script>
@@ -171,15 +191,161 @@ jQuery(function($) {
 				
 			});
 
+function showSub(archivesId,clientId){
+	
+	window.location = "${pageContext.request.contextPath }/doctor/DoctorSubServlet?m=subShow&archivesId="+archivesId+"&clientId="+clientId;
+	
+}
 
+/**
+ * 驳回申请
+ */
+function cancelSub(obj,archivesId,clientId,applyTime){
+	
+layer.confirm('确认要驳回吗？',function(index){
+		
+		//ajax
+		$.ajax({
+		type : "GET",
+		url : "${pageContext.request.contextPath}/doctor/DoctorSubServlet?m=updateStatusFalse&archivesId="+archivesId+"&clientId="+clientId+"&applyTime="+applyTime,
+		dataType : "json",
+		success : function(data) {
+			
+			if (data['isSuccess'] == true) {
+				
+				layer.msg('已驳回!',{icon: 5,time:1000});
+				
+				//删除页面上的
+				$(obj).parents("tr").remove();
+				
+				
+			}else{
+				layer.msg('驳回失败! '+data['msg'],{icon: 0,time:1000});
+			}
+		}
+	});
+		
+	});
+	
+	
+}
 
- laydate({
-    elem: '#startRegionTime',
-    event: 'focus' 
-}); 
- laydate({
-	    elem: '#endRegionTime',
-	    event: 'focus' 
-	}); 
+/**
+ * 安排咨询
+ */
+ function consult(obj,archivesId,clientId){
+		
+	 //清空上次的
+	// removeForm();
+	 
+    layer.open({
+        type: 1,
+        title: '安排咨询',
+		maxmin: true, 
+        area : ['800px' , ''],
+        content:$('#add_menber_style'),
+		btn:['安排','取消'],
+		yes:function(index,layero){	
+			
+			var msg = "";
+			
+			if(isAble()){
+				//如果数据合法
+				
+				//ajax上传$("#xx").serialize()
+				var formData = $($(layero).find('form')[0]).serialize();
+			     $.ajax({  
+			    	 type : "GET",
+			 		 url : "${pageContext.request.contextPath}/doctor/DoctorSubServlet?m=planSub&archivesId="+archivesId+"&clientId="+clientId,
+			 		 dataType : "json",
+			          data: formData,  
+			          success: function (data) { 
+			        	  
+			        	  if(data.isSuccess){
+			        		  
+			        		  msg = "安排成功，详情请在\"咨询中\"查看！";
+			        		  
+			        		  layer.alert(msg,{
+				 	               title: '提示框',				
+				 				icon:1,		
+				 				  });
+			        		  
+			        		//删除页面上的
+			  				$(obj).parents("tr").remove();
+			        		
+			        		  
+			        	  }else{
+			        		  msg = data.msg;
+			        		  layer.alert(msg,{
+				 	               title: '提示框',				
+				 				icon:1,		
+				 				  });
+			        	  }
+			          },  
+			          error: function (returndata) {  
+			        	  msg = "失败请刷新后重试";  
+			        	  layer.alert(msg,{
+			 	               title: '提示框',				
+			 				icon:1,		
+			 				  });
+			          }  
+			     }); 
+			     
+			     layer.close(index);
+				
+				
+			}else{
+				
+				layer.alert("请填写正确的数据！",{
+	 	               title: '提示框',				
+	 				icon:1,		
+	 				  });
+				
+			}
+		     
+		}
+    });
+	
+}
+
+function isAble(){
+	
+	
+	var isOk = true;
+	
+	if($("#startDatetime").val()=="" || $("#endDatetime").val()==""){
+		
+		$("#dateTime").html("<span class=\"msgErr\" style=\"color:red\">请选择咨询时间！</span>")
+		
+		isOk = false;
+	
+	}
+	if($.trim($("#subPlace").val())==""){
+		
+		$("#place").html("<span class=\"msgErr\" style=\"color:red\">请填写咨询地点！</span>");
+		
+		isOk = false;
+
+	}
+	return isOk;
+	
+}
+
+	 laydate({
+		    elem: '#startDatetime',
+		    event: 'focus' ,
+		   format: 'YYYY-MM-DD hh:mm:ss',
+		    type: 'datetime',
+		    istime: true, //必须填入时间 
+		    min: laydate.now(0,"YYYY-MM-DD hh:mm:ss") //设定最小日期为当前日期
+		}); 
+		 laydate({
+			    elem: '#endDatetime',
+			    event: 'focus', 
+			   format: 'YYYY-MM-DD hh:mm:ss',
+			   istime: true, //必须填入时间 
+			    type: 'datetime',
+			    min: laydate.now(0,"YYYY-MM-DD hh:mm:ss") //设定最小日期为当前日期
+			}); 
 
 </script>

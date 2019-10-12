@@ -104,12 +104,12 @@
           
           <td>${clientArchive.subPlace }</td>
           
-          <td>${clientArchive.docPath }</td>
+          <td id="">${clientArchive.docPath }</td>
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系咨询者</a>
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">上传文档</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">完成咨询</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="finshSub(this,'${clientArchive.archivesId}','${clientArchive.client.clientId}')">完成咨询</a>
           </td>
           
 		</tr>
@@ -167,16 +167,51 @@ jQuery(function($) {
 				
 				
 			});
+			
+/**
+ * 完成咨询
+ */
+function finshSub(obj,archivesId,clientId,applyTime){
+	
+layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档必须上传），如果您已经完成，请点击确定！',function(index){
+		
+		if($(obj).parents("tr").find("#doc").val() == ""){
+			
+			layer.msg("您还未上传文档！",{icon: 0});
+			
+		}else{
+			
+			
+			//ajax
+			$.ajax({
+			type : "GET",
+			url : "${pageContext.request.contextPath}/doctor/DoctorSubServlet?m=updateStatusFinish&archivesId="+archivesId+"&clientId="+clientId+"&applyTime="+applyTime,
+			dataType : "json",
+			success : function(data) {
+				
+				if (data['isSuccess'] == true) {
+					
+					layer.msg('咨询完成!',{icon: 5,time:1000});
+					
+					//删除页面上的
+					$(obj).parents("tr").remove();
+					
+					
+				}else{
+					layer.msg(data['msg'],{icon: 0,time:1000});
+				}
+			}
+		});
+			
+			
+		}
+				
+		
+		
+	});
 
-
-
- laydate({
-    elem: '#startRegionTime',
-    event: 'focus' 
-}); 
- laydate({
-	    elem: '#endRegionTime',
-	    event: 'focus' 
-	}); 
+	
+	
+}
 
 </script>

@@ -87,7 +87,7 @@
 				<th>咨询开始时间</th>
 				<th>咨询结束时间</th>
 				<th>咨询记录文档</th>
-				<th>是否回访</th>
+				<th>回访评价</th>
 				<th >操作</th>
 			</tr>
 		</thead>
@@ -114,12 +114,12 @@
           </td>
           
           <td>
-          	${clientArchive.isSecondDo eq 0 ? "否" : "是" }
+          	${clientArchive.secondQuestionContext}
           </td>
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.doctor.doctorId}','${clientArchive.doctor.name}','doctor')">联系咨询师</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">查看详情</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="evaluateSub(${clientArchive.archivesId})">评价一下</a>
           </td>
           
 		</tr>
@@ -136,6 +136,24 @@
  </div>
 </div>
 <%@include file="/mutualResource/form/SendMessageForm.jsp"%>
+
+<!--评价的弹出层 -->
+<div class="add_menber" id="evaluateSubDiv" style="display:none">
+<form id="evaluateSubForm">
+	<ul class=" page-content">
+
+		<li><label class="label_name">评价内容:</label> <textarea
+				name="context" id="context" class="textarea"
+				onKeyUp="textarealength(this,200)" cols="50" rows="8"></textarea>
+			<p class="textarea-numberbar">
+				<em class="textarea-length">0</em>/200
+			</p>
+			<div style="color:red" class="prompt r_f" id="evaluateSubFormDiv"></div></li>
+	</ul>
+
+</form>
+</div>
+
 </body>
 </html>
 <script>
@@ -179,6 +197,97 @@ jQuery(function($) {
 				
 				
 			});
+function evaluateSub(archivesId){
+	
+	layer.open({
+        type: 1,
+        title: '对本次咨询评价',
+		maxmin: true, 
+		shadeClose: false, //点击遮罩关闭层
+        area : ['430px' , '390px'],
+        content:$('#evaluateSubDiv'),
+		btn:['确认','取消'],
+		yes:function(index,layero){	
+			
+			var msg = "";
+			
+			if(isAble()){
+				//如果数据合法
+				
+				//ajax上传
+			     $.ajax({  
+			          url: '${pageContext.request.contextPath }/client/ClientSubServlet?m=evaluateSub&archivesId='+archivesId ,  
+			          type: 'POST',  
+			          dataType:'json', 
+			          data: $("#evaluateSubForm").serialize(),  
+			          cache: false,  
+			          success: function (data) { 
+			        	  
+			        	  if(data.isSuccess){
+			        		  
+			        		  msg = "评价成功！";
+			        		  
+			        		  $('#evaluateSubFormDiv').val("");
+			        		  layer.alert(msg,
+						    		  
+			   	 	               {title: '提示框',				
+			   	 					icon:1,	}	,
+			   	 					function(){
+			   	 						location.reload();
+			   	 				  }); 
+			        		  
+			        	  }else{
+			        		  msg = data.msg;
+			        		  layer.alert(msg,
+			   	 	               {title: '提示框',				
+			   	 					icon:1,	}
+			   	 					);
+			        	  }
+			          },  
+			          error: function (returndata) {  
+			        	  msg = "失败请刷新后重试"; 
+			        	  layer.alert(msg,
+					    		  
+				 	               {title: '提示框',				
+				 					icon:1,	}
+				 					);
+			        	  
+			          }  
+			     }); 
+				
+			     layer.close(index);
+			     
+				
+			}else{
+				
+				layer.alert("请填写正确的数据！",{
+	 	               title: '提示框',				
+	 				icon:1,		
+	 				  });
+				
+			}
+		     
+		}
+    });
+	
+	
+}
+/**
+ * 对表单验证合法性
+ */
+ function isAble(){
+	
+	var isOk = true;
+	
+	var text = $.trim($("#evaluateSubForm").find("#context").val());
 
+	if(text.length > 200 || text ==""){
+		isOk = false;
+		$("#evaluateSubFormDiv").html("消息长度为1-200字符");
+	}
+	 
+	 return isOk;
+	
+}
 
 </script>

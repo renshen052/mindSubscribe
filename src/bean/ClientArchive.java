@@ -64,7 +64,7 @@ public class ClientArchive {
 	/**
 	 * 咨询地点
 	 */
-	private String subPlace;
+	private String subPlace = "未定";
 	
 	/**
 	 * -1 失败，0 申请中，1 通过申请但未完成，2完成咨询但未完善资料, 3全部完成

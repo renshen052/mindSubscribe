@@ -149,7 +149,7 @@ public class ClientArchiveDao {
 		
 		sql += " `expect_time`, `start_datetime`, `end_datetime`, `sub_place`,`status`, `doc_path`, `second_question_context`, `is_second_do` )";
 		
-		sql += "VALUES(?,?,?,?,?,?,  ?,?,?,?,?,?,?)";
+		sql += "VALUES(?,?,?,?,?,?,?,?,  ?,?,?,?,?,?,?)";
 	
 		
 		return jdbcUtil.executeUpdate(sql, clientArchive.getClientId(),clientArchive.getDoctorId(),clientArchive.getQuestionContext()
@@ -212,5 +212,99 @@ public class ClientArchiveDao {
 		}
 
 		return list;
+	}
+
+	
+	/**
+	 * 通过archivesId得到ClientArchive对象
+	 * @param parseInt
+	 * @return
+	 */
+	public ClientArchive getClientArchiveById(int archivesId) {
+		
+		ClientArchive clientArchive = null;
+		
+		String sql = "SELECT *";
+
+		sql += " FROM `client_archive`";
+		
+		sql += "  WHERE archives_id=?";
+
+		ResultSet rs = jdbcUtil.executeQuery(sql, archivesId);
+
+		try {
+			if (rs.next()) {
+
+				clientArchive = getCAList(rs);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+		}
+
+		return clientArchive;
+	}
+
+	/**
+	 * 切换status
+	 * @param archivesId
+	 * @param status
+	 * @return
+	 */
+	public int updateClientArchiveStuatus(int archivesId, int status) {
+
+		String sql = "UPDATE `client_archive` SET `status` =? ";
+		
+		sql += "WHERE `archives_id` =? ";
+		
+		return jdbcUtil.executeUpdate(sql,status,archivesId);
+	
+	}
+
+	/**
+	 * 安排咨询
+	 * 
+	 * @param clientArchive
+	 * @param response
+	 * @param doctorNow 
+	 */
+	public int planSub(ClientArchive clientArchive) {
+
+		String sql = "UPDATE `client_archive` SET `start_datetime` = ? , `end_datetime` = ? , `sub_place` = ? , `status` = 1   ";
+		
+		sql += "WHERE `archives_id` =? ";
+		
+		return jdbcUtil.executeUpdate(sql,clientArchive.getStartDatetime(),clientArchive.getEndDatetime()
+				,clientArchive.getSubPlace(),clientArchive.getArchivesId());
+	
+	}
+
+	/**
+	 * 修改咨询记录的回访内容
+	 * @param archivesId
+	 * @param context
+	 * @param response
+	 */
+	public int evaluateSub(String archivesId, String context) {
+
+		String sql = "UPDATE `client_archive` SET `second_question_context` = ? , `is_second_do` = 1   ";
+		
+		sql += "WHERE `archives_id` =? ";
+		
+		return jdbcUtil.executeUpdate(sql,context,archivesId);
+	
 	}
 }

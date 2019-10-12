@@ -122,17 +122,14 @@ $( document).ready(function(){
 } 
 setInterval(function(){$('#time').html(currentTime)},1000); 
 
-  $('#Exit_system').on('click', function(){
-      layer.confirm('是否确定退出系统？', {
-     btn: ['是','否'] ,//按钮
-	 icon:2,
-    }, 
-	function(){
-	  location.href="${pageContext.request.contextPath}/doctor/DoctorLoginServlet?m=logOutClient";
-        
-    });
+  $('#Exit_system').on('click', function(index){
+      layer.confirm('是否确定退出系统？',
+	 function(){
+		 location.href="${pageContext.request.contextPath}/doctor/DoctorLoginServlet?m=logOutClient";
+	 }
+    );
 });
-})
+});
 </script>	
 	</head>
 	<body>
