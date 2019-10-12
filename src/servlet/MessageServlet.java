@@ -1,6 +1,9 @@
 package servlet;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
-
 import bean.Admin;
 import bean.Client;
 import bean.Doctor;
@@ -21,6 +23,7 @@ import model.service.MessageService;
 import servlet.admin.AdminLoginServlet;
 import servlet.client.ClientLoginServlet;
 import servlet.doctor.DoctorLoginServlet;
+import utils.ConfigProperties;
 
 /**
  * Servlet implementation class MessageServlet
@@ -148,8 +151,7 @@ public class MessageServlet extends HttpServlet {
 			String messageId = request.getParameter("messageId");
 			
 			MessageService.toggleIsRead(Integer.parseInt(messageId),response);
-		} 
-		else if ("getTalk".equals(m)) {
+		}		else if ("getTalk".equals(m)) {
 
 			// 查询对话上下文
 

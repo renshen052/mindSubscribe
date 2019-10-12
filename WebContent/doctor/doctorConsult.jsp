@@ -105,9 +105,17 @@
           <td>${clientArchive.subPlace }</td>
           
           
-          <td>${clientArchive.docPath }</td>
+          <td>
+          <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.client.name}_${LOGIN_DOCTOR.name }'">${clientArchive.client.name}_${LOGIN_DOCTOR.name }</u>
+
+		  </td>
           
-          <td>${clientArchive.secondQuestionContext}</td>
+          <td>
+          <c:if test="${empty clientArchive.secondQuestionContext}">
+          	该咨询者还未做出评价！
+          </c:if>
+          ${clientArchive.secondQuestionContext}
+          </td>
           
 		</tr>
 	

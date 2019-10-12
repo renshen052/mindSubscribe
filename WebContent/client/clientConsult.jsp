@@ -106,7 +106,8 @@
           
           <td>
           <c:if test="${not empty clientArchive.docPath}">
-          <a href="/upload/document/${clientArchive.docPath}" >${clientArchive.docPath}</a>
+                    <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.doctor.name}_${LOGIN_CLIENT.name }'">${clientArchive.doctor.name}_${LOGIN_CLIENT.name }</u>
+
           </c:if>
           <c:if test="${empty clientArchive.docPath }">
           未上传，请联系咨询师！

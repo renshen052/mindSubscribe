@@ -102,9 +102,13 @@
           <td class="text-l"><fmt:formatDate value="${clientArchive.endDatetime }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
           
           
+          
           <td>${clientArchive.subPlace }</td>
           
-          <td id="">${clientArchive.docPath }</td>
+          <td >
+          <c:set var="filename" value=""></c:set>
+          <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.client.name}_${LOGIN_DOCTOR.name }'">${clientArchive.client.name}_${LOGIN_DOCTOR.name }</u>
+           </td>
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系咨询者</a>
@@ -120,7 +124,7 @@
          
       </tbody>
 	</table>
-	<b>完成咨询后请点击"完成"，结束本次咨询</b>
+	<b>完成咨询后请点击"完成"，结束本次咨询，咨询文档可多次上传（之前的将被覆盖）</b>
    </div>
   </div>
  </div>
@@ -199,7 +203,7 @@ layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档�
 				
 				if (data['isSuccess'] == true) {
 					
-					layer.msg('咨询完成!',{icon: 5,time:1000});
+					layer.msg('咨询完成！请在咨询记录中查看!',{icon: 1,time:1000});
 					
 					//删除页面上的
 					$(obj).parents("tr").remove();
@@ -227,7 +231,7 @@ layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档�
 	$("#uploadSubDocFormDiv").removeAttr("style");
 	 layer.open({
 	        type: 1,
-	        title: '安排咨询',
+	        title: '上传文档',
 			maxmin: true, 
 	        area : ['300px' , '200'],
 	        content:$("#uploadSubDocForm"),
