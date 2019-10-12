@@ -13,6 +13,7 @@ import bean.Message;
 import model.dao.ClientArchiveDao;
 import model.dao.MessageDao;
 import utils.ResultDate;
+import utils.UploadResult;
 import utils.Util;
 
 public class ClientArchiveService {
@@ -150,7 +151,7 @@ public class ClientArchiveService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			Message message = new Message();
 			message.setSender("admin");
 			message.setSenderId(3);
@@ -222,7 +223,7 @@ public class ClientArchiveService {
 			// 条件不符合
 			rd.setIsSuccess(false);
 			rd.setMsg("失败，开始日期不能大于结束日期！");
-			
+
 		} else {
 
 			// 修改失败
@@ -238,12 +239,13 @@ public class ClientArchiveService {
 
 	/**
 	 * 完成咨询
+	 * 
 	 * @param parseInt
 	 * @param parseInt2
 	 * @param response
 	 * @param doctorNow
 	 */
-	public void updateStatusFinishResponse(int archivesId, int clientId,  HttpServletResponse response,
+	public void updateStatusFinishResponse(int archivesId, int clientId, HttpServletResponse response,
 			Doctor doctorNow) {
 
 		int i = clientArchiveDao.updateClientArchiveStuatus(archivesId, 3);
@@ -263,13 +265,11 @@ public class ClientArchiveService {
 			message.setReceiver("client");
 			message.setReceiverId(clientId);
 			message.setReceiverName("接受系统消息方");
-			message.setContext("您与：咨询师" + doctorNow.getName() + "的咨询已经完成,如有疑问请与其联系;" + "(邮箱:"
-					+ doctorNow.getEmail() + ",电话：" + doctorNow.getPhone() + ")");
+			message.setContext("您与：咨询师" + doctorNow.getName() + "的咨询已经完成,如有疑问请与其联系;" + "(邮箱:" + doctorNow.getEmail()
+					+ ",电话：" + doctorNow.getPhone() + ")");
 			message.setSendTime(new Date());
 			message.setIsRead(0);
 			messageDao.sendMessage(message);
-			
-			
 
 		} else {
 
@@ -282,18 +282,18 @@ public class ClientArchiveService {
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 
-
 	}
 
 	/**
 	 * 评价本次咨询
+	 * 
 	 * @param archivesId
 	 * @param context
 	 * @param response
 	 */
 	public void evaluateSub(String archivesId, String context, HttpServletResponse response) {
 
-		int i = clientArchiveDao.evaluateSub(archivesId,context);
+		int i = clientArchiveDao.evaluateSub(archivesId, context);
 
 		ResultDate rd = new ResultDate();
 		if (i == 1) {
@@ -309,6 +309,43 @@ public class ClientArchiveService {
 
 		}
 
+		// 响应，JSON格式数据
+		Util.responseJson(rd, response);
+
+	}
+
+	/**
+	 * 咨询记录里的咨询文档
+	 * 
+	 * @param archivesId
+	 * @param uploadResult
+	 * @param response
+	 */
+	public void uploadSubDoc(String archivesId, UploadResult uploadResult, HttpServletResponse response) {
+
+		ResultDate rd = new ResultDate();
+
+		if (uploadResult.isSuccess()) {
+
+			// 得到文件存放路径
+			String subDocPath = uploadResult.getLogicFileName();
+
+			int i = clientArchiveDao.uploadSubDoc(archivesId, subDocPath);
+
+			if (i == 1) {
+				// 成功
+				rd.setIsSuccess(true);
+
+			}
+
+		} else {
+
+			rd.setIsSuccess(false);
+			
+		}
+
+		rd.setMsg(uploadResult.getMsg());
+		
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 

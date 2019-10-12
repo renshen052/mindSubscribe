@@ -181,7 +181,7 @@ public class Util {
 			e1.printStackTrace();
 		}
 
-		if (part != null && part.getSize() > 0) {// 判断用户是否有选择头像
+		if (part != null && part.getSize() > 0) {// 判断用户是否有选择文件
 
 			// 得到请求中的头
 			String contentDisposition = part.getHeader("content-disposition");

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,11 +22,14 @@ import model.service.ClientArchiveService;
 import model.service.DoctorService;
 import model.service.QuestionService;
 import servlet.client.ClientLoginServlet;
+import utils.UploadResult;
+import utils.Util;
 import model.service.ClientService;
 
 /**
  * Servlet implementation class DoctorSubServlet
  */
+@MultipartConfig
 public class DoctorSubServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -118,27 +122,25 @@ public class DoctorSubServlet extends HttpServlet {
 		} else if ("planSub".equals(m)) {
 			// 安排咨询，即设置咨询时间地点，status改为 1 通过申请但未完成
 
-			
-			//取得参数
-			
+			// 取得参数
+
 			String archivesId = request.getParameter("archivesId");
 
 			String clientId = request.getParameter("clientId");
-			
+
 			String startDatetime = request.getParameter("startDatetime");
-			
+
 			String endDatetime = request.getParameter("endDatetime");
-			
+
 			String subPlace = request.getParameter("subPlace");
-			
-			
-			//封装对象
+
+			// 封装对象
 			ClientArchive clientArchive = new ClientArchive();
 			clientArchive.setArchivesId(Integer.parseInt(archivesId));
 			clientArchive.setClientId(Integer.parseInt(clientId));
 			clientArchive.setSubPlace(subPlace);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			
+
 			try {
 				clientArchive.setEndDatetime(sdf.parse(endDatetime));
 				clientArchive.setStartDatetime(sdf.parse(startDatetime));
@@ -147,9 +149,9 @@ public class DoctorSubServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			clientArchiveService.planSubResponse(clientArchive,response,doctorNow);
+			clientArchiveService.planSubResponse(clientArchive, response, doctorNow);
 
-		}else if("updateStatusFinish".equals(m)) {
+		} else if ("updateStatusFinish".equals(m)) {
 			// 完成咨询
 
 			// 切换status为完成状态（3）
@@ -160,6 +162,22 @@ public class DoctorSubServlet extends HttpServlet {
 
 			clientArchiveService.updateStatusFinishResponse(Integer.parseInt(archivesId), Integer.parseInt(clientId),
 					response, doctorNow);
+
+		} else if ("uploadSubDoc".equals(m)) {
+			// 上传咨询文档
+
+			//传上来的文档
+
+			UploadResult uploadResult = Util.upload("subDoc", request, Util.UPLOAD_TYPE_ATTACHMENT);
+			
+			
+			//目标咨询记录
+			String archivesId = request.getParameter("archivesId");
+			
+			//咨询记录中的文档更新
+			clientArchiveService.uploadSubDoc(archivesId,uploadResult,response);
+			
+			
 
 		}
 

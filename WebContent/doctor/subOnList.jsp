@@ -108,7 +108,7 @@
           
           <td class="td-manage">
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="sendMessage(this,'${clientArchive.client.clientId}','${clientArchive.client.name}','client')">联系咨询者</a>
-          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="showSub(${clientArchive.archivesId})">上传文档</a>
+          <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="uploadSubDoc(${clientArchive.archivesId})">上传文档</a>
           <a style="text-decoration:none" class="btn btn-xs btn-success" onclick="finshSub(this,'${clientArchive.archivesId}','${clientArchive.client.clientId}')">完成咨询</a>
           </td>
           
@@ -126,6 +126,14 @@
  </div>
 </div>
 <%@include file="/mutualResource/form/SendMessageForm.jsp"%>
+
+<div class="add_menber" id="uploadSubDocFormDiv" style="display:none">
+<form id="uploadSubDocForm" method="post" enctype="multipart/form-data" style="text-align: center;">
+	<input id="subDocId" name="subDoc" type="file" name="subDoc"/>
+
+</form>
+</div>
+
 </body>
 </html>
 <script>
@@ -209,9 +217,84 @@ layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档�
 		
 		
 	});
+	
+}
 
-	
-	
+/**
+ * 上传文档
+ */
+ function uploadSubDoc(archivesId){
+	$("#uploadSubDocFormDiv").removeAttr("style");
+	 layer.open({
+	        type: 1,
+	        title: '安排咨询',
+			maxmin: true, 
+	        area : ['300px' , '200'],
+	        content:$("#uploadSubDocForm"),
+			btn:['上传','取消'],
+			yes:function(index,layero){	
+				
+				var msg = "";
+				
+				if($($(layero).find('input')[0]).val() != ""){
+					//如果数据合法
+					
+					//ajax上传$("#xx").serialize()
+					var formData = new FormData($(layero).find('form')[0]);
+					//var formData = $($(layero).find('input')[0]).val()
+					//var formData = $($(layero).find('form')[0]).serialize();
+				     $.ajax({  
+				    	 type : "POST",
+				 		 url : "${pageContext.request.contextPath}/doctor/DoctorSubServlet?m=uploadSubDoc&archivesId="+archivesId,
+				          data: formData,  
+				          async: false,  
+				          cache: false,  
+				          contentType: false,  
+				          processData: false,
+				          success: function (data) { 
+				        	  
+				        	  if(data.isSuccess){
+				        		  
+				        		  msg = "上传成功！";
+				        		  
+				        		  layer.alert(msg,{
+					 	               title: '提示框',				
+					 				icon:1,		
+					 				  });
+				        		  
+				        		  
+				        	  }else{
+				        		  
+				        		  layer.alert(data.msg,{
+					 	               title: '提示框',				
+					 				icon:1,		
+					 				  });
+				        	  }
+				          },  
+				          error: function (returndata) {  
+				        	  msg = "失败请刷新后重试";  
+				        	  layer.alert(msg,{
+				 	               title: '提示框',				
+				 				icon:1,		
+				 				  });
+				          }  
+				     }); 
+				     
+				     layer.close(index);
+					
+					
+				}else{
+					
+					layer.alert("请填选择文件！",{
+		 	               title: '提示框',				
+		 				icon:1,		
+		 				  });
+					
+				}
+			     
+			}
+	    });
+
 }
 
 </script>

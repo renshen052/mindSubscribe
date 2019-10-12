@@ -307,4 +307,21 @@ public class ClientArchiveDao {
 		return jdbcUtil.executeUpdate(sql,context,archivesId);
 	
 	}
+
+	
+	/**
+	 * 更新咨询文档的存放路径
+	 * @param archivesId
+	 * @param subDocPath
+	 * @return
+	 */
+	public int uploadSubDoc(String archivesId, String subDocPath) {
+
+		String sql = "UPDATE `client_archive` SET `doc_path` = ? , `status` = 2   ";
+		
+		sql += "WHERE `archives_id` =? ";
+		
+		return jdbcUtil.executeUpdate(sql,subDocPath,archivesId);
+	
+	}
 }
