@@ -158,6 +158,12 @@
           		<a onClick="member_stop(this,${doctor.doctorId })"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
           		<a title="编辑" onclick="member_edit(${doctor.doctorId })" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
           		<a title="删除" href="javascript:;"  onclick="member_del(this,${doctor.doctorId })" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          	
+          	<a style="text-decoration:none"
+								onClick="sendMessage(this,'${doctor.doctorId }','${doctor.name }','doctor')"
+											href="javascript:;" title="发送消息"
+											class="btn btn-xs btn-success">发送消息</a>
+          	
           	</td>
           	
           </c:if>
@@ -169,6 +175,12 @@
           		<a style="text-decoration:none" onClick="member_start(this,${doctor.doctorId })"  href="javascript:;" title="启用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
           		<a title="编辑" onclick="member_edit(${doctor.doctorId })" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
           		<a title="删除" href="javascript:;"  onclick="member_del(this,${doctor.doctorId })" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+          	
+          	
+          	<a style="text-decoration:none" onClick="sendMessage(this,'${doctor.doctorId }','${doctor.name }','doctor')"
+											href="javascript:;" title="发送消息"
+											class="btn btn-xs btn-success">发送消息</a>
+          	
           	</td>
           </c:if>
           
@@ -243,6 +255,7 @@
     
    </form>
  </div>
+ <%@include file="/mutualResource/form/SendMessageForm.jsp"%>
 </body>
 </html>
 <script>
@@ -384,7 +397,7 @@ $("#deleteList").on('click',function(){
 			
 			var msg = "";
 			
-			if(isAble(true)){
+			if(isAbleD(true)){
 				//如果数据合法
 				
 				//ajax上传
@@ -540,6 +553,10 @@ function member_edit(id){
 			
 			var msg = "";
 			
+			if(!isAbleD(true)){
+				return;
+			}
+			
 			//ajax上传
 			var formData = new FormData($(layero).find('form')[0]);
 		     $.ajax({  
@@ -671,7 +688,7 @@ function addDate(doctor){
 /**
  * 对表单验证合法性
  */
- function isAble(){
+ function isAbleD(){
 	
 	var isOk = true;
 	

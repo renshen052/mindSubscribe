@@ -150,11 +150,16 @@
           
           <td class="td-status">
           
+          
           <c:if test="${client.isActive eq 1}">
           	<span class="label label-success radius">已启用</span>
           	</td>
           
           	<td class="td-manage">
+          	<a style="text-decoration:none"
+								onClick="sendMessage(this,'${client.clientId }','${client.name }','client')"
+											href="javascript:;" title="发送消息"
+											class="btn btn-xs btn-success">发送消息</a>
           		<a onClick="member_stop(this,${client.clientId })"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
           	</td>
           	
@@ -164,6 +169,10 @@
           	<span class="label label-defaunt radius">已停用</span>
          	 
          	 <td class="td-manage">
+         	 <a style="text-decoration:none"
+								onClick="sendMessage(this,'${client.clientId }','${client.name }','client')"
+											href="javascript:;" title="发送消息"
+											class="btn btn-xs btn-success">发送消息</a>
           		<a style="text-decoration:none" onClick="member_start(this,${client.clientId })"  href="javascript:;" title="启用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
           	</td>
           </c:if>
@@ -181,7 +190,7 @@
   </div>
  </div>
 </div>
-
+<%@include file="/mutualResource/form/SendMessageForm.jsp"%>
 </body>
 </html>
 <script>
