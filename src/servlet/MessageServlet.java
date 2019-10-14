@@ -151,9 +151,16 @@ public class MessageServlet extends HttpServlet {
 			String messageId = request.getParameter("messageId");
 			
 			MessageService.toggleIsRead(Integer.parseInt(messageId),response);
-		}		else if ("getTalk".equals(m)) {
+		}else if ("newMessage".equals(m)) {
 
-			// 查询对话上下文
+			// 查询新消息的数量
+			
+			
+			//得到当前登录的用户
+			Map<String, Object> currentUser = getCurrentUser(request);
+			
+			//查询未读消息数量
+			MessageService.newMessageNumResponse(currentUser,response);
 
 		}
 

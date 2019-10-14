@@ -122,6 +122,39 @@ $( document).ready(function(){
 } 
 setInterval(function(){$('#time').html(currentTime)},1000); 
 
+//设置消息
+setInterval(function(){
+	
+	 $.ajax({  
+         url: '${pageContext.request.contextPath }/message/MessageServlet?m=newMessage' ,  
+         type: 'GET',  
+         dataType:'json', 
+         success: function (data) { 
+       	  
+       	  if(data.isSuccess){
+       		  
+       		  if(data.dataList[0]==0){
+       			  
+       			$('#newMessage').attr("style","color:green");
+       			
+       		  }else{
+       			  
+       			$('#newMessage').attr("style","color:red");
+       			
+       		  }
+       		$('#newMessage').html("<i class=\"icon-bell-alt\"></i>[" + data.dataList[0] + "]");
+       		
+       		  
+       	  }else{
+       		 console.log(data.msg);
+       	  }
+         } 
+    }); 
+	
+	},3000);
+
+
+
   $('#Exit_system').on('click', function(){
       layer.confirm('是否确定退出系统？', {
      btn: ['是','否'] ,//按钮
@@ -220,15 +253,17 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 
 					<li>
 					<a href="#" class="dropdown-toggle"><i
-							class="icon-edit"></i><span class="menu-text"> 消息管理 </span><b
+							class="icon-edit"></i><span class="menu-text"> 消息 </span>
+							<span id="newMessage" style="color:red"></span>
+							<b
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
 							<li class="home"><a href="javascript:void(0)"
 								name="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin" title="消息查看" class="iframeurl"><i
-									class="icon-double-angle-right"></i>消息查看</a></li>
+									class="icon-double-angle-right"></i>收信箱</a></li>
 							<li class="home"><a href="javascript:void(0)"
 								name="${pageContext.request.contextPath }/message/MessageServlet?m=listSendMessage&reqeustUser=admin" title="发送消息" class="iframeurl"><i
-									class="icon-double-angle-right"></i>消息发送</a></li>
+									class="icon-double-angle-right"></i>发信箱</a></li>
 						</ul>
 					</li>
 					

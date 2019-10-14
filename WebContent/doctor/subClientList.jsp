@@ -103,7 +103,11 @@
           
           <td>${clientArchive.expectPlace }</td>
           
-          <td>${clientArchive.clientDescription }</td>
+          <td height="10px">
+          <span title="${clientArchive.clientDescription }" name="descrip" onclick="javascript:showD(this,'${clientArchive.clientDescription }')"> 
+			</span>
+          
+          </td>
           
           <td>${clientArchive.level }</td>
           
@@ -188,8 +192,25 @@ jQuery(function($) {
 					return 'left';
 				}
 				
+				$("span[name='descrip']").each(function(){
+					this.click();
+				});
 				
 			});
+			
+			
+function showD(obj,clientDescription ){
+	
+	var part = "";
+	if(clientDescription.length <= 5){
+		part = clientDescription;
+	}else{
+		part = clientDescription.substring(0,6);
+		part += "...";
+	}
+	obj.innerHTML = part;
+	
+}
 
 function showSub(archivesId,clientId){
 	
@@ -263,7 +284,7 @@ layer.confirm('确认要驳回吗？',function(index){
 			        	  
 			        	  if(data.isSuccess){
 			        		  
-			        		  msg = "安排成功，详情请在\"咨询中\"查看！";
+			        		  msg = "安排成功，请在\"咨询中\"查看！";
 			        		  
 			        		  layer.alert(msg,{
 				 	               title: '提示框',				

@@ -12,16 +12,16 @@ public class AdminDao {
 	
 	
 	/**
-	 * 根据账号查询管理员
+	 * 根据账号或者电话号码查询管理员
 	 * @return
 	 */
 	public Admin getAdmin(String adminName) {
 		
 		Admin admin = null;
 		
-		String sql = "SELECT * FROM admin WHERE admin_name=?";
+		String sql = "SELECT * FROM admin WHERE admin_name=? OR phone=?";
 		
-		ResultSet rs = jdbcUtil.executeQuery(sql, adminName);
+		ResultSet rs = jdbcUtil.executeQuery(sql, adminName,adminName);
 		
 		try {
 			if(rs.next()) {

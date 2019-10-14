@@ -41,12 +41,19 @@ public class DoctorLoginServlet extends HttpServlet {
 				// 登录失败
 
 				request.setAttribute("msg", "用户名或密码错误!");
-				System.out.println("用户名或密码错误!");
-				
 
 				request.getRequestDispatcher("/doctor/login.jsp").forward(request, response);
 
-			} else {
+			}else if(doctor.getIsActive() == 0) {
+				
+				// 登录失败
+
+				request.setAttribute("msg", "当前账户不可用!");
+
+				request.getRequestDispatcher("/doctor/login.jsp").forward(request, response);
+				
+			}
+			else {
 
 				// 登录成功
 

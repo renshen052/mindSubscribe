@@ -67,7 +67,11 @@
 		<div class="clearfix cl"></div>
 		
 		<div class="clearfix cl">
-			<label class="formControls col-10"><b>主观描述:</b>${clientArchive.clientDescription}</label>
+			<label class="formControls col-10"><b>主观描述:</b></label>
+			<div style="margin: 40px;">
+			<p>${clientArchive.clientDescription}
+			</div>
+			
 		</div>
 		<div class="clearfix cl"><label class="formControls col-10">&nbsp;</div>
 		
@@ -121,7 +125,7 @@ $( document).ready(function(){
     	
     	question += "<label class=\"form-label col-2\">&nbsp;</label>";
     	
-    	question += "<div class=\"formControls col-10\">";
+    	question += "<div class=\"formControls col-30\">";
     	
     	question += "<span class=\"lbl\">" + value.context + "</span> ";
 

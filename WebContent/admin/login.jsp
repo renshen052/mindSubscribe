@@ -91,6 +91,7 @@
 											</div>
 
 											<div class="social-login center">
+											支持通过电话号码登录 &nbsp;&nbsp;
 											本网站系统不再对IE8以下浏览器支持，请见谅。
 											</div>
 										</div><!-- /widget-main -->

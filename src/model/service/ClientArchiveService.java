@@ -38,7 +38,7 @@ public class ClientArchiveService {
 	 * @return
 	 */
 	public List<ClientArchive> onSubList(Integer clientId) {
-		return clientArchiveDao.listClientArchive(clientId, 0, 1);
+		return clientArchiveDao.listClientArchive(clientId, -1, 1);
 	}
 
 	/**

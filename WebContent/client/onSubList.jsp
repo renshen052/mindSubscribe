@@ -104,8 +104,11 @@
           <td>${clientArchive.expectPlace }</td>
           
           <td>
-          	 <c:if test="${clientArchive.status eq 0 }"> 待安排 </c:if>
-          	  <c:if test="${clientArchive.status eq 1 }"> 准备咨询 </c:if>
+          	 <c:if test="${clientArchive.status eq 0 }"> <span class="btn  btn-warning">待安排</span> </c:if>
+          	  <c:if test="${clientArchive.status eq 1 }"> <span class="btn  btn-success">准备咨询</span> </c:if>
+          	  <c:if test="${clientArchive.status eq -1 }"> <span class="btn  btn-danger">被取消</span> </c:if>
+          	  
+          	  
           </td>
           
           <td class="td-manage">

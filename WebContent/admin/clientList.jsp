@@ -156,11 +156,13 @@
           	</td>
           
           	<td class="td-manage">
+          	
+          	 <a onClick="member_stop(this,${client.clientId })"  href="javascript:;" title="停用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
+          	
           	<a style="text-decoration:none"
 								onClick="sendMessage(this,'${client.clientId }','${client.name }','client')"
 											href="javascript:;" title="发送消息"
 											class="btn btn-xs btn-success">发送消息</a>
-          		<a onClick="member_stop(this,${client.clientId })"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
           	</td>
           	
           </c:if>
@@ -169,11 +171,14 @@
           	<span class="label label-defaunt radius">已停用</span>
          	 
          	 <td class="td-manage">
+         	 
+         	 <a style="text-decoration:none" onClick="member_start(this,${client.clientId })"  href="javascript:;" title="启用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
+         	 
+         	 
          	 <a style="text-decoration:none"
 								onClick="sendMessage(this,'${client.clientId }','${client.name }','client')"
 											href="javascript:;" title="发送消息"
 											class="btn btn-xs btn-success">发送消息</a>
-          		<a style="text-decoration:none" onClick="member_start(this,${client.clientId })"  href="javascript:;" title="启用"  class="btn btn-xs btn"><i class="icon-ok bigger-120"></i></a> 
           	</td>
           </c:if>
           
@@ -247,7 +252,7 @@ function member_stop(obj,id){
 		success : function(data) {
 			
 			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,' + id +')" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success " onClick="member_start(this,' + id +')" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
 				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已停用</span>');
 				$(obj).remove();
 				layer.msg('已停用!',{icon: 5,time:1000});
@@ -272,7 +277,7 @@ function member_start(obj,id){
 		success : function(data) {
 			
 			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,' + id +')" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn" onClick="member_stop(this,' + id +')" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
 				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已启用</span>');
 				$(obj).remove();
 				layer.msg('已启用!',{icon: 6,time:1000});

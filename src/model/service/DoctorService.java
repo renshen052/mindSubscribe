@@ -197,7 +197,7 @@ public class DoctorService {
 	}
 
 	/**
-	 * 通过doctorName获得咨询师
+	 * 通过doctorName获得咨询师(支持电话登录)
 	 * @param doctorName
 	 * @return
 	 */

@@ -108,4 +108,37 @@ public class MessageService {
 	public ArrayList<Message> getMessageNum(int num, Integer reqeustUserId,String requestUser) {
 		return messageDao.getMessageNum(num,reqeustUserId,requestUser);
 	}
+
+
+	/**
+	 * 查询未读消息数量
+	 * @param currentUser
+	 * @param response
+	 */
+	public void newMessageNumResponse(Map<String, Object> currentUser, HttpServletResponse response) {
+
+
+		int num = messageDao.newMessageNum((String)currentUser.get("reqeustUser"),(int)currentUser.get("reqeustUserId"));
+
+		ResultDate rd = new ResultDate();
+		if (num == -1) {
+			
+			// 修改失败
+			rd.setIsSuccess(false);
+			rd.setMsg("失败");
+			
+
+		} else {
+			
+			// 成功
+		    rd.setIsSuccess(true);
+		    rd.getDataList().add(num);
+
+		}
+
+		// 响应，JSON格式数据
+		Util.responseJson(rd, response);
+
+	
+	}
 }

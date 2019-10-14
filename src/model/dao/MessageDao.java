@@ -324,4 +324,46 @@ public class MessageDao {
 		return list;
 
 	}
+
+	/**
+	 * 查询所有未读消息数量
+	 * @param object
+	 * @param object2
+	 * @return
+	 */
+	public int newMessageNum(String user, Integer userId) {
+
+		int num = -1;
+
+		String sql = "SELECT COUNT(1) FROM  message  WHERE receiver=? AND receiver_id=? AND is_read=0";
+
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, user,userId);
+
+		try {
+			if (rs.next()) {
+
+				num = rs.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return num;
+
+	}
 }

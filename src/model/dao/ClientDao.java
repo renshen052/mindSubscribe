@@ -183,9 +183,9 @@ public class ClientDao {
 		
 		Client client = null;
 		
-		String sql = "SELECT * FROM client WHERE client_name=?";
+		String sql = "SELECT * FROM client WHERE client_name=? OR phone=?";
 		
-		ResultSet rs = jdbcUtil.executeQuery(sql, clientName);
+		ResultSet rs = jdbcUtil.executeQuery(sql, clientName,clientName);
 
 		try {
 			while (rs.next()) {

@@ -269,15 +269,15 @@ public class DoctorDao {
 
 	
 	/**
-	 * 通过doctorName获得咨询师
+	 * 通过doctorName获得咨询师(支持电话登录)
 	 * @param doctorName
 	 * @return
 	 */
 	public Doctor getDoctor(String doctorName) {
 
-		String sql = "SELECT * FROM doctor WHERE doctor_name=?";
+		String sql = "SELECT * FROM doctor WHERE doctor_name=? OR phone=?";
 		
-		ResultSet rs = jdbcUtil.executeQuery(sql, doctorName);
+		ResultSet rs = jdbcUtil.executeQuery(sql, doctorName,doctorName);
 		
 		Doctor doctor = null;
 		

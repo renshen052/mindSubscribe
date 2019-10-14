@@ -8,7 +8,7 @@ public class AdminService {
 	AdminDao adminDao = new AdminDao();
 
 	/**
-	 * 根据账号查询管理员
+	 * 根据账号或者电话号码查询管理员
 	 * 
 	 * @return
 	 */

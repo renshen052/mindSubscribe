@@ -106,8 +106,15 @@
           <td>${clientArchive.subPlace }</td>
           
           <td >
-          <c:set var="filename" value=""></c:set>
-          <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.client.name}_${LOGIN_DOCTOR.name }'">${clientArchive.client.name}_${LOGIN_DOCTOR.name }</u>
+          
+          <c:if test="${empty clientArchive.docPath}">
+          未上传
+          </c:if>
+          
+          <c:if test="${not empty clientArchive.docPath}">
+           <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.client.name}_${LOGIN_DOCTOR.name }'">${clientArchive.client.name}_${LOGIN_DOCTOR.name }</u>
+          </c:if>
+          
            </td>
           
           <td class="td-manage">
@@ -266,7 +273,7 @@ layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档�
 					 	               title: '提示框',				
 					 				icon:1,		
 					 				  });
-				        		  
+				        		  window.location.reload();
 				        		  
 				        	  }else{
 				        		  

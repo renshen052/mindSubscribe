@@ -45,7 +45,12 @@ public class AdminLoginServlet extends HttpServlet {
 				// 登录失败
 
 				request.setAttribute("msg", "用户名或密码错误!");
-				
+
+				request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
+
+			} else if (admin.getIs_active() == 0) {
+
+				request.setAttribute("msg", "当前账户不可用!");
 
 				request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
 
@@ -59,14 +64,14 @@ public class AdminLoginServlet extends HttpServlet {
 
 			}
 
-		}else if("logOutAdmin".equals(m)){
-			
+		} else if ("logOutAdmin".equals(m)) {
+
 			request.getSession().removeAttribute(LOGIN_ADMIN);
-			
+
 			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
-			
-		}else {
-			
+
+		} else {
+
 			request.getRequestDispatcher("/admin/login.jsp").forward(request, response);
 		}
 
