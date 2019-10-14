@@ -189,4 +189,34 @@
     <servlet-name>UploadFile</servlet-name>
     <url-pattern>/UploadFile</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>DoctorLoginFilter</display-name>
+    <filter-name>DoctorLoginFilter</filter-name>
+    <filter-class>utils.filter.DoctorLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>DoctorLoginFilter</filter-name>
+    <url-pattern>/doctor/base</url-pattern>
+    <url-pattern>/doctor/DoctorSubServlet</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name>ClientLoginFilter</display-name>
+    <filter-name>ClientLoginFilter</filter-name>
+    <filter-class>utils.filter.ClientLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ClientLoginFilter</filter-name>
+    <url-pattern>/client/base</url-pattern>
+    <url-pattern>/client/ClientSubServlet</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ClientRegister</display-name>
+    <servlet-name>ClientRegister</servlet-name>
+    <servlet-class>servlet.client.ClientRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientRegister</servlet-name>
+    <url-pattern>/client/ClientRegister</url-pattern>
+  </servlet-mapping>
 </web-app>
