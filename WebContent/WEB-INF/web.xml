@@ -181,13 +181,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UploadFile</display-name>
-    <servlet-name>UploadFile</servlet-name>
-    <servlet-class>servlet.UploadFile</servlet-class>
+    <display-name>DownloadFile</display-name>
+    <servlet-name>DownloadFile</servlet-name>
+    <servlet-class>servlet.DownloadFile</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UploadFile</servlet-name>
-    <url-pattern>/UploadFile</url-pattern>
+    <servlet-name>DownloadFile</servlet-name>
+    <url-pattern>/DownloadFile</url-pattern>
   </servlet-mapping>
   <filter>
     <display-name>DoctorLoginFilter</display-name>

@@ -126,7 +126,7 @@ setInterval(function(){$('#time').html(currentTime)},1000);
 setInterval(function(){
 	
 	 $.ajax({  
-         url: '${pageContext.request.contextPath }/message/MessageServlet?m=newMessage' ,  
+         url: '${pageContext.request.contextPath }/message/MessageServlet?m=newMessage&user=client' ,  
          type: 'GET',  
          dataType:'json', 
          success: function (data) { 

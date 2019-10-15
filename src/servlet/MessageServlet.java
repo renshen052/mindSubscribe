@@ -155,9 +155,11 @@ public class MessageServlet extends HttpServlet {
 
 			// 查询新消息的数量
 			
+			//得到用户类型（admin,client,doctor）
+			String user = request.getParameter("user");
 			
 			//得到当前登录的用户
-			Map<String, Object> currentUser = getCurrentUser(request);
+			Map<String, Object> currentUser = getCurrentUser(request,user);
 			
 			//查询未读消息数量
 			MessageService.newMessageNumResponse(currentUser,response);
@@ -167,7 +169,52 @@ public class MessageServlet extends HttpServlet {
 	}
 
 	/**
-	 * 得到当前登录的用户身份和用户Id
+	 * 得到当前登录的用户身份和用户Id(知道是什么类型的用户)
+	 * @param request
+	 * @return
+	 */
+	private Map<String, Object> getCurrentUser(HttpServletRequest request, String user) {
+
+		Map<String, Object> currentUser = new HashMap<String, Object>();
+		
+		HttpSession session = request.getSession();
+		
+		if("admin".equals(user)) {
+
+			Admin admin = (Admin) session.getAttribute(AdminLoginServlet.LOGIN_ADMIN);
+			currentUser.put("reqeustUser", "admin");
+			currentUser.put("reqeustUserId", admin.getAdminId());
+			currentUser.put("reqeustUserName", admin.getName());
+			
+		}
+		else if("doctor".equals(user)) {
+
+			Doctor doctor = (Doctor) session.getAttribute(DoctorLoginServlet.LOGIN_DOCTOR);
+			currentUser.put("reqeustUser", "doctor");
+			currentUser.put("reqeustUserId", doctor.getDoctorId());
+			currentUser.put("reqeustUserName", doctor.getName());
+			
+		}
+		else if("client".equals(user)) {
+
+			Client client = (Client) session.getAttribute(ClientLoginServlet.LOGIN_CLIENT);
+			currentUser.put("reqeustUser", "client");
+			currentUser.put("reqeustUserId", client.getClientId());
+			currentUser.put("reqeustUserName", client.getName());
+			
+		}
+		else {
+			currentUser.put("reqeustUser", "no");
+			currentUser.put("reqeustUserId", "0");
+			currentUser.put("reqeustUserName", "noUser");
+		}
+		
+		return currentUser;
+	
+	}
+
+	/**
+	 * 得到当前登录的用户身份和用户Id（不知道是什么类型的用户）
 	 * @param request
 	 * @return
 	 */
