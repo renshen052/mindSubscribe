@@ -22,10 +22,10 @@
 		<![endif]-->
 		<script src="${pageContext.request.contextPath }/mutualResource/js/jquery-1.9.1.min.js"></script>        
         <script src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js" type="text/javascript"></script>
-<title>登陆</title>
+<title>心理咨询预约系统</title>
 </head>
 
-<body class="login-layout">
+<body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/pencil2.jpg);background-size:cover;background-color: #eff5f8;">
 
     <div class="loginbody">
 <div class="login-container">
@@ -33,23 +33,23 @@
 	<h1>
 									<i class="icon-leaf green"></i>
 									<span class="orange">心理咨询预约</span>
-									<span class="white">系统</span>
+									<span class="orange">系统</span>
 								</h1>
-								<h4 class="white">Background Management System</h4>
+								<h4 class="orange">为你来</h4>
 							</div>
 
 							<div class="space-6"></div>
 
-							<div class="position-relative">
-								<div id="login-box" class="login-box widget-box no-border visible">
+							<div class="position-relative" style="opacity:0.8">
+								<div id="login-box" class="login-box widget-box no-border visible" style="background-color: #A29990;">
 									<div class="widget-body">
-										<div class="widget-main">
+										<div class="widget-main" >
 											<h4 class="header blue lighter bigger">
 												<i class="icon-coffee green"></i>
 												来访者登录
 											</h4>
 
-											<%-- <div class="login_icon"><img src="${pageContext.request.contextPath }/mutualResource/images/login.png" /></div> --%>
+											 <%-- <div class="login_icon"><img src="${pageContext.request.contextPath }/mutualResource/myImg/pencil.jpg" /></div> --%>
 
 											<form action="${pageContext.request.contextPath }/client/ClientLoginServlet?m=saveLogin" method="post" >
 												<fieldset>
@@ -70,13 +70,25 @@
 													<div class="space"></div>
 
 													<div class="clearfix">
-													<font style="color:red">${msg }</font><br/>
-														<label class="inline">
-															<input type="checkbox" class="ace">
-															<span class="lbl">保存密码</span>
+													<font style="color:red">${msg }sdf</font><br/>
+														 <label class="inline">
+															 <!-- <input type="checkbox" class="ace">
+															<span class="lbl">注册</span>  -->
+															
+															
 														</label>
-
-														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
+														<button type="submit" class="width-35  btn btn-success" id="reg">
+															注册
+														</button>
+														<label class="inline">
+															 <!-- <input type="checkbox" class="ace">
+															<span class="lbl">注册</span>  -->
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															
+														</label>
+														
+														
+														<button type="submit" class="width-35 btn pull-right btn-sm btn-primary" id="login_btn">
 															<i class="icon-key"></i>
 															登陆
 														</button>
