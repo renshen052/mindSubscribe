@@ -116,9 +116,9 @@
 							<tr>
 								<th width="100">留言创建者</th>
 								<th>内容</th>
-								<th width="100">创建时间</th>
+								<th width="180">创建时间</th>
 								<th width="70">状态</th>
-								<th width="250">操作</th>
+								<th width="100">操作</th>
 							</tr>
 						</thead>
 						<tbody>

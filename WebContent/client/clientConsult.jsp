@@ -106,7 +106,7 @@
           
           <td>
           <c:if test="${not empty clientArchive.docPath}">
-                    <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/UploadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.doctor.name}_${LOGIN_CLIENT.name }'">${clientArchive.doctor.name}_${LOGIN_CLIENT.name }</u>
+                    <u style="cursor:pointer" class="text-primary" onclick="javascript:window.location='${pageContext.request.contextPath}/DownloadFile?m=downloadSubDoc&subDocPath=${clientArchive.docPath }&filename=${clientArchive.doctor.name}_${LOGIN_CLIENT.name }'">${clientArchive.doctor.name}_${LOGIN_CLIENT.name }</u>
 
           </c:if>
           <c:if test="${empty clientArchive.docPath }">

@@ -25,7 +25,7 @@
 <title>登陆</title>
 </head>
 
-<body class="login-layout">
+<body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/ye10.jpg);background-size:cover;">
 
     <div class="loginbody">
 <div class="login-container">
@@ -35,15 +35,14 @@
 									<span class="orange">心理咨询预约</span>
 									<span class="white">后台管理系统</span>
 								</h1>
-								<h4 class="white">Background Management System</h4>
 							</div>
 
 							<div class="space-6"></div>
 
 							<div class="position-relative">
-								<div id="login-box" class="login-box widget-box no-border visible">
+								<div id="login-box" class="login-box widget-box no-border visible" style="background-color: #2E3234;">
 									<div class="widget-body">
-										<div class="widget-main">
+										<div class="widget-main" style="background: #1d1818;">
 											<h4 class="header blue lighter bigger">
 												<i class="icon-coffee green"></i>
 												管理员登陆
@@ -72,8 +71,7 @@
 													<div class="clearfix">
 													<font style="color:red">${msg }</font><br/>
 														<label class="inline">
-															<input type="checkbox" class="ace">
-															<span class="lbl">保存密码</span>
+															<span class="lbl white">忘记密码</span>
 														</label>
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
@@ -85,15 +83,6 @@
 													<div class="space-4"></div>
 												</fieldset>
 											</form>
-
-											<div class="social-or-login center">
-												<span class="bigger-110">通知</span>
-											</div>
-
-											<div class="social-login center">
-											支持通过电话号码登录 &nbsp;&nbsp;
-											本网站系统不再对IE8以下浏览器支持，请见谅。
-											</div>
 										</div><!-- /widget-main -->
 
 										<div class="toolbar clearfix">

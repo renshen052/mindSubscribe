@@ -25,7 +25,7 @@
 <title>登陆</title>
 </head>
 
-<body class="login-layout">
+<body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/chuan2.png);background-size:cover;background-color: #eff5f8;">
 
     <div class="loginbody">
 <div class="login-container">
@@ -35,12 +35,12 @@
 									<span class="orange">心理咨询预约</span>
 									<span class="white">系统</span>
 								</h1>
-								<h4 class="white">Background Management System</h4>
+								<h4 class="white">欢迎</h4>
 							</div>
 
 							<div class="space-6"></div>
 
-							<div class="position-relative">
+							<div class="position-relative"  style="opacity:0.8">
 								<div id="login-box" class="login-box widget-box no-border visible">
 									<div class="widget-body">
 										<div class="widget-main">
@@ -72,8 +72,8 @@
 													<div class="clearfix">
 													<font style="color:red">${msg }</font><br/>
 														<label class="inline">
-															<input type="checkbox" class="ace">
-															<span class="lbl">保存密码</span>
+														<a>忘记密码</a>
+															<!-- <span class="lbl">保存密码</span> -->
 														</label>
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
@@ -91,8 +91,7 @@
 											</div>
 
 											<div class="social-login center">
-											支持通过电话号码登录 &nbsp;&nbsp;
-											本网站系统不再对IE8以下浏览器支持，请见谅。
+											支持通过电话号码登录 
 											</div>
 										</div><!-- /widget-main -->
 

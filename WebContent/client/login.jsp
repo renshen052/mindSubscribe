@@ -70,25 +70,22 @@
 													<div class="space"></div>
 
 													<div class="clearfix">
-													<font style="color:red">${msg }sdf</font><br/>
+													<font style="color:red">${msg }</font><br/>
 														 <label class="inline">
-															 <!-- <input type="checkbox" class="ace">
-															<span class="lbl">注册</span>  -->
-															
+															 <a>忘记密码</a>
 															
 														</label>
-														<button type="submit" class="width-35  btn btn-success" id="reg">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<button type="submit" class="width-30  btn btn-success" id="reg">
 															注册
 														</button>
 														<label class="inline">
 															 <!-- <input type="checkbox" class="ace">
 															<span class="lbl">注册</span>  -->
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															
 														</label>
-														
-														
-														<button type="submit" class="width-35 btn pull-right btn-sm btn-primary" id="login_btn">
+														<button type="submit" class="width-30 btn pull-right btn-sm btn-primary" id="login_btn">
 															<i class="icon-key"></i>
 															登陆
 														</button>
@@ -103,14 +100,11 @@
 											</div>
 
 											<div class="social-login center">
-											支持通过电话号码登录 &nbsp;&nbsp;
-											本网站系统不再对IE8以下浏览器支持，请见谅。
+											支持通过电话号码登录 
 											</div>
 										</div><!-- /widget-main -->
 
 										<div class="toolbar clearfix">
-											
-
 											
 										</div>
 									</div><!-- /widget-body -->

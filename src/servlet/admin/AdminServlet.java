@@ -26,6 +26,12 @@ import model.service.MessageService;
  * Servlet implementation class AdminLoginServlet
  * 修改密码，修改个人信息
  */
+/**
+ * @author h w j
+ * @time 2019年10月15日
+ * @instruction
+ *
+ */
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

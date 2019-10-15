@@ -47,7 +47,7 @@ public class JdbcUtil {
 		
 		connect();
 		
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			ps = conn.prepareStatement(sql);
 			
@@ -78,7 +78,7 @@ public class JdbcUtil {
 		
 		connect();
 		
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			ps = conn.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
 			

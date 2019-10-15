@@ -36,8 +36,6 @@ public class MessageDao {
 		
 		searchList.add(reqeustUserId);
 		searchList.add(reqeustUser);
-		
-		System.out.println(search.toString());
 
 		// 接收人身份
 		if (Util.isNotEmpty(search.get("receiver"))) {
