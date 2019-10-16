@@ -25,7 +25,7 @@
 <title>登陆</title>
 </head>
 
-<body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/ye10.jpg);background-size:cover;">
+<body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/ye.png);background-size:cover;opacity:0.7">
 
     <div class="loginbody">
 <div class="login-container">
