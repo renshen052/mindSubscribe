@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.FileInputStream;
 import java.util.Properties;
 
 public class ConfigProperties {
@@ -57,6 +56,36 @@ public class ConfigProperties {
 	public static String getUploadFileSize() {
 		return properties.getProperty("upload_file_size");
 	}
+	
+	/**
+	 * 获取邮件主机
+	 */
+	public static String getHostName() {
+		return properties.getProperty("email.HostName");
+	}
+	
+	/**
+	 * 获取邮件发送人邮箱
+	 */
+	public static String getAuthenticationEmail() {
+		return properties.getProperty("email.AuthenticationEmail");
+	}
+	
+	/**
+	 * 邮箱授权码
+	 * @return
+	 */
+	public static String getAuthenticationPwd() {
+		return properties.getProperty("email.AuthenticationPwd");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 

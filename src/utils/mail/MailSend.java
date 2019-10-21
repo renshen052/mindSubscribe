@@ -2,6 +2,8 @@ package utils.mail;
 
 import org.apache.commons.mail.SimpleEmail;
 
+import utils.ConfigProperties;
+
 /**
  * 发送邮件
  * 发送邮件配置步骤（以腾讯邮箱为例，其它邮箱大同小异）：
@@ -34,15 +36,15 @@ public class MailSend {
 		
 		SimpleEmail email = new SimpleEmail();
 
-        email.setHostName("smtp.qq.com");//腾讯smtp协议固定主机名
+        email.setHostName(ConfigProperties.getHostName());
 
-        email.setAuthentication("1452836647@qq.com","sfdlreahziynbacb"); //发送者邮箱的用户名和鉴权码
+        email.setAuthentication(ConfigProperties.getAuthenticationEmail(),ConfigProperties.getAuthenticationPwd()); //发送者邮箱的用户名和鉴权码
 
         email.setCharset("UTF-8");
 
         try {
 
-            email.setFrom("1452836647@qq.com");//发件人邮箱
+            email.setFrom(ConfigProperties.getAuthenticationEmail());//发件人邮箱
 
             email.addTo(mail.getTo());//收件人邮箱
 
@@ -72,6 +74,8 @@ public class MailSend {
 		
 		Mail mail = new Mail("邮件测试", "<font color=red>这是一封测试邮件</font><br/> 请点以下链接 <a href=\"http://baidu.com\">去百度</a>","renshen052@126.com");
 		
+		send(mail);
+		send(mail);
 		send(mail);
 	} 
 }

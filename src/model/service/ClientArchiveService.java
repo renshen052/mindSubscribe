@@ -15,6 +15,8 @@ import model.dao.MessageDao;
 import utils.ResultDate;
 import utils.UploadResult;
 import utils.Util;
+import utils.mail.Mail;
+import utils.mail.MailSend;
 
 public class ClientArchiveService {
 
@@ -141,7 +143,6 @@ public class ClientArchiveService {
 			rd.setMsg("成功");
 
 			// 发送消息 邮件 给咨询者
-			// ...
 
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date at = null;
@@ -163,7 +164,11 @@ public class ClientArchiveService {
 					+ doctorNow.getEmail() + ",电话：" + doctorNow.getPhone() + ")");
 			message.setSendTime(new Date());
 			message.setIsRead(0);
+			
+			//发送站内消息
 			messageDao.sendMessage(message);
+			//发送邮件
+			sendMessageEmail(message);
 
 		} else {
 
@@ -176,6 +181,29 @@ public class ClientArchiveService {
 		// 响应，JSON格式数据
 		Util.responseJson(rd, response);
 
+	}
+
+	
+	/**
+	 * 发送邮件
+	 * @param message 邮件的消息内容，及接受者
+	 */
+	private void sendMessageEmail(Message message) {
+
+		String email = messageDao.getReceiverEmail(message.getReceiver(),message.getReceiverId());
+		
+		if(email != null) {
+			
+			Mail mail = new Mail();
+			mail.setTitle("心理咨询预约系统");
+			mail.setContent(message.getContext());
+			mail.setTo(email);
+			MailSend.sendMail(mail);
+			
+		}else {
+			System.out.println("邮箱不存在" + message.getReceiver() + " " + message.getReceiverId());
+		}
+		
 	}
 
 	/**
@@ -203,7 +231,6 @@ public class ClientArchiveService {
 			rd.setMsg("成功");
 
 			// 发送消息 邮件 给申请者
-			// ...
 
 			Message message = new Message();
 			message.setSender("admin");
@@ -216,7 +243,12 @@ public class ClientArchiveService {
 					+ doctorNow.getEmail() + ",电话：" + doctorNow.getPhone() + ")");
 			message.setSendTime(new Date());
 			message.setIsRead(0);
+			
+			//发送站内消息
 			messageDao.sendMessage(message);
+			
+			//发送邮件
+			sendMessageEmail(message);
 
 		} else if (i == -999) {
 
@@ -240,8 +272,8 @@ public class ClientArchiveService {
 	/**
 	 * 完成咨询
 	 * 
-	 * @param parseInt
-	 * @param parseInt2
+	 * @param archivesId
+	 * @param clientId
 	 * @param response
 	 * @param doctorNow
 	 */
@@ -257,7 +289,6 @@ public class ClientArchiveService {
 			rd.setMsg("成功");
 
 			// 发送消息 邮件 给申请者
-			// ...
 			Message message = new Message();
 			message.setSender("admin");
 			message.setSenderId(3);
@@ -269,7 +300,12 @@ public class ClientArchiveService {
 					+ ",电话：" + doctorNow.getPhone() + ")");
 			message.setSendTime(new Date());
 			message.setIsRead(0);
+			
+			//发送站内消息
 			messageDao.sendMessage(message);
+			
+			//发送邮件
+			sendMessageEmail(message);
 
 		} else {
 

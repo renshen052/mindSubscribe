@@ -364,4 +364,63 @@ public class MessageDao {
 		return num;
 
 	}
+
+	
+	/**
+	 * 查询接受者的Email
+	 * @param receiver
+	 * @param receiverId
+	 * @return 邮箱
+	 */
+	public String getReceiverEmail(String receiver, Integer receiverId) {
+
+		String email = null;
+		
+		String sql = null;
+		
+		if("admin".equals(receiver)) {
+			
+			sql = "SELECT email FROM  admin  WHERE admin_id=?";
+			
+		}else if("client".equals(receiver)) {
+			
+			sql = "SELECT email FROM  client  WHERE client_id=?";
+			
+		}else if("doctor".equals(receiver)) {
+			
+			sql = "SELECT email FROM  doctor  WHERE doctor_id=?";
+			
+		}else {
+			return email;
+		}
+		
+		System.out.println("得到接受者的Email：" + sql);
+		
+		ResultSet rs = jdbcUtil.executeQuery(sql, receiverId);
+
+		try {
+			if (rs.next()) {
+
+				email = rs.getString(1);
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			jdbcUtil.close();
+
+		}
+
+		return email;
+	}
 }
