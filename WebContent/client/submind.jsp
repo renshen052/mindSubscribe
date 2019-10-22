@@ -41,7 +41,7 @@
     
     <c:forEach items="${doctorList }" var="doctor">
     
-    <div class="product_info clearfix">
+    <div class="product_info clearfix" style="margin: 10px 6%;">
     
     <c:if test="${ empty doctor.img }">
          <a href="#" class="img_link"> <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="200px" height="200px"/></a>
