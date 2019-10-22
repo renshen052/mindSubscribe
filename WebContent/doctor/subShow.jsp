@@ -79,7 +79,7 @@
 
 		<div class="clearfix cl" id="question">
 			<div class="Button_operation">
-				<button  class="btn btn-default radius" type="button" onclick="javascript:window.location='${pageContext.request.contextPath }/doctor/DoctorSubServlet?m=subClientList'">&nbsp;&nbsp;查看完毕&nbsp;&nbsp;</button>
+				<button  class="btn  btn-warning" type="button" onclick="javascript:window.location='${pageContext.request.contextPath }/doctor/DoctorSubServlet?m=subClientList'">&nbsp;&nbsp;查看完毕&nbsp;&nbsp;</button>
 			</div>
 		</div>
     </div>

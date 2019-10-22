@@ -70,9 +70,6 @@
 
 													<div class="clearfix">
 													<font style="color:red">${msg }</font><br/>
-														<label class="inline">
-															<span class="lbl white">忘记密码</span>
-														</label>
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
 															<i class="icon-key"></i>

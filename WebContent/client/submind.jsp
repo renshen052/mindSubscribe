@@ -42,7 +42,15 @@
     <c:forEach items="${doctorList }" var="doctor">
     
     <div class="product_info clearfix">
-     <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="200" height="200"/></a>
+    
+    <c:if test="${ empty doctor.img }">
+         <a href="#" class="img_link"> <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="200px" height="200px"/></a>
+     </c:if>
+          <c:if test="${not empty doctor.img }">
+          <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="200px" height="200px"/></a>
+          </c:if>
+    
+     <%-- <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="200" height="200"/></a> --%>
       <span>
      
       <b>${doctor.name }</b>

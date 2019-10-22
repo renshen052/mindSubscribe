@@ -22,7 +22,7 @@
 		<![endif]-->
 		<script src="${pageContext.request.contextPath }/mutualResource/js/jquery-1.9.1.min.js"></script>        
         <script src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js" type="text/javascript"></script>
-<title>心理咨询预约系统</title>
+<title>心理咨询预约系统登录</title>
 </head>
 
 <body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/pencil2.jpg);background-size:cover;background-color: #eff5f8;">
@@ -71,12 +71,8 @@
 
 													<div class="clearfix">
 													<font style="color:red">${msg }</font><br/>
-														 <label class="inline">
-															 <a>忘记密码</a>
-															
-														</label>
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														<button type="submit" class="width-30  btn btn-success" id="reg">
+														<button type="button" class="width-30  btn btn-success"  id="reg">
 															注册
 														</button>
 														<label class="inline">
@@ -117,6 +113,7 @@
 <script>
 
 
+
 $(document).ready(function(){
 	
 	$("#login_btn").on('click' ,function(){
@@ -146,6 +143,13 @@ $(document).ready(function(){
 		$("#login_btn").submit();
 		
 	});
+	
+	$("#reg").click(function(){
+		
+		window.location = "${pageContext.request.contextPath }/client/reg"
+		
+	});
+	
 	
 	
 });

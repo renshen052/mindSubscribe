@@ -130,7 +130,13 @@
           <td>${doctor.doctorName }</td>
           
           <td>
+          <c:if test="${ empty doctor.img }">
+          <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="77.7px" height="77.7px"/>
+          </c:if>
+          <c:if test="${not empty doctor.img }">
           <img src="/upload/${doctor.img}"  width="77.7px" height="77.7px"/>
+          </c:if>
+          
           </td>
           
           <td><u style="cursor:pointer" class="text-primary" onclick="member_show(${doctor.doctorId })">${doctor.name }</u></td>
@@ -237,7 +243,7 @@
      <label class="label_name">个人图片</label>
      <span class="add_name" id="img">
      <input name="imgPath" type="hidden"/>
-     <img src="${pageContext.request.contextPath }/mutualResource/images/icon_error_s.png" width="77.7" height="77.7" />
+     <img src="${pageContext.request.contextPath }/mutualResource/images/image.png" width="77.7" height="77.7" />
      </span>
      </li>
      <li>
