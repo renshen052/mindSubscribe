@@ -32,7 +32,7 @@ public class MessageDao {
 
 		sql += "WHERE sender_id=? ";
 		
-		sql += " AND sender=? ";
+		sql += " AND sender=? ORDER BY send_time DESC;";
 		
 		searchList.add(reqeustUserId);
 		searchList.add(reqeustUser);
@@ -135,7 +135,7 @@ public class MessageDao {
 
 		sql += "WHERE receiver_id=? ";
 		
-		sql += " AND receiver=? ";
+		sql += " AND receiver=?  ORDER BY send_time DESC";
 		
 		searchList.add(reqeustUserId);
 		searchList.add(reqeustUser);

@@ -42,6 +42,10 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						请您在右侧留下一些必要信息方便我们安排咨询后，及时的联系您。
 					</p>
+					<p> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						注册成功后，请尽快完善您的个人信息。
+					</p>
 				</div>
 			</div>
 			<div class="w3_info">

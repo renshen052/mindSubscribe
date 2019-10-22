@@ -69,7 +69,7 @@ public class ClientArchiveDao {
 		
 		sql += "  WHERE client_id=? AND status >= ? AND status <= ?";
 		
-		sql += " ORDER BY start_datetime";
+		sql += " ORDER BY apply_time DESC";
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, clientId, statusStart,statusEnd);
 
@@ -179,7 +179,7 @@ public class ClientArchiveDao {
 		
 		sql += "  WHERE doctor_id=? AND status >= ? AND status <= ?";
 		
-		sql += " ORDER BY start_datetime";
+		sql += " ORDER BY start_datetime DESC";
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, doctorId, statusStart,statusEnd);
 

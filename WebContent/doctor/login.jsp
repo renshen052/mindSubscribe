@@ -22,7 +22,7 @@
 		<![endif]-->
 		<script src="${pageContext.request.contextPath }/mutualResource/js/jquery-1.9.1.min.js"></script>        
         <script src="${pageContext.request.contextPath }/mutualResource/assets/layer/layer.js" type="text/javascript"></script>
-<title>登陆</title>
+<title>咨询师登陆</title>
 </head>
 
 <body class="login-layout" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/chuan2.png);background-size:cover;background-color: #eff5f8;">
@@ -71,10 +71,6 @@
 
 													<div class="clearfix">
 													<font style="color:red">${msg }</font><br/>
-														<label class="inline">
-														<a>忘记密码</a>
-															<!-- <span class="lbl">保存密码</span> -->
-														</label>
 
 														<button type="submit" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
 															<i class="icon-key"></i>

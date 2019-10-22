@@ -36,7 +36,16 @@
           <h4 class="lighter smaller">咨询师</h4>
       </div>
        <div class="product_info clearfix">
-     <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="210" height="200"/></a>
+       
+       	 <c:if test="${ empty doctor.img }">
+          <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="210px" height="200px"/>
+          </c:if>
+          <c:if test="${not empty doctor.img }">
+          <img src="/upload/${doctor.img}"  width="210px" height="200px"/>
+          </c:if>
+       
+       
+     <%-- <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="210" height="200"/></a> --%>
       <span>
      
       <b>${doctor.name }</b>
