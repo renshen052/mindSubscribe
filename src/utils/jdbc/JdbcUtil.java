@@ -26,10 +26,10 @@ public class JdbcUtil {
 		
 		try {
 			//连接池的
-			//conn = Pool.getConnection();
+			conn = Pool.getConnection();
 			
 			//普通jdbc
-			conn = DBUtils.getConnection();
+			//conn = DBUtils.getConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -150,88 +150,6 @@ public class JdbcUtil {
 	}
 	
 	/**
-	 * 执行带翻页的查询
-	 * @param sql 要执行的sql语句
-	 * @param pageNo 目标页号
-	 * @param pageCount 每页条数
-	 * @param paramters 0-无数个参数，用于表示sql语句当中每个?对应的参数的值是多少
-	 */
-	
-	public ResultSet executeQueryByPager(String sql,Pager pager,Object...paramters){
-		
-		//处理sql语句为带翻页的sql
-		String selectSql = sql + " limit ?,?";
-		
-		//select * from t_teacher order by teacher_id where id=? and name =?  limit ?,?  
-		
-		createStatement(selectSql, paramters);
-		
-		int skipIndex = 1;
-		
-		if(paramters != null){
-			
-			skipIndex = paramters.length + 1;
-		}
-		
-		try {
-			
-			//求出欲跳过的记录数
-			int skip = getSkip(pager.getPageNo(), pager.getPageCount());
-			
-			//System.out.println(skip);
-			//为skip和pageCount赋值
-			ps.setInt(skipIndex,skip);
-			ps.setInt(skipIndex + 1,pager.getPageCount());
-			
-			rs = ps.executeQuery();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		//查询总记录数
-		String sqlCount = "select count(1) from (" + sql + ") pager";
-		
-		//执行sql语句
-		JdbcUtil jdbcUtil = new JdbcUtil();
-		ResultSet rs = null;
-		try {
-			rs = jdbcUtil.executeQuery(sqlCount,paramters);
-			
-			int totalCount = 0;//总记录数
-			
-			if(rs.next()){
-				totalCount = rs.getInt(1);
-			}
-			
-			//为pager对象设置总记录数
-			pager.setTotalCount(totalCount);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			
-			jdbcUtil.close();
-		}
-		
-		return this.rs;
-		
-	}
-	
-	
-	/**
-	 * 求skip的值
-	 * @param pageNo 目标页号
-	 * @param pageCount 每页条数
-	 */
-	public static int getSkip(int pageNo,int pageCount){
-		
-		
-		return  (pageNo - 1) * pageCount;
-	}
-	
-	
-	/**
 	 * 关闭资源(rs,ps,conn)
 	 */
 	
@@ -251,7 +169,11 @@ public class JdbcUtil {
 			
 			if(conn != null){
 				
-				conn.close();
+				/*//普通数据库的关闭
+				conn.close();*/
+				
+				//连接池连接释放
+				Pool.release(conn);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

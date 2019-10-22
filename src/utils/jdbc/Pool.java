@@ -2,9 +2,11 @@ package utils.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSourceFactory;
+
 /**
  * 数据库连接池
  */
@@ -19,7 +21,9 @@ public class Pool {
 	
 	static {
 		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			ds = BasicDataSourceFactory.createDataSource(PoolProperties.properties);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,15 +57,12 @@ public class Pool {
 
                 //将Connection连接对象还给数据库连接池  
 
-
                 conn.close();  
 
 
             }catch (Exception e) {  
 
-
                 e.printStackTrace();  
-
 
             }  
 
