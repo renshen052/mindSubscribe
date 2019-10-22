@@ -43,7 +43,7 @@
       <p>年龄：${client.age }</p>
       <p>电话：${client.phone }</p>
       <p>电子邮件：${client.email }</p>
-      <a style="text-decoration:none" onClick="sendMessage(this,'${client.clientId}','${client.name}','doctor')"
+      <a style="text-decoration:none" onClick="sendMessage(this,'${client.clientId}','${client.name}','client')"
 											href="javascript:;" title="发送消息"
 											class="btn btn-xs btn-success">发送消息</a>
       </span>

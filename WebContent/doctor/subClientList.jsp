@@ -270,7 +270,7 @@ layer.confirm('确认要驳回吗？',function(index){
 			
 			var msg = "";
 			
-			if(isAble()){
+			if(isAble2()){
 				//如果数据合法
 				
 				//ajax上传$("#xx").serialize()
@@ -329,7 +329,7 @@ layer.confirm('确认要驳回吗？',function(index){
 	
 }
 
-function isAble(){
+function isAble2(){
 	
 	
 	var isOk = true;

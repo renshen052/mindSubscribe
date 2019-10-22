@@ -69,9 +69,7 @@
 		src="${pageContext.request.contextPath }/mutualResource/assets/laydate/laydate.js"
 		type="text/javascript"></script>
 
-
 </head>
-
 <body>
 <div class="page-content clearfix">
     <div id="Member_Ratings">

@@ -152,6 +152,9 @@ setInterval(function(){
     }); 
 	
 	},3000);
+	
+	
+	$("#skin-colorpickerSkin-1").click();
 
 
 
@@ -169,7 +172,7 @@ setInterval(function(){
 </script>	
 	</head>
 	<body>
-		<div class="navbar navbar-default" id="navbar">
+		<div class="navbar navbar-default" id="navbar" style="background: #49565d;">
         <script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
@@ -222,7 +225,7 @@ setInterval(function(){
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
 					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large" style="background-color: #758e9d;">
 						管理员  
 						</div>
 						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
@@ -325,9 +328,10 @@ setInterval(function(){
                               <div class="pull-left">
                                   <select id="skin-colorpicker" class="hide">
                                       <option data-skin="default" value="#438EB9">#438EB9</option>
-                                      <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                                      <option data-skin="skin-1" value="#222A2D" id="skin-colorpickerSkin-1">#222A2D</option>
                                       <option data-skin="skin-2" value="#C6487E">#C6487E</option>
-                                      <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                                      <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option> 
+                                      
                                   </select>
                               </div>
                               <span>&nbsp; 选择皮肤</span>
@@ -358,7 +362,7 @@ setInterval(function(){
          <!--底部样式-->
        
          <div class="footer_style" id="footerstyle">  
-          <p class="l_f">版权所有：XXXX</p>
+          <p class="l_f">心理咨询预约管理后台系统</p>
          </div>
 		
 </body>

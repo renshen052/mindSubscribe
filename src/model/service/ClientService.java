@@ -124,6 +124,46 @@ public class ClientService {
 	public Client getClientByClientId(int clientId) {
 		return clientDao.getClientByClientId(clientId);
 	}
+
+
+	/**
+	 * 判断电话是否可用（是否被注册过）
+	 * @param phone
+	 * @param response
+	 */
+	public void checkPhoneResponse(String phone, HttpServletResponse response) {
+
+		Client client = clientDao.getClient(phone);
+
+		ResultDate rd = new ResultDate();
+		if (client == null) {
+			// 可用
+			rd.setIsSuccess(true);
+			rd.setMsg("电话号码可用");
+
+		} else {
+
+			// 修改失败
+			rd.setIsSuccess(false);
+			rd.setMsg("已经被注册过");
+
+		}
+
+		// 响应，JSON格式数据
+		Util.responseJson(rd, response);
+
+	}
+
+
+	/**
+	 * 添加一来访者
+	 * @param client
+	 */
+	public int addClient(Client client) {
+
+		return clientDao.addClient(client);
+		
+	}
 	
 	
 

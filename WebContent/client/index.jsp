@@ -165,7 +165,7 @@ setInterval(function(){
 </script>	
 	</head>
 	<body>
-		<div class="navbar navbar-default" id="navbar">
+		<div class="navbar navbar-default" id="navbar" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/background.png);background-size:cover;background-color: #eff5f8;">
         <script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
@@ -175,7 +175,7 @@ setInterval(function(){
 			<div class="navbar-header pull-left">
 					
 						<small>					
-						<img src="##${pageContext.request.contextPath }/mutualResource/images/logo.png">
+						<img src="${pageContext.request.contextPath }/mutualResource/myImg/clientTop.png">
 						</small>
 					
 				</div><!-- /.navbar-header -->
@@ -185,7 +185,7 @@ setInterval(function(){
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span  class="time"><em id="time"></em></span><span class="user-info"><small>欢迎光临,</small>${LOGIN_CLIENT.name }	</span>
 							</a>
-								<li><a href="javascript:void(0)" id="Exit_system"><i class="icon-off"></i>退出</a></li>
+								<li><a href="javascript:void(0)" id="Exit_system" class="write" ><b>退出</b></a></li>
 							</ul>
                 </div>
 			
@@ -364,7 +364,7 @@ setInterval(function(){
          <!--底部样式-->
        
          <div class="footer_style" id="footerstyle">  
-          <p class="l_f">版权所有：XXXX</p>
+          <p class="l_f">联系管理员:renshen052@126.com</p>
          </div>
 		
 </body>

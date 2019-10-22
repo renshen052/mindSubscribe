@@ -105,7 +105,7 @@
           
           <td>${clientArchive.subPlace }</td>
           
-          <td >
+          <td id="doc">
           
           <c:if test="${empty clientArchive.docPath}">
           未上传
@@ -194,13 +194,13 @@ jQuery(function($) {
 function finshSub(obj,archivesId,clientId,applyTime){
 	
 layer.confirm('请检查本次咨询所需工作已全部完成（咨询文档必须上传），如果您已经完成，请点击确定！',function(index){
-		
-		if($(obj).parents("tr").find("#doc").val() == ""){
+
+	
+		if($.trim($("#doc").text()) == "未上传"){
 			
 			layer.msg("您还未上传文档！",{icon: 0});
 			
 		}else{
-			
 			
 			//ajax
 			$.ajax({

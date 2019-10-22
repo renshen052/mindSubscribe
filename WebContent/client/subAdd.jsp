@@ -205,8 +205,10 @@ function article_save_submit(){
 	        		  layer.alert(msg,
 				    		  
 	   	 	               {title: '提示框',				
-	   	 					icon:1,	}); 
-	        		  window.location="${pageContext.request.contextPath }/client/ClientSubServlet?m=subClientList";
+	   	 					icon:1	},function(){
+	   	 					window.location="${pageContext.request.contextPath }/client/ClientSubServlet?m=subClientList";
+	   	 					}); 
+	        		  
 	        	  }else{
 	        		  msg = data.msg;
 	        		  layer.alert(msg,

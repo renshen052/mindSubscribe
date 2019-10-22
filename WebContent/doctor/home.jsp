@@ -42,7 +42,9 @@
               </div> --> 
           <div class="news_style">
           <div class="title_name">最新消息</div>
+          
           <ul class="list">
+          <c:if test="${empty messageList }">无</c:if>
           	<c:forEach items="${messageList }" var="message">
           	
           		<li><i class="icon-bell red"></i><a title="查看消息" href="${pageContext.request.contextPath }/message/MessageServlet?m=listReceivMessage&reqeustUser=admin">

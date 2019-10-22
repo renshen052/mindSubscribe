@@ -32,7 +32,9 @@ public class MailSend {
 	}
 	
 	@SuppressWarnings("deprecation")
-	private static boolean send(Mail mail){
+	public static boolean send(Mail mail){
+		
+		System.out.println(mail.getContent() + "邮件内容");
 		
 		SimpleEmail email = new SimpleEmail();
 

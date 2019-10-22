@@ -211,12 +211,12 @@
   </filter-mapping>
   <servlet>
     <description></description>
-    <display-name>ClientRegister</display-name>
-    <servlet-name>ClientRegister</servlet-name>
-    <servlet-class>servlet.client.ClientRegister</servlet-class>
+    <display-name>ClientRegisterServlet</display-name>
+    <servlet-name>ClientRegisterServlet</servlet-name>
+    <servlet-class>servlet.client.ClientRegisterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ClientRegister</servlet-name>
-    <url-pattern>/client/ClientRegister</url-pattern>
+    <servlet-name>ClientRegisterServlet</servlet-name>
+    <url-pattern>/client/reg</url-pattern>
   </servlet-mapping>
 </web-app>

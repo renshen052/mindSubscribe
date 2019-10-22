@@ -42,6 +42,7 @@
               </div> --> 
           <div class="news_style">
           <div class="title_name">最新消息</div>
+          <c:if test="${empty messageList }">无</c:if>
           <ul class="list">
           	<c:forEach items="${messageList }" var="message">
           	

@@ -195,10 +195,14 @@ public class ClientArchiveService {
 		if(email != null) {
 			
 			Mail mail = new Mail();
-			mail.setTitle("心理咨询预约系统");
+			mail.setTitle("咨询安排");
 			mail.setContent(message.getContext());
 			mail.setTo(email);
-			MailSend.sendMail(mail);
+		    boolean result = MailSend.send(mail);
+		    
+		    if(!result) {
+		    	System.out.println("给：" + message.getReceiver() + " " + message.getReceiverId() + ",email:" + email + ",发送的邮件失败");
+		    }
 			
 		}else {
 			System.out.println("邮箱不存在" + message.getReceiver() + " " + message.getReceiverId());

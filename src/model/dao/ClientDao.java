@@ -297,4 +297,23 @@ public class ClientDao {
 		return client;
 	}
 
+
+	/**
+	 * 添加一来访者
+	 * @param client
+	 */
+	public int addClient(Client client) {
+		
+		String sql = "INSERT INTO client ( `client_name`, `client_pwd`, `name`, `sex`, ";
+		
+		sql += "`age`, `phone`, `email`, `is_active`, `region_time`)";
+		
+		sql += "values (?,?,?,?,?,?,?,?,?)";
+		
+		return jdbcUtil.executeUpdate(sql, client.getClientName(),client.getClientPwd(),client.getName(),
+				client.getSex(),client.getAge(),client.getPhone(),client.getEmail(),client.getIsActive(),
+				client.getRegionTime());
+		
+	}
+
 }

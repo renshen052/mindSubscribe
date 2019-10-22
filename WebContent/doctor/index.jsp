@@ -167,7 +167,7 @@ setInterval(function(){
 </script>	
 	</head>
 	<body>
-		<div class="navbar navbar-default" id="navbar">
+		<div class="navbar navbar-default" id="navbar" style="background-image: url(${pageContext.request.contextPath }/mutualResource/myImg/background.png);background-size:cover;background-color: #eff5f8;">
         <script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
@@ -177,7 +177,7 @@ setInterval(function(){
 			<div class="navbar-header pull-left">
 					
 						<small>					
-						<img src="##${pageContext.request.contextPath }/mutualResource/images/logo.png">
+						<img src="${pageContext.request.contextPath }/mutualResource/myImg/doctorTop.png">
 						</small>
 					
 				</div><!-- /.navbar-header -->
