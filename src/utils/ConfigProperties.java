@@ -79,13 +79,5 @@ public class ConfigProperties {
 		return properties.getProperty("email.AuthenticationPwd");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
