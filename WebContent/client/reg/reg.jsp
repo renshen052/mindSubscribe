@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>注册</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="keywords" content="" />
