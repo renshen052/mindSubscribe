@@ -219,4 +219,23 @@
     <servlet-name>ClientRegisterServlet</servlet-name>
     <url-pattern>/client/reg</url-pattern>
   </servlet-mapping>
+  
+   <error-page>
+     <error-code>404</error-code>
+     <location>/404.html</location>
+  </error-page>
+  
+  <error-page>
+     <error-code>500</error-code>
+     <location>/500.html</location>
+  </error-page>
+  
+  <security-constraint>
+   <web-resource-collection>
+       <web-resource-name>JSPs</web-resource-name>
+       <url-pattern>/web/*</url-pattern><!-- 拒绝直接访问web文件夹下的所有页面 -->
+   </web-resource-collection>
+   <auth-constraint/>
+</security-constraint>
+  
 </web-app>
