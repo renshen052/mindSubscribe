@@ -41,10 +41,13 @@ public class AnnouncmentServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String m = request.getParameter("m");
+		
+		
 
 		if ("listAnnouncment".equals(m)) {
 			
-			String user = request.getParameter("user");
+			//得到当前登录的用户
+			Map<String, Object> currentUser =MessageServlet.getCurrentUser(request);
 
 			// 接受查询条件
 			
@@ -72,10 +75,8 @@ public class AnnouncmentServlet extends HttpServlet {
 
 			request.setAttribute("listSize", list.size());
 			
-			//得到当前登录的用户
-			Map<String, Object> currentUser =MessageServlet.getCurrentUser(request);
 			
-			if(currentUser.get("reqeustUser").equals("admin")) { //管理员（有创建公管的权限）
+			if(currentUser.get("reqeustUser").equals("admin")) { //管理员（有创建公告的权限）
 				
 				request.getRequestDispatcher("/admin/announcementList.jsp").forward(request, response);
 			

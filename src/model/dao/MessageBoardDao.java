@@ -57,6 +57,8 @@ public class MessageBoardDao {
 			sql += " AND m.create_time <= ? ";
 			searchList.add(search.get("endTime"));
 		}
+		
+		sql += " ORDER BY create_time DESC";
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, searchList.toArray());
 

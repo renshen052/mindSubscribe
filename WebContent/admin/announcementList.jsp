@@ -157,7 +157,7 @@
 
 										<td class="td-manage"><a
 											onClick="member_stop(this,${announcement.announcementId })"
-											href="javascript:;" title="隐藏" class="btn btn-xs btn-success"><i
+											href="javascript:;" title="隐藏" class="btn btn-xs btn"><i
 												class="icon-ok bigger-120"></i></a> <a
 											style="text-decoration: none"
 											onClick="member_show(this,${announcement.announcementId })"
@@ -170,7 +170,7 @@
 											class="label label-defaunt radius">隐藏</span></td>
 										<td><a style="text-decoration: none"
 											onClick="member_start(this,${announcement.announcementId })"
-											href="javascript:;" title="显示" class="btn btn-xs btn"><i
+											href="javascript:;" title="显示" class="btn btn-xs btn-success"><i
 												class="icon-ok bigger-120"></i></a> <a
 											style="text-decoration: none"
 											onClick="member_show(this,${announcement.announcementId })"
@@ -401,7 +401,7 @@ function member_stop(obj,id){
 		success : function(data) {
 			
 			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,' + id +')" href="javascript:;" title="显示"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success " onClick="member_start(this,' + id +')" href="javascript:;" title="显示"><i class="icon-ok bigger-120"></i></a>');
 				$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">隐藏</span>');
 				$(obj).remove();
 				layer.msg('已隐藏!',{icon: 5,time:1000});
@@ -426,7 +426,7 @@ function member_start(obj,id){
 		success : function(data) {
 			
 			if (data['isSuccess'] == true) {
-				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,' + id +')" href="javascript:;" title="隐藏"><i class="icon-ok bigger-120"></i></a>');
+				$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" class="btn btn-xs btn" onClick="member_stop(this,' + id +')" href="javascript:;" title="隐藏"><i class="icon-ok bigger-120"></i></a>');
 				$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">显示</span>');
 				$(obj).remove();
 				layer.msg('已显示!',{icon: 6,time:1000});

@@ -83,9 +83,6 @@ public class MessageBoardServlet extends HttpServlet {
 
 			String action = request.getParameter("action");
 			
-			System.out.println(messageBoardId + "---" + action);
-
-
 			messageBoardService.toggleMessageBoardActive(messageBoardId, action, response);
 
 		} else if ("selecteMessageBoard".equals(m)) {// ajax

@@ -136,8 +136,10 @@
 						<tbody>
 
 							<c:forEach items="${messageBoardList }" var="messageBoard">
-
-								<tr>
+							
+							<c:if test="${messageBoard.isActive eq 1 }">
+							
+							<tr>
 
 									<td>${messageBoard.client.name }</td>
 
@@ -148,7 +150,13 @@
 									<fmt:formatDate value="${messageBoard.createTime }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</td>
 
-								</tr>
+							</tr>
+							
+							
+							
+							</c:if>
+
+								
 
 
 							</c:forEach>

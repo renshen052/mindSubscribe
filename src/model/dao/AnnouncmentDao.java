@@ -68,6 +68,14 @@ public class AnnouncmentDao {
 			sql += " AND an.create_time <= ? ";
 			searchList.add(search.get("endTime"));
 		}
+		
+		// 显示的公告
+		if(Util.isNotEmpty(search.get("isActive"))) {
+			sql += " AND an.is_active = ? ";
+			searchList.add(search.get("endTime"));
+		}
+		
+		sql += " ORDER BY create_time DESC";
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, searchList.toArray());
 
