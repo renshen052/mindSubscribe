@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import servlet.MessageServlet;
 
 /**
- * Servlet Filter implementation class MessageBoardFilter
+ * @author h w j
+ * @instruction
+ * 留言模块过滤器（必须登录）
  */
 public class MessageBoardFilter implements Filter {
 

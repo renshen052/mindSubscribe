@@ -12,6 +12,11 @@ import model.dao.QuestionDao;
 import utils.ResultDate;
 import utils.Util;
 
+/**
+ * @author h w j
+ * @instruction
+ * 问题Service
+ */
 public class QuestionService {
 
 	QuestionDao questionDao = new QuestionDao();
@@ -19,7 +24,8 @@ public class QuestionService {
 	
 	/**
 	 * 添加一个预约问题
-	 * @param response 
+	 * @param question 问题的对象
+	 * @param response 响应对象
 	 */
 	public void addQuestion(Question question, HttpServletResponse response) {
 
@@ -45,7 +51,8 @@ public class QuestionService {
 	
 	/**
 	 * 查看所有的问题
-	 * @param context 
+	 * @param context 查询条件（里面包含的内容）
+	 * @return 问题对象集合
 	 */
 	public ArrayList<Question> listQuestion(String context){
 		
@@ -54,9 +61,9 @@ public class QuestionService {
 
 	
 	/**
-	 * 修改一个预约的问题
-	 * @param question
-	 * @param response 
+	 * 修改一个问题，根据结果响应给客户端
+	 * @param question 要更新的问题
+	 * @param response 响应对象
 	 */
 	public void updateQuestion(Question question, HttpServletResponse response) {
 
@@ -83,8 +90,8 @@ public class QuestionService {
 
 	/**
 	 * 查询一个问题，并且返回响应
-	 * @param questionId
-	 * @param response
+	 * @param questionId 问题的id
+	 * @param response 响应对象
 	 */
 	public void getQuestionByQuestionIdToResponse(int questionId, HttpServletResponse response) {
 
@@ -112,8 +119,8 @@ public class QuestionService {
 
 	/**
 	 *  删除一个问题
-	 * @param questionId
-	 * @param response
+	 * @param questionId 问题的id
+	 * @param response 响应对象
 	 */
 	public void deleteQuestion(int questionId, HttpServletResponse response) {
 
@@ -140,8 +147,8 @@ public class QuestionService {
 
 	/**
 	 * 删除所有选中的问题
-	 * @param checkeds
-	 * @param response
+	 * @param checkeds 要删除的问题id(1,2,3)使用","分隔
+	 * @param response 响应对象
 	 */
 	public void deleteQuestionCheckeds(String checkeds, HttpServletResponse response) {
 
@@ -175,11 +182,13 @@ public class QuestionService {
 	
 	/**
 	 * 通过questionIds来返回一个json字符串（包括用户回答内容，题目）
-	 * @param questionIds
-	 * @param request
-	 * @return
+	 * @param questionIds 问题id
+	 * @param request 请求对象
+	 * @return 返回一个map，里面包含 "JSON"的key，value为来访者回答的问卷内容，包含context,
+	 * answer_yes_score,answer_no_score的json字符串，"level"的key，value为这份回答的分值
+	 * 
 	 * //题目内容context，是的分值answer_yes_score，否的分值answer_no_score，
-			//clientSelected用户选项的分值
+	   //clientSelected用户选项的分值
 	 */
 	public HashMap<String,String> getJSON(String questionIds, HttpServletRequest request) {
 		

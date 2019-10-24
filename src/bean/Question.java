@@ -1,5 +1,10 @@
 package bean;
 
+/**
+ * @author h w j
+ * @instruction
+ * 问卷  question ,对应的实体类
+ */
 public class Question {
 
 	/**
@@ -8,7 +13,7 @@ public class Question {
 	private Integer questionId;
 	
 	/**
-	 * 题目显示顺序
+	 * 题目题号
 	 */
 	private Integer questionNum;
 	

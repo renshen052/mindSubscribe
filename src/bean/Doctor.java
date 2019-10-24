@@ -1,5 +1,10 @@
 package bean;
 
+/**
+ * @author h w j
+ * @instruction
+ * 咨询师表 doctor ,对应的实体类
+ */
 public class Doctor {
 
 	
@@ -21,15 +26,29 @@ private Integer doctorId;
 	 */
 	private String name;
 	
-	
+	/**
+	 * 性别
+	 */
 	private Integer sex;
 	
+	/**
+	 * 年龄
+	 */
 	private Integer age;
 	
+	/**
+	 * 电话
+	 */
 	private String phone;
 	
+	/**
+	 * 电子邮件
+	 */
 	private String email;
 	
+	/**
+	 * 账户是否激活
+	 */
 	private Integer isActive;
 	
 	/**

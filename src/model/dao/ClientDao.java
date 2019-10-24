@@ -10,15 +10,19 @@ import bean.Client;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * client 对应的dao
+ */
 public class ClientDao {
 
 	JdbcUtil jdbcUtil = new JdbcUtil();
 
 	/**
 	 * 查询符合条件的用户
-	 * 
-	 * @param search
-	 * @return
+	 * @param search 查询条件
+	 * @return 来访者对象集合
 	 */
 	public List<Client> listSearch(Map<String, String> search) {
 
@@ -122,9 +126,8 @@ public class ClientDao {
 	/**
 	 * 修改client表中is_active的值，是否为激活状态
 	 * 
-	 * @param clientId
-	 * @param action
-	 * @return
+	 * @param clientId 来访者id
+	 * @param action 要设置的状态值
 	 */
 	public int toggleClientActive(Integer clientId, Integer action) {
 
@@ -137,7 +140,7 @@ public class ClientDao {
 
 	/**
 	 * 查询 共有多少注册的来访者
-	 * @return
+	 * @return 来访者数量
 	 */
 	public int getClientNum() {
 
@@ -175,9 +178,9 @@ public class ClientDao {
 
 
 	/**
-	 * 根据用户名查询 来访者
-	 * @param clientName
-	 * @return
+	 * 根据账号查询 来访者（支持电话）
+	 * @param clientName 账号
+	 * @return 来访者对象
 	 */
 	public Client getClient(String clientName) {
 		
@@ -225,9 +228,10 @@ public class ClientDao {
 
 
 	/**
-	 * 根据来访者的id，修改他的密码
-	 * @param clientId
-	 * @param newPwd
+	 * 修改来访者密码
+	 * @param clientId 来访者id
+	 * @param newPwd 新密码
+	 * @return 受影响行数
 	 */
 	public int updateClientPwd(Integer clientId, String newPwd) {
 
@@ -239,10 +243,10 @@ public class ClientDao {
 
 
 	/**
-	 * 修改来访者的个人信息
-	 * @param client
-	 * @param clientId
-	 * @return
+	 * 修改client表
+	 * @param client 来访者对象
+	 * @param clientId 来访者id
+	 * @return 受影响行数
 	 */
 	public int updateClientBase(Client client, Integer clientId) {
 		
@@ -253,6 +257,11 @@ public class ClientDao {
 	}
 
 
+	/**
+	 * 得到来访者
+	 * @param clientId 来访者id
+	 * @return 来访者对象
+	 */
 	public Client getClientByClientId(int clientId) {
 		
 		Client client = null;
@@ -299,8 +308,9 @@ public class ClientDao {
 
 
 	/**
-	 * 添加一来访者
-	 * @param client
+	 * 添加一来访者 
+	 * @param client 来访者对象
+	 * @return 受影响行数
 	 */
 	public int addClient(Client client) {
 		

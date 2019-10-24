@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author h w j
+ * @instruction
+ * 读取连接池配置
+ */
 public class PoolProperties {
 	public static Properties properties = new Properties();
 	

@@ -12,6 +12,11 @@ import model.dao.AnnouncmentDao;
 import utils.ResultDate;
 import utils.Util;
 
+/**
+ * @author h w j
+ * @instruction
+ * 公告的Service
+ */
 public class AnnouncmentService {
 
 	AnnouncmentDao announcmentDao = new AnnouncmentDao();
@@ -19,8 +24,9 @@ public class AnnouncmentService {
 	
 	/**
 	 * 查询符合条件的公告
-	 * @param search
-	 * @return
+	 * 
+	 * @param search 封装了查询条件的Map集合
+	 * @return 查询到的公告列表
 	 */
 	public List<Announcement> listSearch(Map<String, String> search) {
 
@@ -28,8 +34,11 @@ public class AnnouncmentService {
 	}
 
 
-	/*
+	/**
 	 * 切换公告的显示和隐藏，0隐藏，1显示
+	 * @param announcmentId 要切换的公告id
+	 * @param action 要更新到的状态
+	 * @param response 响应对象
 	 */
 	public void toggleDoctorActive(String announcmentId, String action, HttpServletResponse response) {
 
@@ -58,9 +67,9 @@ public class AnnouncmentService {
 
 
 	/**
-	 * 根据公告的id查询，公告，并且给出响应
-	 * @param parseInt
-	 * @param response
+	 * 根据announcementId，返回一条公告，响应给客户端
+	 * @param announcementId 公告id
+	 * @param response 响应对象
 	 */
 	public void getAnnouncementToResponse(int announcementId, HttpServletResponse response) {
 		Announcement announcement = announcmentDao.getAnnouncement(announcementId);
@@ -88,7 +97,8 @@ public class AnnouncmentService {
 
 	/**
 	 * 增加一条公告
-	 * @param announcement
+	 * @param announcement 要增加的公告对象
+	 * @param response 响应对象
 	 */
 	public void addAnnouncement(Announcement announcement, HttpServletResponse response) {
 
@@ -115,9 +125,9 @@ public class AnnouncmentService {
 
 
 	/**
-	 * 查询所有显示的公告（最新十条）
-	 * @param num
-	 * @return
+	 * 查询所有显示的公告（最新num条）
+	 * @param num 查询的公告数量
+	 * @return 最新的num条公告的列表
 	 */
 	public ArrayList<Announcement> getAnnouncmentNum(int num) {
 		

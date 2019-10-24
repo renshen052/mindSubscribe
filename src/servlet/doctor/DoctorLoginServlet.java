@@ -11,7 +11,9 @@ import bean.Doctor;
 import model.service.DoctorService;
 
 /**
- * Servlet implementation class DoctorLoginServlet
+ * @author h w j
+ * @instruction
+ * 咨询师登录，登出控制器
  */
 public class DoctorLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

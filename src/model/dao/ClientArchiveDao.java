@@ -10,6 +10,11 @@ import bean.ClientArchive;
 import bean.Doctor;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * 操作表clientArchive，的DAO
+ */
 public class ClientArchiveDao {
 
 	JdbcUtil jdbcUtil = new JdbcUtil();
@@ -17,7 +22,7 @@ public class ClientArchiveDao {
 	/**
 	 * 查询共有多少条咨询记录
 	 * 
-	 * @return
+	 * @return 咨询记录数
 	 */
 	public int getClientArchiveNum() {
 
@@ -56,8 +61,8 @@ public class ClientArchiveDao {
 	/**
 	 * 查询来访者咨询记录
 	 * 
-	 * @param clientId
-	 * @return
+	 * @param clientId 来访者id
+	 * @return 咨询记录列表
 	 */
 	public List<ClientArchive> listClientArchive(Integer clientId, int statusStart,int statusEnd ) {
 		
@@ -108,8 +113,8 @@ public class ClientArchiveDao {
 	/**
 	 * 通过rs封装到ClientArchive对象中
 	 * 
-	 * @param rs
-	 * @return
+	 * @param rs 查询的结果集
+	 * @return 从rs中取出封装好的ClientArchive对象
 	 * @throws SQLException 
 	 */
 	private ClientArchive getCAList(ResultSet rs) throws SQLException {
@@ -137,9 +142,10 @@ public class ClientArchiveDao {
 
 	
 	/**
-	 * 添加一次申请,并且返回响应
-	 * @param clientArchive
-	 * @param response 
+	 * 添加一次申请,并且响应客户端
+	 * 
+	 * @param clientArchive 咨询记录对象
+	 * @return 受影响行数
 	 */
 	public int addClientArchive(ClientArchive clientArchive) {
 
@@ -164,9 +170,9 @@ public class ClientArchiveDao {
 
 	/**
 	 * 查询咨询师咨询记录
-	 * @param doctorId
-	 * @param statusStart
-	 * @param statusEnd
+	 * @param doctorId 咨询记录中对应的咨询师id
+	 * @param statusStart 最小状态
+	 * @param statusEnd 最大状态
 	 * @return
 	 */
 	public List<ClientArchive> listDoctorArchive(Integer doctorId, int statusStart,int statusEnd) {
@@ -217,8 +223,9 @@ public class ClientArchiveDao {
 	
 	/**
 	 * 通过archivesId得到ClientArchive对象
-	 * @param parseInt
-	 * @return
+	 * 
+	 * @param archivesId 咨询记录id
+	 * @return 咨询记录对象
 	 */
 	public ClientArchive getClientArchiveById(int archivesId) {
 		
@@ -260,9 +267,9 @@ public class ClientArchiveDao {
 
 	/**
 	 * 切换status
-	 * @param archivesId
-	 * @param status
-	 * @return
+	 * @param archivesId 咨询记录id
+	 * @param status 要更新到的状态
+	 * @return 受影响行数
 	 */
 	public int updateClientArchiveStuatus(int archivesId, int status) {
 
@@ -276,10 +283,9 @@ public class ClientArchiveDao {
 
 	/**
 	 * 安排咨询
-	 * 
-	 * @param clientArchive
-	 * @param response
-	 * @param doctorNow 
+	  * 
+	 * @param clientArchive 咨询记录
+	 * @return 受影响行数
 	 */
 	public int planSub(ClientArchive clientArchive) {
 
@@ -294,9 +300,8 @@ public class ClientArchiveDao {
 
 	/**
 	 * 修改咨询记录的回访内容
-	 * @param archivesId
-	 * @param context
-	 * @param response
+	 * @param archivesId 咨询记录id
+	 * @param context 咨询者的评价内容
 	 */
 	public int evaluateSub(String archivesId, String context) {
 
@@ -311,8 +316,8 @@ public class ClientArchiveDao {
 	
 	/**
 	 * 更新咨询文档的存放路径
-	 * @param archivesId
-	 * @param subDocPath
+	 * @param archivesId 咨询记录id
+	 * @param subDocPath 文档的路径
 	 * @return
 	 */
 	public int uploadSubDoc(String archivesId, String subDocPath) {

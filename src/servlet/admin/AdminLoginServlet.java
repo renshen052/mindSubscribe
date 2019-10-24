@@ -10,7 +10,9 @@ import bean.Admin;
 import model.service.AdminService;
 
 /**
- * Servlet implementation class AdminLoginServlet 管理员登录，退出
+ * @author h w j
+ * @instruction
+ * 管理员登录，登出控制器
  */
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

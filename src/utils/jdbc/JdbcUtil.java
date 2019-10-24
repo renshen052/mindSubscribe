@@ -1,13 +1,14 @@
 package utils.jdbc;
-/**
- * @Description:    jdbc工具
- */
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * @author h w j
+ * @instruction
+ * jdbc工具
+ */
 public class JdbcUtil {
 	
 	private Connection conn;
@@ -19,6 +20,7 @@ public class JdbcUtil {
 	
 	/**
 	 * @description:  打开连接 
+	 * @return 连接
 	 */
 	public Connection connect(){
 		
@@ -130,6 +132,7 @@ public class JdbcUtil {
 	
 	/**
 	 * 执行查询
+	 * @return 结果集
 	 */
 	public ResultSet executeQuery(String sql,Object...paramters){
 		

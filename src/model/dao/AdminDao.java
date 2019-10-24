@@ -6,14 +6,20 @@ import java.sql.SQLException;
 import bean.Admin;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * 操作管理员表admin，的DAO
+ */
 public class AdminDao {
 	
 	JdbcUtil jdbcUtil = new JdbcUtil();
 	
 	
 	/**
-	 * 根据账号或者电话号码查询管理员
-	 * @return
+	 * 根据账号查询管理员(或者电话号码)
+	 * @param adminName 管理员账号
+	 * @return adminName 查询到的管理员
 	 */
 	public Admin getAdmin(String adminName) {
 		
@@ -59,9 +65,10 @@ public class AdminDao {
 
 
 	/**
-	 * 修改密码
-	 * @param adminId
-	 * @return
+	 * 修改管理员密码
+	 * @param adminId 管理员id
+	 * @param newPwd  新密码
+	 * @return 执行update后受影响行数
 	 */
 	public int updateAdminPwd(Integer adminId,String newPwd) {
 
@@ -74,9 +81,9 @@ public class AdminDao {
 
 	/**
 	 * 修改管理员信息，根据管理员id
-	 * @param admin
-	 * @param adminId
-	 * @return
+	 * @param admin 管理员的新信息
+	 * @param adminId 管理员id
+	 * @return 执行update后受影响行数
 	 */
 	public int updateAdminBase(Admin admin, Integer adminId) {
 		
@@ -89,8 +96,8 @@ public class AdminDao {
 	/**
 	 * 根据Id查询管理员个人信息
 	 * 
-	 * @param adminId
-	 * @return
+	 * @param adminId 管理员id
+	 * @return 查询到的管理员对象
 	 */
 	public Admin getAdminById(Integer adminId) {
 		

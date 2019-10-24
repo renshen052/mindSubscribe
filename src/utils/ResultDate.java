@@ -3,6 +3,11 @@ package utils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author h w j
+ * @instruction
+ * 响应结果
+ */
 public class ResultDate {
 	
 	/**

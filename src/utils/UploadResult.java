@@ -1,9 +1,8 @@
 package utils;
 /**
  * @author h w j
- * @time 2019年9月4日
  * @instruction
- * 上传结果
+ * 文档上传结果
  */
 public class UploadResult {
 	

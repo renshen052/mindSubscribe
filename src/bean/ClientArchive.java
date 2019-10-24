@@ -2,6 +2,11 @@ package bean;
 
 import java.util.Date;
 
+/**
+ * @author h w j
+ * @instruction
+ * 咨询记录 clientArchive ,对应的实体类
+ */
 public class ClientArchive {
 
 	/**
@@ -72,7 +77,7 @@ public class ClientArchive {
 	private Integer status = 0;
 	
 	/**
-	 * 一次咨询的记录文档，命名：日期_来访者id_咨询师id.xxx
+	 * 一次咨询的记录文档
 	 */
 	private String docPath = "";
 	

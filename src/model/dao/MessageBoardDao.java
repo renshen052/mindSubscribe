@@ -12,6 +12,11 @@ import bean.MessageBoard;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * message_board表，对应的dao
+ */
 public class MessageBoardDao {
 
 	JdbcUtil jdbcUtil = new JdbcUtil();
@@ -22,8 +27,8 @@ public class MessageBoardDao {
 	/**
 	 * 查询符合条件的留言
 	 * 
-	 * @param search
-	 * @return
+	 * @param search 查询条件
+	 * @return 留言对象集合
 	 */
 	public List<MessageBoard> listSearch(Map<String, String> search) {
 
@@ -106,8 +111,11 @@ public class MessageBoardDao {
 		return list;
 	}
 
-	/*
+	/**
 	 * 切换留言的显示和隐藏，0隐藏，1显示
+	 * @param messageBoardId 留言id
+	 * @param action 要更新为的值
+	 * @return 受影响行数
 	 */
 	public int toggleMessageBoardActive(String messageBoardId, String action) {
 
@@ -119,8 +127,8 @@ public class MessageBoardDao {
 
 	/**
 	 * 增加一条留言
-	 * @param announcement
-	 * @return
+	 * @param announcement 要增加的留言对象
+	 * @return 受影响行数
 	 */
 	public int addMessageBoard(MessageBoard messageBoard) {
 
@@ -137,8 +145,8 @@ public class MessageBoardDao {
 
 	/**
 	 * 根据board_id，查询一条留言
-	 * @param messageBoardId
-	 * @return
+	 * @param messageBoardId 留言id
+	 * @return 留言对象
 	 */
 	public MessageBoard getMessageBoard(int messageBoardId) {
 
@@ -192,7 +200,8 @@ public class MessageBoardDao {
 
 	/**
 	 * 得到最新的num条留言
-	 * @return
+	 * @param num 留言数量
+	 * @return 最新的num条留言对象集合
 	 */
 	public ArrayList<MessageBoard> getMessageBoardNum(int num) {
 

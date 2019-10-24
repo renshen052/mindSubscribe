@@ -41,11 +41,11 @@
           <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="210px" height="200px"/>
           </c:if>
           <c:if test="${not empty doctor.img }">
-          <img src="/upload/${doctor.img}"  width="210px" height="200px"/>
+          <img src="/mind_upload/${doctor.img}"  width="210px" height="200px"/>
           </c:if>
        
        
-     <%-- <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="210" height="200"/></a> --%>
+     <%-- <a href="#" class="img_link"><img src="/mind_upload/${doctor.img}"  width="210" height="200"/></a> --%>
       <span>
      
       <b>${doctor.name }</b>

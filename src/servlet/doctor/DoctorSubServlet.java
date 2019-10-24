@@ -27,7 +27,9 @@ import utils.Util;
 import model.service.ClientService;
 
 /**
- * Servlet implementation class DoctorSubServlet
+ * @author h w j
+ * @instruction
+ * 咨询师端，预约咨询的业务流程 控制器
  */
 @MultipartConfig
 public class DoctorSubServlet extends HttpServlet {
@@ -118,7 +120,6 @@ public class DoctorSubServlet extends HttpServlet {
 			clientArchiveService.updateStatusFalseResponse(Integer.parseInt(archivesId), Integer.parseInt(clientId),
 					applyTime, response, doctorNow);
 
-			// 这里发邮件，站内消息（以咨询师的名义） 给用户，通知结果，
 		} else if ("planSub".equals(m)) {
 			// 安排咨询，即设置咨询时间地点，status改为 1 通过申请但未完成
 
@@ -176,8 +177,6 @@ public class DoctorSubServlet extends HttpServlet {
 			
 			//咨询记录中的文档更新
 			clientArchiveService.uploadSubDoc(archivesId,uploadResult,response);
-			
-			
 
 		}
 

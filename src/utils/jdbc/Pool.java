@@ -8,14 +8,11 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSourceFactory;
 
 /**
+ * @author h w j
+ * @instruction
  * 数据库连接池
  */
 public class Pool {
-
-    /** 
-   * 在java中，编写数据库连接池需实现java.sql.DataSource接口，每一种数据库连接池都是DataSource接口的实现 
-   * DBCP连接池就是java.sql.DataSource接口的一个具体实现 
-   */  
 
 	private static DataSource ds = null;
 	
@@ -32,7 +29,7 @@ public class Pool {
 
 	/**
 	 * 从数据源中获取数据库连接  
-	 * @return
+	 * @return 连接
 	 */
     public static Connection getConnection()throws SQLException{  
 
@@ -43,8 +40,8 @@ public class Pool {
 
 
     /**
-     * //释放连接 
-     * @param conn
+     * 释放连接 
+     * @param conn 连接
      */
     public static void release(Connection conn){  
 

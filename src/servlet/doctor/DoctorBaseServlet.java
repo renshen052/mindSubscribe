@@ -21,7 +21,9 @@ import model.service.MessageService;
 import servlet.client.ClientLoginServlet;
 
 /**
- * Servlet implementation class DoctorBaseServlet 咨询师登录后能做的操作
+ * @author h w j
+ * @instruction
+ * 咨询师端，首页，修改基本信息(包括密码)控制器
  */
 public class DoctorBaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

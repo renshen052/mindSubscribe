@@ -18,6 +18,11 @@ import utils.Util;
 import utils.mail.Mail;
 import utils.mail.MailSend;
 
+/**
+ * @author h w j
+ * @instruction
+ * 咨询记录的Service
+ */
 public class ClientArchiveService {
 
 	ClientArchiveDao clientArchiveDao = new ClientArchiveDao();
@@ -27,7 +32,7 @@ public class ClientArchiveService {
 	/**
 	 * 查询共有多少条咨询记录
 	 * 
-	 * @return
+	 * @return 咨询记录对象
 	 */
 	public int getClientArchiveNum() {
 		return clientArchiveDao.getClientArchiveNum();
@@ -36,8 +41,8 @@ public class ClientArchiveService {
 	/**
 	 * 查询来访者正在预约的申请
 	 * 
-	 * @param clientId
-	 * @return
+	 * @param clientId 咨询记录中来访者id
+	 * @return 咨询记录对象集合
 	 */
 	public List<ClientArchive> onSubList(Integer clientId) {
 		return clientArchiveDao.listClientArchive(clientId, -1, 1);
@@ -46,18 +51,18 @@ public class ClientArchiveService {
 	/**
 	 * 查询来访者已经完成的预约
 	 * 
-	 * @param clientId
-	 * @return
+	 * @param clientId 咨询记录中来访者id
+	 * @return 咨询记录对象集合
 	 */
 	public List<ClientArchive> clientConsult(Integer clientId) {
 		return clientArchiveDao.listClientArchive(clientId, 2, 3);
 	}
 
 	/**
-	 * 添加一次申请,并且返回响应
+	 * 添加一次申请,并且响应客户端
 	 * 
-	 * @param clientArchive
-	 * @param response
+	 * @param clientArchive 咨询记录对象
+	 * @param response 响应对象
 	 */
 	public void addClientArchive(ClientArchive clientArchive, HttpServletResponse response) {
 
@@ -85,8 +90,8 @@ public class ClientArchiveService {
 	/**
 	 * 查询 id为doctorId 的咨询师，接受到的所有申请(未通过的)
 	 * 
-	 * @param doctorId
-	 * @return
+	 * @param doctorId 咨询记录中对应的咨询师id
+	 * @return 咨询记录对象集合
 	 */
 	public List<ClientArchive> getAllSubFromClient(Integer doctorId) {
 		return clientArchiveDao.listDoctorArchive(doctorId, 0, 0);
@@ -95,8 +100,8 @@ public class ClientArchiveService {
 	/**
 	 * 显示咨询师所有正在咨询中的记录
 	 * 
-	 * @param doctorId
-	 * @return
+	 * @param doctorId 咨询记录中对应的咨询师id
+	 * @return 咨询记录对象集合
 	 */
 	public List<ClientArchive> subOnList(Integer doctorId) {
 		return clientArchiveDao.listDoctorArchive(doctorId, 1, 2);
@@ -105,8 +110,8 @@ public class ClientArchiveService {
 	/**
 	 * 显示咨询师已经完成的咨询
 	 * 
-	 * @param doctorId
-	 * @return
+	 * @param doctorId 咨询记录中对应的咨询师id
+	 * @return 咨询记录对象集合
 	 */
 	public List<ClientArchive> getSubOk(Integer doctorId) {
 		return clientArchiveDao.listDoctorArchive(doctorId, 3, 3);
@@ -115,21 +120,20 @@ public class ClientArchiveService {
 	/**
 	 * 通过archivesId得到ClientArchive对象
 	 * 
-	 * @param parseInt
-	 * @return
+	 * @param archivesId 咨询记录id
+	 * @return 咨询记录对象
 	 */
 	public ClientArchive getClientArchiveById(int archivesId) {
 		return clientArchiveDao.getClientArchiveById(archivesId);
 	}
 
 	/**
-	 * 驳回申请
-	 * 
-	 * @param applyTime
-	 * @param parseInt
-	 * @param i
-	 * @param response
-	 * @param doctorNow
+	 *  驳回申请 
+	 * @param archivesId 咨询记录id
+	 * @param clientId 来访者id
+	 * @param applyTime 申请时间
+	 * @param response 响应对象
+	 * @param doctorNow 申请的目标咨询师对象 
 	 */
 	public void updateStatusFalseResponse(int archivesId, int clientId, String applyTime, HttpServletResponse response,
 			Doctor doctorNow) {
@@ -213,9 +217,9 @@ public class ClientArchiveService {
 	/**
 	 * 安排咨询，返回结果
 	 * 
-	 * @param clientArchive
-	 * @param response
-	 * @param doctorNow
+	 * @param clientArchive 咨询记录
+	 * @param response 响应对象
+	 * @param doctorNow 目标咨询师信息
 	 */
 	public void planSubResponse(ClientArchive clientArchive, HttpServletResponse response, Doctor doctorNow) {
 
@@ -276,10 +280,10 @@ public class ClientArchiveService {
 	/**
 	 * 完成咨询
 	 * 
-	 * @param archivesId
-	 * @param clientId
-	 * @param response
-	 * @param doctorNow
+	 * @param archivesId 咨询记录id
+	 * @param clientId 来访者id
+	 * @param response 响应对象
+	 * @param doctorNow 目标咨询师信息
 	 */
 	public void updateStatusFinishResponse(int archivesId, int clientId, HttpServletResponse response,
 			Doctor doctorNow) {
@@ -327,9 +331,9 @@ public class ClientArchiveService {
 	/**
 	 * 评价本次咨询
 	 * 
-	 * @param archivesId
-	 * @param context
-	 * @param response
+	 * @param archivesId 咨询记录id
+	 * @param context 咨询者的评价内容
+	 * @param response 响应对象
 	 */
 	public void evaluateSub(String archivesId, String context, HttpServletResponse response) {
 
@@ -357,9 +361,9 @@ public class ClientArchiveService {
 	/**
 	 * 咨询记录里的咨询文档
 	 * 
-	 * @param archivesId
-	 * @param uploadResult
-	 * @param response
+	 * @param archivesId 咨询记录id
+	 * @param uploadResult 文档的上传结果
+	 * @param response 响应对象
 	 */
 	public void uploadSubDoc(String archivesId, UploadResult uploadResult, HttpServletResponse response) {
 

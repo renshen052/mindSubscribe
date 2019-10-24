@@ -26,7 +26,9 @@ import utils.UploadResult;
 import utils.Util;
 
 /**
- * Servlet implementation class AnnouncmentServlet 公告的控制器，查看，创建，修改公告
+ * @author h w j
+ * @instruction
+ * 公告模块控制器
  */
 public class AnnouncmentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

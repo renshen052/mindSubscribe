@@ -25,7 +25,9 @@ import utils.UploadResult;
 import utils.Util;
 
 /**
- * Servlet implementation class DoctorServlet
+ * @author h w j
+ * @instruction
+ * 管理员端，管理咨询师相关操作的控制器
  */
 @MultipartConfig
 public class DoctorServlet extends HttpServlet {
@@ -208,7 +210,7 @@ public class DoctorServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//错误 指向了这里，，重新编译一下子
+			//关闭流
 			writer.close();
 			
 		}

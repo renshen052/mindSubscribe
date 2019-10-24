@@ -18,8 +18,9 @@ import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 
 /**
- * @Description: 工具类
- *
+ * @author h w j
+ * @instruction
+ * 工具类
  */
 public class Util {
 

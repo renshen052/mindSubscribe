@@ -15,7 +15,11 @@ import bean.Announcement;
 import bean.Doctor;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
-
+/**
+ * @author h w j
+ * @instruction
+ * 操作表announcment，的DAO
+ */
 public class AnnouncmentDao {
 
 	JdbcUtil jdbcUtil = new JdbcUtil();
@@ -26,8 +30,8 @@ public class AnnouncmentDao {
 	/**
 	 * 查询符合条件的公告
 	 * 
-	 * @param search
-	 * @return
+	 * @param search 封装了查询条件的Map集合
+	 * @return 查询到的公告列表
 	 */
 	public List<Announcement> listSearch(Map<String, String> search) {
 
@@ -129,8 +133,11 @@ public class AnnouncmentDao {
 		return list;
 	}
 
-	/*
+	/**
 	 * 切换公告的显示和隐藏，0隐藏，1显示
+	 * @param announcementId 要切换的公告id
+	 * @param action 要更新到的状态
+	 * @return 受影响行数
 	 */
 	public int toggleClientActive(String announcementId, String action) {
 
@@ -142,8 +149,8 @@ public class AnnouncmentDao {
 
 	/**
 	 * 增加一条公告
-	 * @param announcement
-	 * @return
+	 * @param announcement 封装的公告对象
+	 * @return 受影响行数
 	 */
 	public int addAnnouncement(Announcement announcement) {
 
@@ -160,8 +167,8 @@ public class AnnouncmentDao {
 
 	/**
 	 * 根据announcementId，查询一条公告
-	 * @param announcementId
-	 * @return
+	 * @param announcementId 公告id
+	 * @return 查询到的公告对象
 	 */
 	public Announcement getAnnouncement(int announcementId) {
 
@@ -215,9 +222,9 @@ public class AnnouncmentDao {
 
 	
 	/**
-	 * 查询所有显示的公告（最新十条）
-	 * @param num
-	 * @return
+	 * 查询所有显示的公告（最新num条）
+	 * @param num 查询的公告数量
+	 * @return 最新的num条公告的列表
 	 */
 	public ArrayList<Announcement> getAnnouncmentNum(int num) {
 

@@ -18,7 +18,9 @@ import servlet.MessageServlet;
 import servlet.admin.AdminLoginServlet;
 
 /**
- * Servlet Filter implementation class MessageSendFilter
+ * @author h w j
+ * @instruction
+ * 消息模块过滤器（必须登录）
  */
 public class MessageSendFilter implements Filter {
 

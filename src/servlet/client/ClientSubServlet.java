@@ -24,6 +24,11 @@ import model.service.QuestionService;
 /**
  * Servlet implementation class ClientSubServlet 普通来访者的预约咨询业务
  */
+/**
+ * @author h w j
+ * @instruction
+ * 来访者端，预约业务流程控制器
+ */
 public class ClientSubServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -92,6 +97,7 @@ public class ClientSubServlet extends HttpServlet {
 
 		} else if ("subStep2".equals(m)) {
 
+			//预约第二步
 			// 保存
 			
 			//取得各个数据

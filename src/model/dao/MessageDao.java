@@ -10,17 +10,21 @@ import bean.Message;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * message表，对应的dao
+ */
 public class MessageDao {
 
 	JdbcUtil jdbcUtil = new JdbcUtil();
 
 	/**
 	 * 查询 用户 已经发送的消息（即用户发送的）
-	 * 
-	 * @param search
-	 * @param reqeustUser
-	 * @param reqeustUserId 
-	 * @return
+	 * @param search 查询条件集合
+	 * @param reqeustUser 查询人身份(当前登录用户)
+	 * @param reqeustUserId 查询人id(当前登录用户)
+	 * @return 消息对象集合
 	 */
 	public List<Message> listSendMessage(Map<String, String> search, String reqeustUser, Integer reqeustUserId) {
 
@@ -121,9 +125,10 @@ public class MessageDao {
 
 	/**
 	 * 查询 别人给 用户 发送的消息（即用户接受到的）
-	 * 
-	 * @param search
-	 * @return
+	 * @param search 查询条件集合
+	 * @param reqeustUser 查询人身份(当前登录用户)
+	 * @param reqeustUserId 查询人id(当前登录用户)
+	 * @return 消息对象集合
 	 */
 	public List<Message> listReceivMessage(Map<String, String> search, String reqeustUser, Integer reqeustUserId) {
 
@@ -227,8 +232,8 @@ public class MessageDao {
 	
 	/**
 	 * 发送一条消息
-	 * @param message
-	 * @param response
+	 * @param message 消息对象
+	 * @return 受影响行数
 	 */
 	public int sendMessage(Message message) {
 
@@ -246,7 +251,8 @@ public class MessageDao {
 
 	/**
 	 * 切换消息为已读状态
-	 * @param string
+	 * @param messageId 消息id
+	 * @return 受影响行数
 	 */
 	public int toggleIsRead(int messageId) {
 		
@@ -259,9 +265,10 @@ public class MessageDao {
 	
 	/**
 	 * 查询所有未读的消息（最新的num条）
-	 * @param i
-	 * @param adminId
-	 * @return
+	 * @param num 消息最大数量
+	 * @param reqeustUser 查询人身份(当前登录用户)
+	 * @param reqeustUserId 查询人id(当前登录用户)
+	 * @return 消息对象集合
 	 */
 	public ArrayList<Message> getMessageNum(int num, Integer reqeustUserId,String requestUser) {
 
@@ -325,9 +332,9 @@ public class MessageDao {
 
 	/**
 	 * 查询所有未读消息数量
-	 * @param object
-	 * @param object2
-	 * @return
+	 * @param user 用户类型
+	 * @param userId 用户id
+	 * @return 未读消息数量
 	 */
 	public int newMessageNum(String user, Integer userId) {
 
@@ -368,8 +375,8 @@ public class MessageDao {
 	
 	/**
 	 * 查询接受者的Email
-	 * @param receiver
-	 * @param receiverId
+	 * @param receiver 接受者类型
+	 * @param receiverId 接受者的id
 	 * @return 邮箱
 	 */
 	public String getReceiverEmail(String receiver, Integer receiverId) {

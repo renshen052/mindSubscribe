@@ -21,7 +21,9 @@ import model.service.MessageService;
 import servlet.admin.AdminLoginServlet;
 
 /**
- * Servlet implementation class ClientBaseServlet 来访者登录后的操作
+ * @author h w j
+ * @instruction
+ * 来访者端，首页，修改基本信息(包括密码)控制器
  */
 public class ClientBaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -131,7 +133,7 @@ public class ClientBaseServlet extends HttpServlet {
 				msg = "{\"result\":\"true\",\"msg\":\"修改成功,请刷新！\"}";
 				
 				
-				//重新在查询一遍管理员信息
+				//重新在查询一遍来访者信息
 				Client clientNew = clientService.getClient(clientNow.getClientName());
 				
 				request.getSession().setAttribute(ClientLoginServlet.LOGIN_CLIENT,clientNew);

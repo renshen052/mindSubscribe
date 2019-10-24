@@ -12,7 +12,9 @@ import model.service.QuestionService;
 import utils.Util;
 
 /**
- * Servlet implementation class QuestionServlet
+ * @author h w j
+ * @instruction
+ * 问题模块的控制器
  */
 public class QuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
