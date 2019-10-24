@@ -176,7 +176,7 @@ setInterval(function(){
 			<div class="navbar-header pull-left">
 					
 						<small>					
-						<img src="${pageContext.request.contextPath }/mutualResource/myImg/clientTop.png">
+						<img src="${pageContext.request.contextPath }/mutualResource/myImg/clientTop.png" height="65px">
 						</small>
 					
 				</div><!-- /.navbar-header -->
