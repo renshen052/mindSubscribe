@@ -5,7 +5,10 @@ import java.util.Date;
 import org.apache.struts2.json.annotations.JSON;
 
 /**
- *公告实体类
+ * @author h w j
+ * @instruction 
+ * 公告 announcement表，对应的实体类
+ *
  */
 public class Announcement {
 

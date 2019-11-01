@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import utils.ConfigProperties;
 
 /**
- * Servlet implementation class UploadFile
+ * @author h w j
+ * @instruction
+ * 咨询文档下载模块
  */
 public class DownloadFile extends HttpServlet {
 	private static final long serialVersionUID = 1L;

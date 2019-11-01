@@ -17,7 +17,9 @@ import servlet.admin.AdminLoginServlet;
 import servlet.doctor.DoctorLoginServlet;
 
 /**
- * Servlet Filter implementation class DoctorLoginFilter
+ * @author h w j
+ * @instruction
+ * 咨询师登录过滤器
  */
 public class DoctorLoginFilter implements Filter {
 

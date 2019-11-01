@@ -11,6 +11,11 @@ import model.dao.MessageBoardDao;
 import utils.ResultDate;
 import utils.Util;
 
+/**
+ * @author h w j
+ * @instruction
+ * 留言板Service
+ */
 public class MessageBoardService {
 
 	MessageBoardDao messageBoardDao = new MessageBoardDao();
@@ -18,16 +23,19 @@ public class MessageBoardService {
 	/**
 	 * 查询符合条件的留言
 	 * 
-	 * @param search
-	 * @return
+	 * @param search 查询条件
+	 * @return 留言对象集合
 	 */
 	public List<MessageBoard> listSearch(Map<String, String> search) {
 
 		return messageBoardDao.listSearch(search);
 	}
 
-	/*
+	/**
 	 * 切换留言的显示和隐藏，0隐藏，1显示
+	 * @param messageBoardId 留言id
+	 * @param action 要更新为的值
+	 * @param response 响应对象
 	 */
 	public void toggleMessageBoardActive(String messageBoardId, String action, HttpServletResponse response) {
 
@@ -55,8 +63,8 @@ public class MessageBoardService {
 	/**
 	 * 根据留言的id查询，并且给出响应
 	 * 
-	 * @param parseInt
-	 * @param response
+	 * @param messageBoardId 留言id
+	 * @param response响应对象
 	 */
 	public void getMessageBoardToResponse(int messageBoardId, HttpServletResponse response) {
 		MessageBoard messageBoard = messageBoardDao.getMessageBoard(messageBoardId);
@@ -83,8 +91,8 @@ public class MessageBoardService {
 
 	/**
 	 * 增加一条留言
-	 * 
-	 * @param messageBoard
+	 * @param messageBoard 封装好的留言对象
+	 * @param response 响应对象
 	 */
 	public void addMessageBoard(MessageBoard messageBoard, HttpServletResponse response) {
 
@@ -111,7 +119,8 @@ public class MessageBoardService {
 
 	/**
 	 * 得到最新的num条留言
-	 * @return
+	 * @param num 留言数量
+	 * @return 最新的num条留言对象集合
 	 */
 	public ArrayList<MessageBoard> getMessageBoardNum(int num) {
 		

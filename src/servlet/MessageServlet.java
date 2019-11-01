@@ -28,6 +28,11 @@ import utils.ConfigProperties;
 /**
  * Servlet implementation class MessageServlet
  */
+/**
+ * @author h w j
+ * @instruction
+ * 消息模块控制器
+ */
 public class MessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

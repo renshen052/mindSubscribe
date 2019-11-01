@@ -7,7 +7,6 @@ import model.dao.AdminDao;
 public class TestJDBCPool {
 	public static void main(String[] args) {
 		
-		
 		try {
 			utils.jdbc.Pool.getConnection();
 		} catch (SQLException e) {

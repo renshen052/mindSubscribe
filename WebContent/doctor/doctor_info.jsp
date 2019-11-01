@@ -30,7 +30,7 @@
  <div class="admin_info_style">
    <div class="admin_modify_style" id="Personal" style="text-align: center;">
      <div class="type_title">我的信息 </div>
-     <img src="/upload/${LOGIN_DOCTOR.img}" width="200" height="200"/>
+     <img src="/mind_upload/${LOGIN_DOCTOR.img}" width="200" height="200"/>
      <div class="xinxi">
      
      </div>

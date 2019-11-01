@@ -2,6 +2,11 @@ package bean;
 
 import java.util.Date;
 
+/**
+ * @author h w j
+ * @instruction
+ * 消息表 msessage ,对应的实体类
+ */
 public class Message {
 
 	/**

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" />
 		<meta charset="utf-8" />
 		<title>后台管理系统  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

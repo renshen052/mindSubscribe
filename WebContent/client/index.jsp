@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/favicon.ico" />
 		<meta charset="utf-8" />
 		<title>来访者端  </title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -175,7 +176,7 @@ setInterval(function(){
 			<div class="navbar-header pull-left">
 					
 						<small>					
-						<img src="${pageContext.request.contextPath }/mutualResource/myImg/clientTop.png">
+						<img src="${pageContext.request.contextPath }/mutualResource/myImg/clientTop.png" height="65px">
 						</small>
 					
 				</div><!-- /.navbar-header -->

@@ -2,6 +2,11 @@ package utils;
 
 import java.util.Properties;
 
+/**
+ * @author h w j
+ * @instruction
+ * 系统配置
+ */
 public class ConfigProperties {
 	
 	private static Properties properties = new Properties();
@@ -78,14 +83,6 @@ public class ConfigProperties {
 	public static String getAuthenticationPwd() {
 		return properties.getProperty("email.AuthenticationPwd");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

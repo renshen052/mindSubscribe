@@ -127,6 +127,7 @@
 
 							<c:forEach items="${announcementList }" var="announcement">
 
+								<c:if test="${announcement.isActive eq 1 }">
 								<tr>
 
 									<td>${announcement.admin.name }</td>
@@ -141,6 +142,11 @@
 									<fmt:formatDate value="${announcement.createTime }" pattern="yyyy-MM-dd HH:mm:ss" />
 									</td>
 								</tr>
+								
+								
+								</c:if>
+
+								
 							</c:forEach>
 
 

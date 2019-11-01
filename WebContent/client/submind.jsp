@@ -47,10 +47,17 @@
          <a href="#" class="img_link"> <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="200px" height="200px"/></a>
      </c:if>
           <c:if test="${not empty doctor.img }">
+<<<<<<< HEAD
           <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="200px" height="200px"/></a>
           </c:if>
     
      <%-- <a href="#" class="img_link"><img src="/upload/${doctor.img}"  width="200" height="200"/></a> --%>
+=======
+          <a href="#" class="img_link"><img src="/mind_upload/${doctor.img}"  width="200px" height="200px"/></a>
+          </c:if>
+    
+     <%-- <a href="#" class="img_link"><img src="/mind_upload/${doctor.img}"  width="200" height="200"/></a> --%>
+>>>>>>> refs/heads/new_b
       <span>
      
       <b>${doctor.name }</b>

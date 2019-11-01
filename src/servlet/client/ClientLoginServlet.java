@@ -11,7 +11,9 @@ import bean.Client;
 import model.service.ClientService;
 
 /**
- * Servlet implementation class ClientLoginServlet
+ * @author h w j
+ * @instruction
+ * 来访者登录，登出控制器
  */
 public class ClientLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

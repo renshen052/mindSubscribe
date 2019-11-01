@@ -10,6 +10,11 @@ import model.dao.ClientDao;
 import utils.ResultDate;
 import utils.Util;
 
+/**
+ * @author h w j
+ * @instruction
+ * 来访者的Service
+ */
 public class ClientService {
 	
 	ClientDao clientDao = new ClientDao();
@@ -17,8 +22,8 @@ public class ClientService {
 	
 	/**
 	 * 查询符合条件的用户
-	 * @param search
-	 * @return
+	 * @param search 查询条件
+	 * @return 来访者对象集合
 	 */
 	public List<Client> listSearch(Map<String, String> search) {
 
@@ -29,9 +34,8 @@ public class ClientService {
 	/**
 	 * 修改client表中is_active的值，是否为激活状态
 	 * 
-	 * @param clientId
-	 * @param action
-	 * @return
+	 * @param clientId 来访者id
+	 * @param action 要设置的状态值
 	 */
 	public void toggleClientActive(Integer clientId, Integer action, HttpServletResponse response) {
 
@@ -56,26 +60,11 @@ public class ClientService {
 
 	}
 
-	
-
-	/**
-	 * 通过client的clientId 查询client,并且做响应
-	 * 
-	 * @param response
-	 * @param parseInt
-	 * @return
-	 */
-	public void getClientByClientIdToResponse(int clientId, HttpServletResponse response) {
-
-		
-		
-		
-	}
 
 
 	/**
-	 * 查询 共有多少注册的来访者
-	 * @return
+	 * 查询 共有多少来访者
+	 * @return 来访者数量
 	 */
 	public int getClientNum() {
 		return clientDao.getClientNum();
@@ -83,9 +72,9 @@ public class ClientService {
 
 
 	/**
-	 * 根据用户名查询 来访者
-	 * @param clientName
-	 * @return
+	 * 根据账号查询 来访者（支持电话）
+	 * @param clientName 账号
+	 * @return 来访者对象
 	 */
 	public Client getClient(String clientName) {
 		
@@ -95,9 +84,10 @@ public class ClientService {
 
 
 	/**
-	 * 根据来访者的id，修改他的密码
-	 * @param clientId
-	 * @param newPwd
+	 * 修改来访者密码
+	 * @param clientId 来访者id
+	 * @param newPwd 新密码
+	 * @return 受影响行数
 	 */
 	public int updateClientPwd(Integer clientId, String newPwd) {
 
@@ -107,9 +97,9 @@ public class ClientService {
 
 	/**
 	 * 修改来访者的个人信息
-	 * @param client
-	 * @param clientId
-	 * @return
+	 * @param client 来访者对象
+	 * @param clientId 来访者id
+	 * @return 受影响行数
 	 */
 	public int updateClientBase(Client client, Integer clientId) {
 		return clientDao.updateClientBase(client,clientId);
@@ -117,9 +107,9 @@ public class ClientService {
 
 
 	/**
-	 * 拿到Client
-	 * @param clientId
-	 * @return
+	 * 得到来访者
+	 * @param clientId 来访者id
+	 * @return 来访者对象
 	 */
 	public Client getClientByClientId(int clientId) {
 		return clientDao.getClientByClientId(clientId);
@@ -128,8 +118,8 @@ public class ClientService {
 
 	/**
 	 * 判断电话是否可用（是否被注册过）
-	 * @param phone
-	 * @param response
+	 * @param phone 电话
+	 * @param response 响应对象
 	 */
 	public void checkPhoneResponse(String phone, HttpServletResponse response) {
 
@@ -157,14 +147,12 @@ public class ClientService {
 
 	/**
 	 * 添加一来访者
-	 * @param client
+	 * @param client 来访者对象
 	 */
 	public int addClient(Client client) {
 
 		return clientDao.addClient(client);
 		
 	}
-	
-	
 
 }

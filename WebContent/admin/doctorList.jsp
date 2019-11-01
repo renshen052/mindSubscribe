@@ -134,7 +134,11 @@
           <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="77.7px" height="77.7px"/>
           </c:if>
           <c:if test="${not empty doctor.img }">
+<<<<<<< HEAD
           <img src="/upload/${doctor.img}"  width="77.7px" height="77.7px"/>
+=======
+          <img src="/mind_upload/${doctor.img}"  width="77.7px" height="77.7px"/>
+>>>>>>> refs/heads/new_b
           </c:if>
           
           </td>
@@ -685,7 +689,7 @@ function addDate(doctor){
 	var imgPath = $("input[name='imgPath']");
 	$(imgPath).val(doctor.img);
 	if(doctor.img){
-		$(imgPath).next().attr("src","/upload/"+doctor.img);
+		$(imgPath).next().attr("src","/mind_upload/"+doctor.img);
 	}else{
 		$(imgPath).next().attr("src","${pageContext.request.contextPath }/admin/images/icon_error_s.png");
 	}

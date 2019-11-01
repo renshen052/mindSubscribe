@@ -15,8 +15,9 @@ import bean.Doctor;
 import model.service.ClientService;
 
 /**
- * Servlet implementation class ClientServlet 来访者
- * 这里需要管理员操作
+ * @author h w j
+ * @instruction
+ * 管理员端，管理来访者控制器
  */
 public class ClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -76,16 +77,6 @@ public class ClientServlet extends HttpServlet {
 			
 			clientService.toggleClientActive(Integer.parseInt(clientId),Integer.parseInt(action),response);
 			
-			
-		}else if("selecteClient".equals(m)) {//ajax
-			
-			//查看详情
-			
-			//要查看的人
-			String clientId = request.getParameter("id");
-			
-			//查询，并且将数据返回（JSON格式）
-			clientService.getClientByClientIdToResponse(Integer.parseInt(clientId ),response);
 			
 		}
 

@@ -12,8 +12,9 @@ import bean.Client;
 import model.service.ClientService;
 
 /**
- * Servlet implementation class ClientRegister
- * 来访者注册
+ * @author h w j
+ * @instruction
+ * 来访者注册控制器
  */
 public class ClientRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

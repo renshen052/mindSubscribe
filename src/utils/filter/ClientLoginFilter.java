@@ -17,7 +17,9 @@ import servlet.admin.AdminLoginServlet;
 import servlet.client.ClientLoginServlet;
 
 /**
- * Servlet Filter implementation class ClientLoginFilter
+ * @author h w j
+ * @instruction
+ * 来访者登录过滤器
  */
 public class ClientLoginFilter implements Filter {
 
@@ -48,8 +50,6 @@ public class ClientLoginFilter implements Filter {
 		HttpSession session = request.getSession();
 
 		String path = request.getRequestURI();
-
-		
 		
 
 		Client client = (Client) session.getAttribute(ClientLoginServlet.LOGIN_CLIENT);

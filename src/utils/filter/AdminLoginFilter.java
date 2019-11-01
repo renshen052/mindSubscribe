@@ -16,6 +16,11 @@ import bean.Admin;
 import servlet.admin.AdminLoginServlet;
 import servlet.admin.AdminServlet;
 
+/**
+ * @author h w j
+ * @instruction
+ * 管理员登录的过滤器
+ */
 public class AdminLoginFilter implements Filter {
 
 	@Override

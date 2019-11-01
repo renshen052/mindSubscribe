@@ -9,12 +9,19 @@ import bean.Question;
 import utils.Util;
 import utils.jdbc.JdbcUtil;
 
+/**
+ * @author h w j
+ * @instruction
+ * question表对应的dao
+ */
 public class QuestionDao {
 	
 	JdbcUtil jdbcUtil = new JdbcUtil();
 	
 	/**
 	 * 添加一个预约问题
+	 * @param question 要添加的问题对象
+	 * @return 受影响行数
 	 */
 	public int addQuestion(Question question) {
 		
@@ -29,7 +36,8 @@ public class QuestionDao {
 	
 	/**
 	 * 查看所有的问题
-	 * @param context 
+	 * @param context 查询条件（根据问题的内容context字段）
+	 * @return 问题对象集合
 	 */
 	public ArrayList<Question> listQuestion(String context){
 		
@@ -89,9 +97,9 @@ public class QuestionDao {
 
 	
 	/**
-	 * 修改一个预约的问题
-	 * @param question
-	 * @param response 
+	 * 修改一个问题
+	 * @param question 要更新的问题对象
+	 * @return 受影响行数
 	 */
 	public int updateQuestion(Question question) {
 
@@ -108,8 +116,8 @@ public class QuestionDao {
 	
 	/**
 	 *  删除一个问题
-	 * @param questionId
-	 * @param response
+	 * @param questionId 问题id
+	 * @return 受影响行数
 	 */
 	public int deleteQuestion(int questionId) {
 
@@ -120,8 +128,8 @@ public class QuestionDao {
 
 	/**
 	 * 查询一个问题
-	 * @param questionId
-	 * @param response
+	 * @param questionId 问题id
+	 * @return 问题对象 
 	 */
 	public Question getQuestionByQuestionId(int questionId) {
 		

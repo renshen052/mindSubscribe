@@ -9,6 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+/**
+ * @author h w j
+ * @instruction
+ * 字符过滤器（全部设置为UTF-8）
+ */
 public class CharacterEncodingFilter implements Filter{
 
 	@Override

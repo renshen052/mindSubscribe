@@ -1,8 +1,16 @@
 package bean;
 
+/**
+ * @author h w j
+ * @instruction 
+ * 管理员admin表，对应的实体类
+ *
+ */
 public class Admin {
 
-	
+	/**
+	 * 管理员id
+	 */
 	private Integer adminId;
 	
 	/**
@@ -21,15 +29,30 @@ public class Admin {
 	 */
 	private String name;
 	
-	
+	/**
+	 * 性别
+	 */
 	private Integer sex;
 	
+	/**
+	 * 年龄
+	 */
 	private Integer age;
 	
+	/**
+	 * 电话
+	 */
 	private String phone;
 	
+	/**
+	 * 电子邮件
+	 */
 	private String email;
 	
+	
+	/**
+	 * 账户是否激活
+	 */
 	private Integer is_active;
 
 	public Integer getAdminId() {

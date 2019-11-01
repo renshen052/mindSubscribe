@@ -10,6 +10,11 @@ import model.dao.DoctorDao;
 import utils.ResultDate;
 import utils.Util;
 
+/**
+ * @author h w j
+ * @instruction
+ * 咨询师Service
+ */
 public class DoctorService {
 
 	DoctorDao doctorDao = new DoctorDao();
@@ -17,9 +22,8 @@ public class DoctorService {
 	/**
 	 * 修改doctor表中is_active的值，是否为激活状态
 	 * 
-	 * @param doctorId
-	 * @param action
-	 * @return
+	 * @param doctorId 咨询师id
+	 * @param action 要更新的值
 	 */
 	public void toggleDoctorActive(String doctorId, String action, HttpServletResponse response) {
 
@@ -46,8 +50,8 @@ public class DoctorService {
 
 	/**
 	 * 查询符合条件的咨询师
-	 * @param search
-	 * @return
+	 * @param search 查询条件
+	 * @return 咨询师对象集合
 	 */
 	public List<Doctor> listSearch(Map<String, String> search) {
 
@@ -57,8 +61,8 @@ public class DoctorService {
 	/**
 	 * 根据doctorId 删除 doctor
 	 * 
-	 * @param doctorId
-	 * @param response
+	 * @param doctorId 咨询师id
+	 * @param response 响应对象
 	 */
 	public void deleteDoctor(Integer doctorId, HttpServletResponse response) {
 
@@ -85,10 +89,8 @@ public class DoctorService {
 
 	/**
 	 * 通过doctor的doctorId 查询doctor,并且做响应
-	 * 
-	 * @param response
-	 * @param parseInt
-	 * @return
+	 * @param doctorId 咨询师id
+	 * @param response 响应对象
 	 */
 	public void getDoctorByDoctorIdToResponse(int doctorId, HttpServletResponse response) {
 
@@ -117,7 +119,8 @@ public class DoctorService {
 	/**
 	 * 修改Doctor
 	 * 
-	 * @param doctor
+	 * @param doctor 要更新的咨询师对象
+	 * @return 受影响行数
 	 */
 	public int updateDoctor(Doctor doctor) {
 
@@ -127,8 +130,8 @@ public class DoctorService {
 	/**
 	 * 增加一个Doctor
 	 * 
-	 * @param doctor
-	 * @return
+	 * @param doctor 要添加的咨询师对象
+	 * @return 受影响行数
 	 */
 	public int addDoctor(Doctor doctor) {
 
@@ -146,8 +149,8 @@ public class DoctorService {
 	/**
 	 * 删除多个Doctor
 	 * 
-	 * @param checkeds
-	 * @param response
+	 * @param checkeds 要删除的doctorId(1,2,3,4)使用","分隔
+	 * @param response 响应对象
 	 */
 	public void deleteDoctorCheckeds(String checkeds, HttpServletResponse response) {
 
@@ -180,7 +183,7 @@ public class DoctorService {
 
 	/**
 	 * 查询咨询师总数
-	 * @return
+	 * @return 咨询师数量
 	 */
 	public int getDoctorNum() {
 		
@@ -189,8 +192,8 @@ public class DoctorService {
 
 	/**
 	 * 根据doctorId查询doctor
-	 * @param parseInt
-	 * @return
+	 * @param doctorId 咨询师id
+	 * @return 咨询师对象
 	 */
 	public Doctor getDoctorById(int doctorId) {
 		return doctorDao.getDoctorByDoctorId(doctorId);
@@ -198,8 +201,8 @@ public class DoctorService {
 
 	/**
 	 * 通过doctorName获得咨询师(支持电话登录)
-	 * @param doctorName
-	 * @return
+	 * @param doctorName 咨询师账号
+	 * @return 咨询师对象
 	 */
 	public Doctor getDoctor(String doctorName) {
 		return doctorDao.getDoctor(doctorName);
@@ -207,8 +210,9 @@ public class DoctorService {
 
 	/**
 	 * 修改咨询师密码
-	 * @param doctorId
-	 * @param newPwd
+	 * @param doctorId 咨询师id
+	 * @param newPwd 新密码
+	 * @return 受影响行数
 	 */
 	public int updateDoctorPwd(Integer doctorId, String newPwd) {
 		return doctorDao.updateDoctorPwd(doctorId,newPwd);

@@ -2,6 +2,11 @@ package bean;
 
 import java.util.Date;
 
+/**
+ * @author h w j
+ * @instruction
+ * 留言板  messageBoard ,对应的实体类
+ */
 public class MessageBoard {
 
 	/**

@@ -133,7 +133,7 @@
            
           <td>${client.clientName }</td>
           
-          <td><u style="cursor:pointer" class="text-primary" onclick="member_show(${client.clientId })">${client.name }</u></td>
+          <td>${client.name }</td>
           
           <td>${client.sex eq 1 ? "男":"女" }</td>
           
@@ -287,57 +287,6 @@ function member_start(obj,id){
 		
 	});
 }
-
-/**
- * 请求选中的Doctor内容
- */
-function selectedDoctor(id){
-	
-	//ajax
-	$.ajax({
-	type : "GET",
-	url : "${pageContext.request.contextPath}/client/ClientServlet?m=selecteClient&id="+id,
-	dataType : "json",
-	success : function(data) {
-		
-		//成功查到
-		if (data['isSuccess'] == true) {
-			
-			addDate(data.dataList[0]);
-		
-		
-		}else{
-			layer.msg(data['msg'],{icon: 0,time:1000});
-		}
-	}
-	});
-	
-	
-}
-
- /**
- * 	切换是否可编辑
- */
-function toggleEdit(isAble){
-	
-	
-	$("#doctorEdit :input").each(function(){
-		
-		if(isAble=="1"){
-			//可编辑，去掉disabled=
-			$(this).removeAttr("disabled");
-		}else{
-			
-			$(this).attr("disabled","disabled");
-		}
-
-	});
-	 
-	
-}
-
-
-
 
  laydate({
     elem: '#startRegionTime',

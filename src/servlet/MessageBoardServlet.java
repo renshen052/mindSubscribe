@@ -17,8 +17,9 @@ import model.service.MessageBoardService;
 import servlet.client.ClientLoginServlet;
 
 /**
- * Servlet implementation class MessageBoardServlet
- * 来访者留言
+ * @author h w j
+ * @instruction
+ * 留言模块控制器
  */
 public class MessageBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -62,7 +63,7 @@ public class MessageBoardServlet extends HttpServlet {
 			//得到当前登录的用户
 			Map<String, Object> currentUser =MessageServlet.getCurrentUser(request);
 			
-			if(currentUser.get("reqeustUser").equals("admin")) { //管理员（有创建公管的权限）
+			if(currentUser.get("reqeustUser").equals("admin")) { //管理员
 				
 				request.getRequestDispatcher("/admin/messageBoard.jsp").forward(request, response);
 				
@@ -83,9 +84,6 @@ public class MessageBoardServlet extends HttpServlet {
 
 			String action = request.getParameter("action");
 			
-			System.out.println(messageBoardId + "---" + action);
-
-
 			messageBoardService.toggleMessageBoardActive(messageBoardId, action, response);
 
 		} else if ("selecteMessageBoard".equals(m)) {// ajax
