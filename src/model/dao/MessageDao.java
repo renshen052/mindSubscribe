@@ -141,11 +141,9 @@ public class MessageDao {
 
 		sql += "WHERE receiver_id=? ";
 		
-<<<<<<< HEAD
+
 		sql += " AND receiver=?  ORDER BY send_time DESC";
-=======
-		sql += " AND receiver=?  ";
->>>>>>> refs/heads/new_b
+
 		
 		searchList.add(reqeustUserId);
 		searchList.add(reqeustUser);
