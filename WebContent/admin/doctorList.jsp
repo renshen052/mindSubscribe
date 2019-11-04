@@ -134,11 +134,9 @@
           <img src="${pageContext.request.contextPath }/mutualResource/images/image.png"  width="77.7px" height="77.7px"/>
           </c:if>
           <c:if test="${not empty doctor.img }">
-<<<<<<< HEAD
-          <img src="/upload/${doctor.img}"  width="77.7px" height="77.7px"/>
-=======
+
           <img src="/mind_upload/${doctor.img}"  width="77.7px" height="77.7px"/>
->>>>>>> refs/heads/new_b
+
           </c:if>
           
           </td>
