@@ -207,7 +207,7 @@ public class MessageBoardDao {
 
 		ArrayList<MessageBoard> list = new ArrayList<>();
 
-		String sql = "SELECT * FROM message_board m LEFT JOIN CLIENT c ON m.creater_id=c.client_id WHERE m.is_active=1 ORDER BY create_time DESC LIMIT ?; ";
+		String sql = "SELECT * FROM message_board m LEFT JOIN `client` c ON m.creater_id=c.client_id WHERE m.is_active=1 ORDER BY create_time DESC LIMIT ?; ";
 
 
 		ResultSet rs = jdbcUtil.executeQuery(sql, num);
